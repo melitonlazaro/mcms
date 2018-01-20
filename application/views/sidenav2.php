@@ -27,14 +27,14 @@
 
                 <ul class="list-unstyled components">
                     <li class="active">
-                        <a href="#"><i class="fa fa-television" aria-hidden="true"></i>  Dashboard </a>
+                        <a href="<?php echo base_url();?>Main/dashboard"><i class="fa fa-television" aria-hidden="true"></i>  Dashboard </a>
                     </li>
                     <li>
                         <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"><i class="fa fa-bar-chart"></i>   Records</a>
                         <ul class="link-gray collapse list-unstyled" id="homeSubmenu">
-                            <li><a href="#">Maternity Case</a></li>
-                            <li><a href="#">Patients</a></li>
-                            <li><a href="#">Infants</a></li>
+                            <li><a href="<?php echo base_url();?>Prms/case_list">Maternity Case</a></li>
+                            <li><a href="<?php echo base_url();?>Prms/Patient_list">Patients</a></li>
+                            <li><a href="<?php echo base_url();?>Prms/Infant_list">Infants</a></li>
                         </ul>
                     </li>
 
@@ -53,7 +53,7 @@
                 </ul>
 
                 <ul class="list-unstyled logout">
-                    <li><a href="" class="download"><i class="fa fa-sign-out" aria-hidden="true"></i>   Logout</a></li>
+                    <li><a href="<?php echo base_url();?>/Main/logout" class="download"><i class="fa fa-sign-out" aria-hidden="true"></i>   Logout</a></li>
                 </ul>
             </nav>
 
@@ -71,7 +71,7 @@
 
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a href="#"><b><i class="fa fa-television" aria-hidden="true"></i>   DASHBOARD<b></a></li>
+                                <li><a href="#"><b><i class="fa fa-television" aria-hidden="true"></i>DASHBOARD<b></a></li>
                             </ul>
                         </div>
                     </div>
