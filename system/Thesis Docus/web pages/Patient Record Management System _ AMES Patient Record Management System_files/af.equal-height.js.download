@@ -1,0 +1,49 @@
+// Artfinder Equal Height Children plugin
+//      https://github.com/artfinder/jquery-equal-height
+//      version 1.0
+
+
+(function($) {
+
+    $.fn.make_children_equal_height = function () {
+        var make_equal_height = function (element) {
+            var $within     = $(element),
+                selector    = $within.attr('data-equal-height'),
+                $children   = $(selector, $within),
+                tallest     = 0;
+
+            $children.each( function() {
+                var $this = $(this);
+
+                $this.css('min-height', '');
+                var h = $this.height();
+                if ( h > tallest ) {
+                    tallest = h;
+                }
+            });
+
+            $children.each( function() {
+                $(this).css('min-height', tallest + 'px');
+            });
+        };
+
+        return this.each( function () {
+            make_equal_height(this);
+        });
+    };
+
+})( jQuery );
+
+
+jQuery(document).ready(function($) {
+    try{
+        equal_heights();
+        setTimeout('equal_heights()',2000);
+        setTimeout('equal_heights()',5000);
+    }catch(e){}
+});
+
+
+function equal_heights(){
+    jQuery('[data-equal-height]').make_children_equal_height();
+}

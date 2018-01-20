@@ -1,0 +1,1237 @@
+<!--   hide script from old browsers
+function checkMail(strMail)
+{
+	var x = strMail;
+	var filter  = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+	if (filter.test(x)) {
+			return false;
+	
+	}		
+	else{
+		 alert('Incorrect email address');
+		 return true;
+		}
+}
+
+//--------------------------------------------------------------------- 
+ function getdate() 
+//--------------------------------------------------------------------- 
+//Gets the date the form is completed & URL that the form is posted to
+{ 
+	var today = new Date();
+	var month = today.getMonth() + 1 ;
+	var day = today.getDate()  ;
+	var year = today.getFullYear()	;
+	var s = "/"	  ;
+	var todayDate = month + s + day + s + year;
+	//document.testOnlineFormName.PIID_23764_0.value = todayDate ; 
+	//document.testOnlineFormName.PIID_23776_0.value = document.URL ; 
+ 	//document.testOnlineFormName.PIID_21871_0.focus();
+ } //end function 
+
+//--------------------------------------------------------------------- 
+function reload_country() 
+//--------------------------------------------------------------------- 
+//this function changes the country code, postal code descriptor & zip code dash, based on country input
+{
+	var objcountry = document.testOnlineFormName.PIID_23775_0; 
+	var country = objcountry.options[objcountry.selectedIndex].text; 
+	if (country == "Canada")
+		{ 
+			document.testOnlineFormName.PIID_23769_0.value = "1" ; 
+			document.getElementById("PCLabel").innerHTML = "Postal Code:" ;
+			//document.getElementById("StateLabel").innerHTML = "Province:" ;
+			document.getElementById("dash").innerHTML = "" ;
+			document.getElementById("PIID_23774_0").style.visibility = "";
+		}
+	else if (country == "United States")
+		{
+			document.testOnlineFormName.PIID_23769_0.value = "1" ;	
+			document.getElementById("PCLabel").innerHTML = "Zip Code:" ;
+			//document.getElementById("StateLabel").innerHTML = "State :" ;
+			document.getElementById("dash").innerHTML = " - " ;
+			document.getElementById("PIID_23774_0").style.visibility = "";
+		}
+	else if (country == "Australia")
+		{
+			document.testOnlineFormName.PIID_23769_0.value = "+61" ; 
+			document.getElementById("PCLabel").innerHTML = "Postal Code:" ;
+			//document.getElementById("StateLabel").innerHTML = "State:" ;
+			document.getElementById("dash").innerHTML = "" ;
+			document.getElementById("PIID_23774_0").style.visibility = "hidden";
+		}
+	else if (country == "Netherlands")
+		{
+			document.testOnlineFormName.PIID_23769_0.value = "+31" ;
+			document.getElementById("PCLabel").innerHTML = "Postal Code:" ;
+			//document.getElementById("StateLabel").innerHTML = "State:" ;
+			document.getElementById("dash").innerHTML = "" ;
+			document.getElementById("PIID_23774_0").style.visibility = "";
+		}
+	else if (country == "Other")
+		{
+			document.testOnlineFormName.PIID_23769_0.value = "" ; 
+			document.getElementById("PCLabel").innerHTML = "Postal Code:" ;
+			//document.getElementById("StateLabel").innerHTML = "State:" ;
+			document.getElementById("dash").innerHTML = "" ;
+			document.getElementById("PIID_23774_0").style.visibility = "";
+		}
+	else
+		{
+			alert('You must select a country.  If your country is not listed, please select \"Other\".');
+
+		}
+	
+	//document.getElementById(PCLabel).innerText = PCLabel ;
+	document.testOnlineFormName.PIID_21871_0.focus();
+} 
+
+//--------------------------------------------------------------------- 
+function reload_countryZero() 
+//--------------------------------------------------------------------- 
+//this function changes the country code, postal code descriptor & zip code dash, based on country input
+{
+	var objcountry = document.testOnlineFormName.PIID_23775_0; 
+	var country = objcountry.options[objcountry.selectedIndex].text; 
+	if (country == "Canada")
+		{ 
+			document.testOnlineFormName.PIID_23769_0.value = "1" ; 
+			document.getElementById("PCLabel").innerHTML = "Postal Code:" ;
+			//document.getElementById("StateLabel").innerHTML = "Province:" ;
+			document.getElementById("dash").innerHTML = "" ;
+			document.getElementById("PIID_23774_0").style.visibility = "";
+			document.getElementById("State").maxLength = 2;
+		}
+	else if (country == "United States")
+		{
+			document.testOnlineFormName.PIID_23769_0.value = "1" ;	
+			document.getElementById("PCLabel").innerHTML = "Zip Code:" ;
+			//document.getElementById("StateLabel").innerHTML = "State :" ;
+			document.getElementById("dash").innerHTML = " - " ;
+			document.getElementById("PIID_23774_0").style.visibility = "";
+			document.getElementById("State").maxLength = 2;
+		}
+	else if (country == "Australia")
+		{
+			document.testOnlineFormName.PIID_23769_0.value = "+61" ; 
+			document.getElementById("PCLabel").innerHTML = "Postal Code:" ;
+			//document.getElementById("StateLabel").innerHTML = "State:" ;
+			document.getElementById("dash").innerHTML = "" ;
+			document.getElementById("PIID_23774_0").style.visibility = "hidden";
+			document.getElementById("State").maxLength = 3;
+		}
+	else if (country == "Netherlands")
+		{
+			document.testOnlineFormName.PIID_23769_0.value = "+31" ;
+			document.getElementById("PCLabel").innerHTML = "Postal Code:" ;
+			//document.getElementById("StateLabel").innerHTML = "State:" ;
+			document.getElementById("dash").innerHTML = "" ;
+			document.getElementById("PIID_23774_0").style.visibility = "";
+			document.getElementById("State").maxLength = 2;
+		}
+	else if (country == "Other")
+		{
+			document.testOnlineFormName.PIID_23769_0.value = "" ; 
+			document.getElementById("PCLabel").innerHTML = "Postal Code:" ;
+			//document.getElementById("StateLabel").innerHTML = "State:" ;
+			document.getElementById("dash").innerHTML = "" ;
+			document.getElementById("PIID_23774_0").style.visibility = "";
+			document.getElementById("State").maxLength = 2;
+		}
+	else
+		{
+			alert('You must select a country.');
+
+		}
+	
+	//document.getElementById(PCLabel).innerText = PCLabel ;
+	document.testOnlineFormName.PIID_21871_0.focus();
+} 
+//--------------------------------------------------------------------- 
+function isInteger(s)
+//--------------------------------------------------------------------- 
+// Input Validation Functions - checks for integer, etc.
+{   var i;
+    for (i = 0; i < s.length; i++)
+    {   
+        // Check that current character is number.
+        var c = s.charAt(i);
+        if (((c < "0") || (c > "9"))) return false;
+    }
+    // All characters are numbers.
+    return true;
+}
+//--------------------------------------------------------------------- 
+function isAlpha(checkStr)
+//--------------------------------------------------------------------- 
+
+{
+	// allow ONLY alpha keys, no symbols or punctuation
+	// this can be altered for any "checkOK" string you desire
+	var checkOK = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz- ";
+	var allValid = true;
+	for (i = 0;  i < checkStr.length;  i++)
+	{
+		ch = checkStr.charAt(i);
+		for (j = 0;  j < checkOK.length;  j++)
+		if (ch == checkOK.charAt(j))
+		break;
+		if (j == checkOK.length)
+		{
+			allValid = false;
+			break;
+		}
+	}
+	if (!allValid)
+	return false;
+} 
+
+//--------------------------------------------------------------------- 
+function isValidPostalCode(PC1,PC2,country)
+//--------------------------------------------------------------------- 
+
+{ 
+var oddOK = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+var evenOK = "0123456789";
+var PC = PC1 + PC2;
+var allValid = true;
+
+	if (country == "Canada")
+	{
+		// check if length is 6 characters 
+		if ((PC1.length != 3)  || (PC2.length != 3) )
+			{
+				alert ("The Postal Code must be 6 characters.");
+				allValid = false;
+			}
+		else
+		{
+			// check if ODD are ONLY alpha keys, no symbols or punctuation
+				for (i = 0;  i < PC.length;  i = i + 2)
+				{
+					ch = PC.charAt(i);
+					for (j = 0;  j < oddOK.length;  j++)
+					if (ch == oddOK.charAt(j))
+					break;
+					if (j == oddOK.length)
+					{
+						alert ("The Postal Code must alternate alpha and numeric characters.");
+						allValid = false;
+						break;
+					}
+				}
+				// check if EVEN are ONLY numberic keys, no symbols or punctuation
+				for (i = 1;  i < PC.length;  i = i + 2)
+				{
+					ch = PC.charAt(i);
+					for (j = 0;  j < evenOK.length;  j++)
+					if (ch == evenOK.charAt(j))
+					break;
+					if (j == evenOK.length)
+					{
+						alert ("The Postal Code must alternate alpha and numeric characters.");
+						allValid = false;
+						break;
+					}
+				}		
+			}
+	}
+	
+	else if (country == "United States")
+	{
+		// check if length is 5 characters 
+		if ((PC1.length != 5) || (isInteger(PC1) == false))
+			{
+				alert ("The zip code must be 5 digits.");
+				allValid = false;
+			}
+	}
+	
+	else if (country == "Australia")
+	{
+		//alert(country);
+		// check if length is 4 characters 
+		if ((PC1.length != 4))
+			{
+				alert ("Please enter a valid 4 digits postal code.");
+				allValid = false;
+			}
+		
+	}
+	
+	else
+	{
+		// check that it is not blank 
+		if ((PC1.length == null) || (PC1.length == ""))
+			{
+				alert ("You must enter a postal code.");
+				allValid = false;
+			}
+		else if ((PC2.length == null) || (PC2.length == ""))
+			{
+				alert ("You must enter a postal code.");
+				allValid = false;
+			}
+	}
+	
+	if (!allValid)
+	return false;
+}
+
+//--------------------------------------------------------------------- 
+ function verifyInputs() 
+//--------------------------------------------------------------------- 
+{ 
+	var firstname = document.testOnlineFormName.PIID_21871_0.value;
+	var lastname = 	document.testOnlineFormName.PIID_21872_0.value;
+	var organization = 	document.testOnlineFormName.PIID_21873_0.value;
+	var countrycode = 	document.testOnlineFormName.PIID_23769_0.value;
+	var areacode = 	document.testOnlineFormName.PIID_23770_0.value;	
+	var exchange = 	document.testOnlineFormName.PIID_23771_0.value;
+	var local = document.testOnlineFormName.PIID_23772_0.value;
+	var extension = document.testOnlineFormName.PIID_23773_0.value;
+	var postalcode1 = trim(document.testOnlineFormName.PIID_23244_0.value);
+	var postalcode2 = trim(document.testOnlineFormName.PIID_23774_0.value); 
+	var country =  document.testOnlineFormName.PIID_23775_0.value; 
+	var email =  document.testOnlineFormName.PIID_21870_0.value; 
+	var fulltelephone =  document.testOnlineFormName.PIID_22014_0.value;
+	
+	
+
+		if (country == "")
+			{
+				alert('You must select a country.  If your country is not listed, please select \"Other\".');
+				document.testOnlineFormName.PIID_23775_0.focus();
+			}  
+			
+		else if ((firstname == "") || (isAlpha(firstname) == false))
+		{
+			alert ("You must enter a valid first name.");
+			document.testOnlineFormName.PIID_21871_0.focus(); 
+		}  
+		
+		else if ((lastname == "") || (isAlpha(lastname) == false))
+			{
+				alert ("You must enter your last name.");
+				document.testOnlineFormName.PIID_21872_0.focus();
+			}  
+		else if (organization == "")
+			{
+				alert ("You must enter your organization.");
+				document.testOnlineFormName.PIID_21873_0.focus();
+			}  
+			
+			else if ((isInteger(areacode) == false)  )
+			{
+				alert ("Please enter digits only in your telephone area code.");
+				document.testOnlineFormName.PIID_23770_0.focus();
+			}  
+			
+			
+		else if ((areacode ==null)  || (areacode == "") )
+			{
+				alert ("You must enter your telephone area code.");
+				document.testOnlineFormName.PIID_23770_0.focus();
+			}  
+			
+		else if ( (areacode.length != 3) && ((country == "Canada" ) || (country == "United States")))
+			{
+				alert ("Your telephone area code must be three digits.");
+				document.testOnlineFormName.PIID_23770_0.focus();
+			}  
+			
+		else if ( (areacode.length < 2) && (country == "Australia" ) )
+			{
+				alert ("Your telephone area code must be two or three digits.");
+				document.testOnlineFormName.PIID_23770_0.focus();
+			}  
+			
+		else if (isInteger(exchange) == false)  
+			{
+				alert ("Please enter digits only in your telephone exchange.");
+				document.testOnlineFormName.PIID_23771_0.focus();
+			}  
+			
+		else if ((exchange == null)  || (exchange == "") )
+			{
+				alert ("Your telephone exchange must be entered.");
+				document.testOnlineFormName.PIID_23771_0.focus();
+			} 
+			
+		else if ( (exchange.length != 3) && ( (country == "Canada")  || (country == "United States") ) )
+			{
+				alert ("Your telephone exchange must be three digits.");
+				document.testOnlineFormName.PIID_23771_0.focus();
+			} 
+			
+		else if ( (exchange.length != 4) &&  (country == "Australia")  )
+			{
+				alert ("Your telephone exchange must be four digits.");
+				document.testOnlineFormName.PIID_23771_0.focus();
+			}  
+ 
+			
+		else if (isInteger(local) == false)  
+			{
+				alert ("Please enter digits only in your telephone local.");
+				document.testOnlineFormName.PIID_23772_0.focus();
+			}  
+			
+		else if ((local == null)  || (local == "") || ((local.length != 4) && (countrycode == 1)))
+			{
+				alert ("Your telephone local must be four digits.");
+				document.testOnlineFormName.PIID_23772_0.focus();
+			}  
+		
+		else if (isInteger(extension) == false)
+			{
+				alert ("Please enter digits only in your telephone extension.");
+				document.testOnlineFormName.PIID_23773_0.focus();
+			}  
+		
+		else if (isValidPostalCode(postalcode1,postalcode2,country) == false)
+			{
+				//alert ("Please enter a valid postal code.");
+				document.testOnlineFormName.PIID_23244_0.focus();
+			}  
+		
+		else if (email == "")
+			{
+				alert ("You must enter a valid email address.");
+				document.testOnlineFormName.PIID_21870_0.focus();
+			} 
+			
+		 
+
+		else
+			{
+				if (extension == "")
+				{
+					document.testOnlineFormName.PIID_22014_0.value = 
+					countrycode + "-" + areacode + "-" + exchange + "-" + local;
+				}
+				else
+				{
+					document.testOnlineFormName.PIID_22014_0.value = 
+					countrycode + "-" + areacode + "-" + exchange + "-" + local + " ext. " + extension;
+				}
+
+				preLoadData('testOnlineFormName');
+				testPreLoadToken('testOnlineFormName');
+				if(checkMail(email)){
+					
+					return false;
+					}else{
+					document.testOnlineFormName.submit();
+						
+	                    if ($leadlife != null)
+	                    {
+							if (postalcode2 != ""){
+								document.testOnlineFormName.PIID_23244_0.value = postalcode1 + '-' +  postalcode2;
+							}
+	                        $leadlife('#testOnlineFormName').submit();
+	                    }
+
+					}
+				//alert ("Form input is valid.");
+			}
+	
+	   
+ } //end function 
+
+
+ 
+function verifyInputsZero() 
+//--------------------------------------------------------------------- 
+{ 
+	var firstname = document.testOnlineFormName.PIID_21871_0.value;
+	var lastname = 	document.testOnlineFormName.PIID_21872_0.value;
+	var organization = 	document.testOnlineFormName.PIID_21873_0.value;
+	var countrycode = 	document.testOnlineFormName.PIID_23769_0.value;
+	var areacode = 	document.testOnlineFormName.PIID_23770_0.value;	
+	var exchange = 	document.testOnlineFormName.PIID_23771_0.value;
+	var local = document.testOnlineFormName.PIID_23772_0.value;
+	var extension = document.testOnlineFormName.PIID_23773_0.value;
+	var postalcode1 = trim(document.testOnlineFormName.PIID_23244_0.value);
+	var postalcode2 = trim(document.testOnlineFormName.PIID_23774_0.value); 
+	var country =  document.testOnlineFormName.PIID_23775_0.value; 
+	var email =  document.testOnlineFormName.PIID_21870_0.value; 
+	var fulltelephone =  document.testOnlineFormName.PIID_22014_0.value;
+	var mailingAddress =document.testOnlineFormName.MailingAddress.value;
+	var state =document.testOnlineFormName.State.value;
+	var city  =  document.testOnlineFormName.City.value;
+	
+	
+
+		if (country == "")
+			{
+				alert('You must select canada as your country.');
+				document.testOnlineFormName.PIID_23775_0.focus();
+			}  
+			
+		else if ((firstname == "") || (isAlpha(firstname) == false))
+		{
+			alert ("You must enter a valid first name.");
+			document.testOnlineFormName.PIID_21871_0.focus(); 
+		}  
+		
+		else if ((lastname == "") || (isAlpha(lastname) == false))
+			{
+				alert ("You must enter your last name.");
+				document.testOnlineFormName.PIID_21872_0.focus();
+			}  
+		else if (organization == "")
+			{
+				alert ("You must enter your organization.");
+				document.testOnlineFormName.PIID_21873_0.focus();
+			}  
+			
+			else if ((isInteger(areacode) == false)  )
+			{
+				alert ("Please enter digits only in your telephone area code.");
+				document.testOnlineFormName.PIID_23770_0.focus();
+			}  
+			
+			
+		else if ((areacode ==null)  || (areacode == "") )
+			{
+				alert ("You must enter your telephone area code.");
+				document.testOnlineFormName.PIID_23770_0.focus();
+			}  
+			
+		else if ( (areacode.length != 3) && ((country == "Canada" ) || (country == "United States")))
+			{
+				alert ("Your telephone area code must be three digits.");
+				document.testOnlineFormName.PIID_23770_0.focus();
+			}  
+			
+		else if ( (areacode.length < 2) && (country == "Australia" ) )
+			{
+				alert ("Your telephone area code must be two or three digits.");
+				document.testOnlineFormName.PIID_23770_0.focus();
+			}  
+			
+		else if (isInteger(exchange) == false)  
+			{
+				alert ("Please enter digits only in your telephone exchange.");
+				document.testOnlineFormName.PIID_23771_0.focus();
+			}  
+			
+		else if ((exchange == null)  || (exchange == "") )
+			{
+				alert ("Your telephone exchange must be entered.");
+				document.testOnlineFormName.PIID_23771_0.focus();
+			} 
+			
+		else if ( (exchange.length != 3) && ( (country == "Canada")  || (country == "United States") ) )
+			{
+				alert ("Your telephone exchange must be three digits.");
+				document.testOnlineFormName.PIID_23771_0.focus();
+			} 
+			
+		else if ( (exchange.length != 4) &&  (country == "Australia")  )
+			{
+				alert ("Your telephone exchange must be four digits.");
+				document.testOnlineFormName.PIID_23771_0.focus();
+			}  
+ 
+			
+		else if (isInteger(local) == false)  
+			{
+				alert ("Please enter digits only in your telephone local.");
+				document.testOnlineFormName.PIID_23772_0.focus();
+			}  
+			
+		else if ((local == null)  || (local == "") || ((local.length != 4) && (countrycode == 1)))
+			{
+				alert ("Your telephone local must be four digits.");
+				document.testOnlineFormName.PIID_23772_0.focus();
+			}  
+		
+		else if (isInteger(extension) == false)
+			{
+				alert ("Please enter digits only in your telephone extension.");
+				document.testOnlineFormName.PIID_23773_0.focus();
+			}  
+		
+		else if (isValidPostalCode(postalcode1,postalcode2,country) == false)
+			{
+				//alert ("Please enter a valid postal code.");
+				document.testOnlineFormName.PIID_23244_0.focus();
+			}  
+		
+		else if (email == "")
+			{
+				alert ("You must enter a valid email address.");
+				document.testOnlineFormName.PIID_21870_0.focus();
+			} 
+		
+		else if (mailingAddress == "")
+		{
+			alert ("You must enter a valid mailing address.");
+			document.testOnlineFormName.MailingAddress.focus();
+			
+		}
+			else if (city == "")
+		{
+			alert ("You must enter a valid city.");
+			document.testOnlineFormName.City.focus();
+			
+		}
+		 else if (state == "")
+		{
+			alert ("You must enter a valid province.");
+			document.testOnlineFormName.State.focus();
+			
+		}
+	
+		else
+			{
+				if (extension == "")
+				{
+					document.testOnlineFormName.PIID_22014_0.value = 
+					countrycode + "-" + areacode + "-" + exchange + "-" + local;
+				}
+				else
+				{
+					document.testOnlineFormName.PIID_22014_0.value = 
+					countrycode + "-" + areacode + "-" + exchange + "-" + local + " ext. " + extension;
+				}
+
+				preLoadData('testOnlineFormName');
+				testPreLoadToken('testOnlineFormName');
+				if(checkMail(email)){
+					
+					return false;
+					}else{
+					document.testOnlineFormName.submit();
+					 if ($leadlife != null)
+	                    {
+							if (postalcode2 != ""){
+								document.testOnlineFormName.PIID_23244_0.value = postalcode1 + '-' +  postalcode2;
+							}
+	                        $leadlife('#testOnlineFormName').submit();
+	                    }
+
+					}
+				//alert ("Form input is valid.");
+			}
+	
+	   
+ } //end function
+ 
+//--------------------------------------- 
+//--------------------------------------- 
+// Javascript Section from ThinData
+// two edits were made.
+//--------------------------------------- 
+//--------------------------------------- 
+
+// This main function is responsible for parsing the query string 
+// and populating matching fields in this online form. 
+
+//--------------------------------------- 
+function preLoadData(strPassedFormName)   
+//--------------------------------------- 
+{ 
+  var strTemp; 
+  var strFormType; 
+  var qsName; 
+  var qsValue; 
+  var arrPassedString; 
+  var intI, intJ; 
+  var urlPassedString = location.search.substring(1); 
+  var re = /[+]/gi; 
+  var blnFoundValidItem = 0;  
+
+  // Look for at least one item in the query string that corresponds to  
+  // PIID, MLID, or MPID.  If we find at least one item with that designation,  
+  // then continue the preloading of the form.  Otherwise, do not go into the  
+  // preload script  
+
+  arrPassedString = urlPassedString.split("&")  
+  for (intI = 0; intI < arrPassedString.length; intI++) { 
+    qsName = '';  
+    qsName = arrPassedString[intI].substring(0, 4);  
+    qsName = qsName.toUpperCase();  
+    if (qsName == 'PIID' || qsName == 'MLID' || qsName == 'MPID') {  
+      blnFoundValidItem = 1;  
+    }  
+  } 
+
+
+  // parse our string of data into it's appropriate name and value pairs 
+
+  if (urlPassedString.length != 0 && blnFoundValidItem == 1) 
+  { 
+    for (intJ = 0; intJ < window.document.forms[strPassedFormName].length; intJ++) {  
+      varFormElement = window.document.forms[strPassedFormName][intJ];  
+      strFormType    = varFormElement.type;  
+      strFormType = strFormType.toUpperCase();  
+      if (strFormType == "TEXT"  || strFormType == "HIDDEN") { 
+        strTemp = varFormElement.name;  
+        strTemp = strTemp.toUpperCase();  
+        if (strTemp != "WEBFORMID" && strTemp != "PROCESSPAGE" && strTemp != "W" && strTemp != "CID" && strTemp != "I") { 
+          varFormElement.value = ""; 
+        } 
+      } else if (strFormType == "CHECKBOX" || strFormType == "RADIO") {  
+        varFormElement.checked = false;  
+      } else if (strFormType == "SELECT-ONE") {  
+        varFormElement.selectedIndex = -1;  
+      } else if (strFormType == "TEXTAREA") {  
+        varFormElement.value = "";  
+      } 
+    }  
+    arrPassedString = urlPassedString.split("&") 
+    for (intI = 0; intI < arrPassedString.length; intI++) { 
+      qsValue = ''; 
+      qsName = ''; 
+      qsName = arrPassedString[intI].substring(0, arrPassedString[intI].indexOf("=",1)); 
+      qsValue = arrPassedString[intI].substring(arrPassedString[intI].indexOf("=",1)+1) 
+      if (qsValue.substring(0, 1) == "+") { 
+        qsValue = qsValue.substring(1, qsValue.length) 
+      } 
+      qsValue = unescape(qsValue.replace(re, " ")); 
+      qsName = unescape(qsName.replace(re, " ")); 
+      if (window.document.forms[strPassedFormName][qsName]) { 
+
+        // Determine wether the profile item has been listed on the form multiple 
+        // times (in the case of a checkbox or radio button or select box with 
+        // multiple options) or if it's just listed once (in the case of everything else) 
+
+        if (window.document.forms[strPassedFormName][qsName].length) {          
+          strFormType = window.document.forms[strPassedFormName][qsName].type; 
+          if (strFormType) { 
+            strFormType = strFormType.toUpperCase(); 
+          } 
+          if (strFormType == "TEXT"  || strFormType == "HIDDEN") { 
+            window.document.forms[strPassedFormName][qsName].value = qsValue; 
+          } else if (strFormType == "RADIO" || strFormType == "CHECKBOX") { 
+            if (window.document.forms[strPassedFormName][qsName].value == qsValue) { 
+              window.document.forms[strPassedFormName][qsName].checked = true; 
+            }      
+          } else if (strFormType == "SELECT-ONE") { 
+            for (intJ = 0; intJ < window.document.forms[strPassedFormName][qsName].length; intJ++) { 
+              strTemp = window.document.forms[strPassedFormName][qsName].options[intJ].value; 
+              if (strTemp == qsValue) { 
+                window.document.forms[strPassedFormName][qsName].selectedIndex = intJ; 
+              } 
+            } 
+          } else { 
+
+            // We have a checkbox or radio button with multiple values. 
+            // In each case we know that there will be a value attribute 
+
+            for (intJ = 0; intJ < window.document.forms[strPassedFormName][qsName].length; intJ++) { 
+              if (window.document.forms[strPassedFormName][qsName][intJ].value == qsValue) { 
+                window.document.forms[strPassedFormName][qsName][intJ].checked = true; 
+              } 
+            } 
+          } 
+        } else { 
+
+          // We know that we either have a select box or we have something else. 
+          // Test for the selectedIndex property to determine.
+
+          strFormType = window.document.forms[strPassedFormName][qsName].type; 
+          strFormType = strFormType.toUpperCase(); 
+          if (strFormType == "SELECT-ONE") { 
+            for (intJ = 0; intJ < window.document.forms[strPassedFormName][qsName].length; intJ++) { 
+              strTemp = window.document.forms[strPassedFormName][qsName].options[intJ].value; 
+              if (strTemp == qsValue) { 
+                window.document.forms[strPassedFormName][qsName].selectedIndex = intJ; 
+              } 
+            } 
+          } else { 
+            strFormType = window.document.forms[strPassedFormName][qsName].type; 
+            strFormType = strFormType.toUpperCase(); 
+            if (strFormType == 'RADIO' || strFormType == 'CHECKBOX') { 
+              if (window.document.forms[strPassedFormName][qsName].value == qsValue) { 
+                window.document.forms[strPassedFormName][qsName].checked = true; 
+              }      
+            } else { 
+              window.document.forms[strPassedFormName][qsName].value = qsValue; 
+            } 
+          } 
+        } 
+      } 
+ else {  qsName = qsName + '_0';       if (window.document.forms[strPassedFormName][qsName]) { 
+
+        // Determine wether the profile item has been listed on the form multiple 
+        // times (in the case of a checkbox or radio button or select box with 
+        // multiple options) or if it's just listed once (in the case of everything else) 
+
+        if (window.document.forms[strPassedFormName][qsName].length) {          
+          strFormType = window.document.forms[strPassedFormName][qsName].type; 
+          if (strFormType) { 
+            strFormType = strFormType.toUpperCase(); 
+          } 
+          if (strFormType == "TEXT"  || strFormType == "HIDDEN") { 
+            window.document.forms[strPassedFormName][qsName].value = qsValue; 
+          } else if (strFormType == "RADIO" || strFormType == "CHECKBOX") { 
+            if (window.document.forms[strPassedFormName][qsName].value == qsValue) { 
+              window.document.forms[strPassedFormName][qsName].checked = true; 
+            }      
+          } else if (strFormType == "SELECT-ONE") { 
+            for (intJ = 0; intJ < window.document.forms[strPassedFormName][qsName].length; intJ++) { 
+              strTemp = window.document.forms[strPassedFormName][qsName].options[intJ].value; 
+              if (strTemp == qsValue) { 
+                window.document.forms[strPassedFormName][qsName].selectedIndex = intJ; 
+              } 
+            } 
+          } else { 
+
+            // We have a checkbox or radio button with multiple values. 
+            // In each case we know that there will be a value attribute 
+
+            for (intJ = 0; intJ < window.document.forms[strPassedFormName][qsName].length; intJ++) { 
+              if (window.document.forms[strPassedFormName][qsName][intJ].value == qsValue) { 
+                window.document.forms[strPassedFormName][qsName][intJ].checked = true; 
+              } 
+            } 
+          } 
+        } else { 
+
+          // We know that we either have a select box or we have something else. 
+          // Test for the selectedIndex property to determine.
+
+          strFormType = window.document.forms[strPassedFormName][qsName].type; 
+          strFormType = strFormType.toUpperCase(); 
+          if (strFormType == "SELECT-ONE") { 
+            for (intJ = 0; intJ < window.document.forms[strPassedFormName][qsName].length; intJ++) { 
+              strTemp = window.document.forms[strPassedFormName][qsName].options[intJ].value; 
+              if (strTemp == qsValue) { 
+                window.document.forms[strPassedFormName][qsName].selectedIndex = intJ; 
+              } 
+            } 
+          } else { 
+            strFormType = window.document.forms[strPassedFormName][qsName].type; 
+            strFormType = strFormType.toUpperCase(); 
+            if (strFormType == 'RADIO' || strFormType == 'CHECKBOX') { 
+              if (window.document.forms[strPassedFormName][qsName].value == qsValue) { 
+                window.document.forms[strPassedFormName][qsName].checked = true; 
+              }      
+            } else { 
+              window.document.forms[strPassedFormName][qsName].value = qsValue; 
+            } 
+          } 
+        } 
+      } 
+    }     } 
+  } 
+} 
+
+// Call the routine to do our replacement of text values 
+
+// LH- moved to "verifyInputs" function
+//preLoadData('testOnlineFormName') 
+
+
+
+//------------------------------------------ 
+function testPreLoadToken(strPassedFormName) 
+//------------------------------------------ 
+{ 
+  var urlPassedString = location.search.substring(1); 
+  var re = /[+]/gi; 
+  var strWebFormID = ""; 
+  var strINST = ""; 
+  var strTemp = ""; 
+  var intFoundToken = 0; 
+  var varElement; 
+  var strCompanyID = ""; 
+ 
+
+  // parse our string of data into it's appropriate name and value pairs 
+
+  if (urlPassedString.length != 0) 
+  { 
+    arrPassedString = urlPassedString.split("&") 
+    for (intI = 0; intI < arrPassedString.length; intI++) { 
+      qsValue = ''; 
+      qsName = ''; 
+      qsName = arrPassedString[intI].substring(0, arrPassedString[intI].indexOf("=",1)); 
+      qsValue = arrPassedString[intI].substring(arrPassedString[intI].indexOf("=",1)+1) 
+      if (qsValue.substring(0, 1) == "+") { 
+        qsValue = qsValue.substring(1, qsValue.length) 
+      } 
+      qsValue = unescape(qsValue.replace(re, " ")); 
+      qsName = unescape(qsName.replace(re, " ")); 
+      qsName = qsName.toUpperCase();  
+      if (qsValue == "") qsValue="1"; 
+      if (qsName == "TOKEN" && qsValue != "") { 
+        intFoundToken = 1; 
+
+        // Find the original Online Form ID 
+
+        if (window.document.forms[strPassedFormName]["W"]) { 
+          strWebFormID = window.document.forms[strPassedFormName]["W"].value; 
+        } 
+        if (window.document.forms[strPassedFormName]["I"]) { 
+          strINST = window.document.forms[strPassedFormName]["I"].value; 
+        } 
+        if (strWebFormID != "") { 
+          strTemp = "http://links.tab.ca/a/y.x?S=" + qsValue + "&W=" + strWebFormID + "&I=" + strINST + "&U="  + escape(window.location); 
+          window.location = strTemp;  
+        }         
+      } 
+    } 
+  }   
+} 
+
+// LH - moved to "verifyInputs" function
+//testPreLoadToken('testOnlineFormName'); 
+
+
+// Start of the MIME Selector Code. This will make sure that use can only pick 
+// one mime type and subscribe to only one mime type.                          
+
+
+
+//--------------------------------------------------------------------- 
+ function TurnOtherOff(intMimeTypeId,lngMailinglistId,objthis,thisform) 
+//--------------------------------------------------------------------- 
+{ 
+   var strTextTypeBox = 'MLID_' + lngMailinglistId + '_2';
+   var strHTMLTypebox = 'MLID_' + lngMailinglistId + '_4';
+   var frmWebform = window.document.forms[thisform]; 
+
+   if(intMimeTypeId==2) 
+   { 
+     for(i=0;i<frmWebform.length;i++) 
+     { 
+       if(frmWebform.elements[i].name.indexOf(strHTMLTypebox)!=-1) 
+       { 
+         if (objthis.checked == true) 
+         { 
+           frmWebform.elements[i].checked = false; 
+         } 
+       } 
+    } 
+  } 
+
+   if(intMimeTypeId==4) 
+   { 
+     for(i=0;i<frmWebform.length;i++) 
+     {        if(frmWebform.elements[i].name.indexOf(strTextTypeBox)!=-1) 
+       {          if (objthis.checked == true) 
+         { 
+            frmWebform.elements[i].checked = false; 
+         } 
+       } 
+     } 
+   } 
+ } 
+ 
+  function trim(str)
+{
+      return str.replace(/^[\s]+/,'').replace(/[\s]+$/,'').replace(/[\s]{2,}/,' ');
+}
+ 
+ //--------------------------------------------------------------------- 
+ function verifyInputsSpecialForm(googleAnalyticsPage,track) 
+//--------------------------------------------------------------------- 
+{ 
+	var firstname = document.testOnlineFormName.PIID_21871_0.value;
+	var lastname = 	document.testOnlineFormName.PIID_21872_0.value;
+//	var organization = 	document.testOnlineFormName.PIID_21873_0.value;
+//	var countrycode = 	document.testOnlineFormName.PIID_23769_0.value;
+//	var areacode = 	document.testOnlineFormName.PIID_23770_0.value;	
+//	var exchange = 	document.testOnlineFormName.PIID_23771_0.value;
+//	var local = document.testOnlineFormName.PIID_23772_0.value;
+//	var extension = document.testOnlineFormName.PIID_23773_0.value;
+	var postalcode1 = trim(document.testOnlineFormName.PIID_23244_0.value);
+	var postalcode2 = trim(document.testOnlineFormName.PIID_23774_0.value); 
+	var country =  document.testOnlineFormName.PIID_23775_0.value; 
+	var email =  document.testOnlineFormName.PIID_21870_0.value; 
+	var fulltelephone =  document.testOnlineFormName.PIID_22014_0.value;
+	
+	
+
+		if (country == "")
+			{
+				alert('You must select a country.  If your country is not listed, please select \"Other\".');
+				document.testOnlineFormName.PIID_23775_0.focus();
+			}  
+			
+		else if ((firstname == "") || (isAlpha(firstname) == false))
+		{
+			alert ("You must enter a valid first name.");
+			document.testOnlineFormName.PIID_21871_0.focus(); 
+		}  
+		
+		else if ((lastname == "") || (isAlpha(lastname) == false))
+			{
+				alert ("You must enter your last name.");
+				document.testOnlineFormName.PIID_21872_0.focus();
+			}  
+		
+		else if (isValidPostalCode(postalcode1,postalcode2,country) == false)
+			{
+				//alert ("Please enter a valid postal code.");
+				document.testOnlineFormName.PIID_23244_0.focus();
+			}  
+		
+		else if (email == "")
+			{
+				alert ("You must enter a valid email address.");
+				document.testOnlineFormName.PIID_21870_0.focus();
+			} 
+			
+		 
+
+		else
+			{
+				preLoadData('testOnlineFormName');
+				testPreLoadToken('testOnlineFormName');
+				if(checkMail(email)){
+					
+					return false;
+					}else{
+						if (track) {
+							urchinTracker(googleAnalyticsPage);
+						
+						}
+						
+						document.testOnlineFormName.submit();
+						 if ($leadlife != null)
+	                    {
+							if (postalcode2 != ""){
+								document.testOnlineFormName.PIID_23244_0.value = postalcode1 +'-'+ postalcode2;
+							}
+	                        $leadlife('#testOnlineFormName').submit();
+	                    }
+
+					}
+				//alert ("Form input is valid.");
+			}
+	
+	   
+ } //end function 
+
+//--------------------------------------------------------------------- 
+function reload_country_special_form() 
+//--------------------------------------------------------------------- 
+//this function changes the country code, postal code descriptor & zip code dash, based on country input
+{
+	var objcountry = document.testOnlineFormName.PIID_23775_0; 
+	var country = objcountry.options[objcountry.selectedIndex].text; 
+	if (country == "Canada")
+		{ 
+
+			document.getElementById("PCLabel").innerHTML = "Postal Code:" ;
+			//document.getElementById("StateLabel").innerHTML = "Province:" ;
+			document.getElementById("dash").innerHTML = "" ;
+			document.getElementById("PIID_23774_0").style.visibility = "";
+		}
+	else if (country == "United States")
+		{
+
+			document.getElementById("PCLabel").innerHTML = "Zip Code:" ;
+			//document.getElementById("StateLabel").innerHTML = "State :" ;
+			document.getElementById("dash").innerHTML = " - " ;
+			document.getElementById("PIID_23774_0").style.visibility = "";
+		}
+	else if (country == "Australia")
+		{
+
+			document.getElementById("PCLabel").innerHTML = "Postal Code:" ;
+			//document.getElementById("StateLabel").innerHTML = "State:" ;
+			document.getElementById("dash").innerHTML = "" ;
+			document.getElementById("PIID_23774_0").style.visibility = "hidden";
+		}
+	else if (country == "Netherlands")
+		{
+
+			document.getElementById("PCLabel").innerHTML = "Postal Code:" ;
+			//document.getElementById("StateLabel").innerHTML = "State:" ;
+			document.getElementById("dash").innerHTML = "" ;
+			document.getElementById("PIID_23774_0").style.visibility = "";
+		}
+	else if (country == "Other")
+		{
+
+			document.getElementById("PCLabel").innerHTML = "Postal Code:" ;
+			//document.getElementById("StateLabel").innerHTML = "State:" ;
+			document.getElementById("dash").innerHTML = "" ;
+			document.getElementById("PIID_23774_0").style.visibility = "";
+		}
+	else
+		{
+			alert('You must select a country.  If your country is not listed, please select \"Other\".');
+
+		}
+	
+	//document.getElementById(PCLabel).innerText = PCLabel ;
+	document.testOnlineFormName.PIID_21871_0.focus();
+} 
+
+//--------------------------------------------------------------------- 
+//Verify all the form inputs and if track = true the function urchinTracker(page)
+//will be called in order to track the conversion on google analytics(googleAnalyticsPage is the name of the event)
+
+ function verifyInputsTrackConv(googleAnalyticsPage,track) 
+//--------------------------------------------------------------------- 
+{ 
+	var firstname = document.testOnlineFormName.PIID_21871_0.value;
+	var lastname = 	document.testOnlineFormName.PIID_21872_0.value;
+	var organization = 	document.testOnlineFormName.PIID_21873_0.value;
+	var countrycode = 	document.testOnlineFormName.PIID_23769_0.value;
+	var areacode = 	document.testOnlineFormName.PIID_23770_0.value;	
+	var exchange = 	document.testOnlineFormName.PIID_23771_0.value;
+	var local = document.testOnlineFormName.PIID_23772_0.value;
+	var extension = document.testOnlineFormName.PIID_23773_0.value;
+	var postalcode1 = trim(document.testOnlineFormName.PIID_23244_0.value);
+	var postalcode2 = trim(document.testOnlineFormName.PIID_23774_0.value); 
+	var country =  document.testOnlineFormName.PIID_23775_0.value; 
+	var email =  document.testOnlineFormName.PIID_21870_0.value; 
+	var fulltelephone =  document.testOnlineFormName.PIID_22014_0.value;
+	
+	
+
+		if (country == "")
+			{
+				alert('You must select a country.  If your country is not listed, please select \"Other\".');
+				document.testOnlineFormName.PIID_23775_0.focus();
+			}  
+			
+		else if ((firstname == "") || (isAlpha(firstname) == false))
+		{
+			alert ("You must enter a valid first name.");
+			document.testOnlineFormName.PIID_21871_0.focus(); 
+		}  
+		
+		else if ((lastname == "") || (isAlpha(lastname) == false))
+			{
+				alert ("You must enter your last name.");
+				document.testOnlineFormName.PIID_21872_0.focus();
+			}  
+		else if (organization == "")
+			{
+				alert ("You must enter your organization.");
+				document.testOnlineFormName.PIID_21873_0.focus();
+			}  
+			
+			else if ((isInteger(areacode) == false)  )
+			{
+				alert ("Please enter digits only in your telephone area code.");
+				document.testOnlineFormName.PIID_23770_0.focus();
+			}  
+			
+			
+		else if ((areacode ==null)  || (areacode == "") )
+			{
+				alert ("You must enter your telephone area code.");
+				document.testOnlineFormName.PIID_23770_0.focus();
+			}  
+			
+		else if ( (areacode.length != 3) && ((country == "Canada" ) || (country == "United States")))
+			{
+				alert ("Your telephone area code must be three digits.");
+				document.testOnlineFormName.PIID_23770_0.focus();
+			}  
+			
+		else if ( (areacode.length < 2) && (country == "Australia" ) )
+			{
+				alert ("Your telephone area code must be two or three digits.");
+				document.testOnlineFormName.PIID_23770_0.focus();
+			}  
+			
+		else if (isInteger(exchange) == false)  
+			{
+				alert ("Please enter digits only in your telephone exchange.");
+				document.testOnlineFormName.PIID_23771_0.focus();
+			}  
+			
+		else if ((exchange == null)  || (exchange == "") )
+			{
+				alert ("Your telephone exchange must be entered.");
+				document.testOnlineFormName.PIID_23771_0.focus();
+			} 
+			
+		else if ( (exchange.length != 3) && ( (country == "Canada")  || (country == "United States") ) )
+			{
+				alert ("Your telephone exchange must be three digits.");
+				document.testOnlineFormName.PIID_23771_0.focus();
+			} 
+			
+		else if ( (exchange.length != 4) &&  (country == "Australia")  )
+			{
+				alert ("Your telephone exchange must be four digits.");
+				document.testOnlineFormName.PIID_23771_0.focus();
+			}  
+ 
+			
+		else if (isInteger(local) == false)  
+			{
+				alert ("Please enter digits only in your telephone local.");
+				document.testOnlineFormName.PIID_23772_0.focus();
+			}  
+			
+		else if ((local == null)  || (local == "") || ((local.length != 4) && (countrycode == 1)))
+			{
+				alert ("Your telephone local must be four digits.");
+				document.testOnlineFormName.PIID_23772_0.focus();
+			}  
+		
+		else if (isInteger(extension) == false)
+			{
+				alert ("Please enter digits only in your telephone extension.");
+				document.testOnlineFormName.PIID_23773_0.focus();
+			}  
+		
+		else if (isValidPostalCode(postalcode1,postalcode2,country) == false)
+			{
+				//alert ("Please enter a valid postal code.");
+				document.testOnlineFormName.PIID_23244_0.focus();
+			}  
+		
+		else if (email == "")
+			{
+				alert ("You must enter a valid email address.");
+				document.testOnlineFormName.PIID_21870_0.focus();
+			} 
+			
+		 
+
+		else
+			{
+				if (extension == "")
+				{
+					document.testOnlineFormName.PIID_22014_0.value = 
+					countrycode + "-" + areacode + "-" + exchange + "-" + local;
+				}
+				else
+				{
+					document.testOnlineFormName.PIID_22014_0.value = 
+					countrycode + "-" + areacode + "-" + exchange + "-" + local + " ext. " + extension;
+				}
+
+				preLoadData('testOnlineFormName');
+				testPreLoadToken('testOnlineFormName');
+				if(checkMail(email)){
+					
+					return false;
+					}else{
+						if (track) {
+							urchinTracker(googleAnalyticsPage);
+							
+						}
+					
+					document.testOnlineFormName.submit();
+					 if ($leadlife != null)
+	                    {
+							if (postalcode2 != ""){
+								document.testOnlineFormName.PIID_23244_0.value = postalcode1 + '-' +  postalcode2;
+							}
+	                        $leadlife('#testOnlineFormName').submit();
+	                    }
+
+					}
+				//alert ("Form input is valid.");
+			}
+	
+	   
+ } //end function 
+
+ // end hiding contents  -->

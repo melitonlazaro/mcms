@@ -1,0 +1,176 @@
+
+function calculate_time_zone() {
+	var ArrayTimeZones = [];
+	ArrayTimeZones[0] ='-12:00,0'; 
+	ArrayTimeZones[1] ='-11:00,0';
+	ArrayTimeZones[2] ='-10:00,0';
+	ArrayTimeZones[3] ='-09:00,1';
+	ArrayTimeZones[4] ='-08:00,1';
+	ArrayTimeZones[5] ='-07:00,0';
+	ArrayTimeZones[6] ='-07:00,1';
+	ArrayTimeZones[7] ='-06:00,0';
+	ArrayTimeZones[8] ='-06:00,1';
+	ArrayTimeZones[9] ='-05:00,0';
+	ArrayTimeZones[10] ='-05:00,1';
+	ArrayTimeZones[11] ='-04:00,1';
+	ArrayTimeZones[12] ='-04:00,0';
+	ArrayTimeZones[13] ='-03:30,1';
+	ArrayTimeZones[14] ='-03:00,1';
+	ArrayTimeZones[15] ='-03:00,0';
+	ArrayTimeZones[16] ='-02:00,1';
+	ArrayTimeZones[17] ='-01:00,1';
+	ArrayTimeZones[18] ='-01:00,0';
+	ArrayTimeZones[19] ='00:00,0';
+	ArrayTimeZones[20] ='00:00,1';
+	ArrayTimeZones[21] ='+01:00,1';
+	ArrayTimeZones[22] ='+01:00,0';
+	ArrayTimeZones[23] ='+02:00,1';
+	ArrayTimeZones[24] ='+02:00,0';
+	ArrayTimeZones[25] ='+03:00,1';
+	ArrayTimeZones[26] ='+03:00,0';
+	ArrayTimeZones[27] ='+03:30,0';
+	ArrayTimeZones[28] ='+04:00,0';
+	ArrayTimeZones[29] ='+04:00,1';
+	ArrayTimeZones[30] ='+04:30,0';
+	ArrayTimeZones[31] ='+05:00,1';
+	ArrayTimeZones[32] ='+05:00,0';
+	ArrayTimeZones[33] ='+05:30,0';
+	ArrayTimeZones[34] ='+05:45,0';
+	ArrayTimeZones[35] ='+06:00,0';
+	ArrayTimeZones[36] ='+06:00,1';
+	ArrayTimeZones[37] ='+06:30,0';
+	ArrayTimeZones[38] ='+07:00,1';
+	ArrayTimeZones[39] ='+07:00,0';
+	ArrayTimeZones[40] ='+08:00,0';
+	ArrayTimeZones[41] ='+08:00,1';
+	ArrayTimeZones[42] ='+09:00,1';
+	ArrayTimeZones[43] ='+09:00,0';
+	ArrayTimeZones[44] ='+09:30,0';
+	ArrayTimeZones[45] ='+09:30,1';
+	ArrayTimeZones[46] ='+10:00,0';
+	ArrayTimeZones[47] ='+10:00,1';
+	ArrayTimeZones[48] ='+11:00,0';
+	ArrayTimeZones[49] ='+12:00,1';
+	ArrayTimeZones[50] ='+12:00,0';
+	ArrayTimeZones[51] ='+13:00,0';
+	
+	var ArrayTimeZonesDesc = [];
+	ArrayTimeZonesDesc[0] ='International Date Line West';
+	ArrayTimeZonesDesc[1] ='Midway Island, Samoa';
+	ArrayTimeZonesDesc[2] ='Hawaii';
+	ArrayTimeZonesDesc[3] ='Alaska';
+	ArrayTimeZonesDesc[4] ='PST';
+	ArrayTimeZonesDesc[5] ='Arizona';
+	ArrayTimeZonesDesc[6] ='MST';
+	ArrayTimeZonesDesc[7] ='SSK';
+	ArrayTimeZonesDesc[8] ='CST';
+	ArrayTimeZonesDesc[9] ='Indiana, Bogota, Lima, Quito, Rio Branco';
+	ArrayTimeZonesDesc[10] ='EST';
+	ArrayTimeZonesDesc[11] ='AST';
+	ArrayTimeZonesDesc[12] ='Caracas, La Paz';
+	ArrayTimeZonesDesc[13] ='NST';
+	ArrayTimeZonesDesc[14] ='Greenland, Brasilia, Montevideo';
+	ArrayTimeZonesDesc[15] ='Buenos Aires, Georgetown';
+	ArrayTimeZonesDesc[16] ='Mid-Atlantic';
+	ArrayTimeZonesDesc[17] ='Azores';
+	ArrayTimeZonesDesc[18] ='Cape Verde Is.';
+	ArrayTimeZonesDesc[19] ='Casablanca, Monrovia, Reykjavik';
+	ArrayTimeZonesDesc[20] ='GMT: Dublin, Edinburgh, Lisbon, London';
+	ArrayTimeZonesDesc[21] ='Amsterdam, Berlin, Rome, Vienna, Prague, Brussels';
+	ArrayTimeZonesDesc[22] ='West Central Africa';
+	ArrayTimeZonesDesc[23] ='Amman, Athens, Istanbul, Beirut, Cairo, Jerusalem';
+	ArrayTimeZonesDesc[24] ='Harare, Pretoria';
+	ArrayTimeZonesDesc[25] ='Baghdad, Moscow, St. Petersburg, Volgograd';
+	ArrayTimeZonesDesc[26] ='Kuwait, Riyadh, Nairobi, Tbilisi';
+	ArrayTimeZonesDesc[27] ='Tehran';
+	ArrayTimeZonesDesc[28] ='Abu Dhadi, Muscat';
+	ArrayTimeZonesDesc[29] ='Baku, Yerevan';
+	ArrayTimeZonesDesc[30] ='Kabul';
+	ArrayTimeZonesDesc[31] ='Ekaterinburg';
+	ArrayTimeZonesDesc[32] ='Islamabad, Karachi, Tashkent';
+	ArrayTimeZonesDesc[33] ='Chennai, Kolkata, Mumbai, New Delhi, Sri Jayawardenepura';
+	ArrayTimeZonesDesc[34] ='Kathmandu';
+	ArrayTimeZonesDesc[35] ='Astana, Dhaka';
+	ArrayTimeZonesDesc[36] ='Almaty, Nonosibirsk';
+	ArrayTimeZonesDesc[37] ='Yangon (Rangoon)';
+	ArrayTimeZonesDesc[38] ='Krasnoyarsk';
+	ArrayTimeZonesDesc[39] ='Bangkok, Hanoi, Jakarta';
+	ArrayTimeZonesDesc[40] ='Beijing, Hong Kong, Singapore, Taipei';
+	ArrayTimeZonesDesc[41] ='Irkutsk, Ulaan Bataar, Perth';
+	ArrayTimeZonesDesc[42] ='Yakutsk';
+	ArrayTimeZonesDesc[43] ='Seoul, Osaka, Sapporo, Tokyo';
+	ArrayTimeZonesDesc[44] ='Darwin';
+	ArrayTimeZonesDesc[45] ='Adelaide';
+	ArrayTimeZonesDesc[46] ='Brisbane, Guam, Port Moresby';
+	ArrayTimeZonesDesc[47] ='Canberra, Melbourne, Sydney, Hobart, Vladivostok';
+	ArrayTimeZonesDesc[48] ='Magadan, Solomon Is., New Caledonia';
+	ArrayTimeZonesDesc[49] ='Auckland, Wellington';
+	ArrayTimeZonesDesc[50] ='Fiji, Kamchatka, Marshall Is.';
+	ArrayTimeZonesDesc[51] ='Nukualofa';
+
+	
+	var rightNow = new Date();
+	var jan1 = new Date(rightNow.getFullYear(), 0, 1, 0, 0, 0, 0);  // jan 1st
+	var june1 = new Date(rightNow.getFullYear(), 6, 1, 0, 0, 0, 0); // june 1st
+	var temp = jan1.toGMTString();
+	var jan2 = new Date(temp.substring(0, temp.lastIndexOf(" ")-1));
+	temp = june1.toGMTString();
+	var june2 = new Date(temp.substring(0, temp.lastIndexOf(" ")-1));
+	var std_time_offset = (jan1 - jan2) / (1000 * 60 * 60);
+	var daylight_time_offset = (june1 - june2) / (1000 * 60 * 60);
+	var dst;
+	if (std_time_offset == daylight_time_offset) {
+		dst = "0"; // daylight savings time is NOT observed
+	} else {
+		// positive is southern, negative is northern hemisphere
+		var hemisphere = std_time_offset - daylight_time_offset;
+		if (hemisphere >= 0)
+			std_time_offset = daylight_time_offset;
+		dst = "1"; // daylight savings time is observed
+	}
+	var i;
+
+	for (i = 0; i < ArrayTimeZones.length; i++) {
+		if (ArrayTimeZones[i] == convert(std_time_offset)+","+dst) {
+			if ((i == 4) || (i == 6) || (i == 7) || (i == 8) || (i == 10) || (i == 11) || (i == 13)) {
+				if(document.getElementById("udf16_c")){
+					document.getElementById('udf16_c').value = ArrayTimeZonesDesc[i];
+					break;
+				} 
+			}
+		}
+	}
+
+}
+
+function convert(value) {
+	var hours = parseInt(value);
+   	value -= parseInt(value);
+	value *= 60;
+	var mins = parseInt(value);
+   	value -= parseInt(value);
+	value *= 60;
+	var secs = parseInt(value);
+	var display_hours = hours;
+	// handle GMT case (00:00)
+	if (hours == 0) {
+		display_hours = "00";
+	} else if (hours > 0) {
+		// add a plus sign and perhaps an extra 0
+		display_hours = (hours < 10) ? "+0"+hours : "+"+hours;
+	} else {
+		// add an extra 0 if needed 
+		display_hours = (hours > -10) ? "-0"+Math.abs(hours) : hours;
+	}
+	
+	mins = (mins < 10) ? "0"+mins : mins;
+	return display_hours+":"+mins;
+}
+
+function createArrays(){
+	
+	
+
+	
+}
+onload = calculate_time_zone;

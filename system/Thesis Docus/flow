@@ -1,0 +1,89 @@
+THE FLOW OF MCMS
+
+-Add progress bar for the patient
+
+Admin
+- User Login
+- Options
+	- Dashboard
+		- Displays
+			-> Upcoming Appointments by Calendar
+				-> Color Coded by type of Check-up (prenatal, postnatal, post partum, Consultation)
+			-> Notes and Announcements
+			-> Patients that need immediate medical assessment
+			-> Recent patients who have undergone pre-natal (Limit by 5)
+			-> Recent patients who have undergone postnatal (Limit by 5)
+			-> Recent patients who have undergone Delivery (Limit by 5)
+			-> Recent Billing Transactions (Limit by 5)
+			-> Recent patients who have undergone Immunization (Limit by 5)
+			-> Charts
+			-> Medical Supplies and Items that is needed to be restocked
+			
+	- Pre-natal Check-up
+		- If there is a patient profile 
+			-> proceed on recording the Prenatal information
+		- If there is current record 
+			-> Perform Profiling
+			-> Proceed on recording the Prenatal Information
+
+	- Child Delivery
+		- Get the immediate data that is needed BEFORE/DURING THE DELIVERY
+			-> Vital Signs, time, Name of the patient,
+		- AFTER THE DELIVERY
+			-> insert into database table patient the Information about the delivery
+			-> insert into database table baby the Information about the baby
+			-> insert into database table transaction the Billing Information
+			-> After issuing the Medical Records, Birth Certificate, CF1 Form, CF2 Form,  and Checking if the patient has an active Philhealt Account, UPDATE THE TABLE (hit YES if there is an accommplishment on the forms, HIT NO if not)
+			-> 
+
+	- Postnatal / Postpartum
+		- Get the Patient's Information from the Database
+			-> insert into Post natal table the values recorded
+
+	
+	- Consultation
+		- If there is an active patient profile
+			->insert into database table consultation the information
+		- If there is no active patient profile
+			->perform Profiling
+			->insert into database table consultation the information
+
+	- Laboratory
+		-> insert into DB table Laboratory the information, indicate if it is received or not
+
+	- Family Planning
+		-> Create a presentation for the Patient/Client
+		-> UPDATE into db table patient if She has undergone Family Planning Seminar in the Clinic
+
+	- Pediatrics
+		- If there is an active patient profile
+			->insert into database table consultation the information
+		- If there is no active patient profile
+			->perform Profiling
+			->insert into database table consultation the information
+
+
+	- Immunization
+		-> If there is an active record
+			-> Perform Immunization and indicate the Vaccines
+			-> insert into db
+
+	- Billing
+		-PRENATAL/POSTNATAL/
+			-> after inserting into database the transactions
+				-> INSERT INTO DB table name "transaction" the values/prices/
+			-> After the user review and update the whole transaction
+				-> INSERT INTO DATABASE table name "billing" the COMPLETE INFORMATION
+				-> PRINT THE STATEMENT OF ACCOUNT
+
+
+
+
+
+Patient Portal
+- Log-in
+- If doesn't have an account, Register
+- open Dashboard
+	- Dashboard includes the Schedule Form and the Calendar
+- Schedule Appointment
+- insert into DB

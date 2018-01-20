@@ -1,0 +1,144 @@
+/*!
+ * dyCalendar is a JavaScript library for creating Calendar.
+ *
+ * Author: Yusuf Shakeel
+ * https://github.com/yusufshakeel
+ *
+ * GitHub Link: https://github.com/yusufshakeel/dyCalendarJS
+ *
+ * MIT license
+ * Copyright (c) 2016 Yusuf Shakeel
+ *
+ * Date: 2014-08-17 sunday
+ */
+
+.dycalendar-container {
+    display: inline-block;
+    border : 1px solid #eee;
+}
+
+
+
+
+
+/*================================== MONTH CALENDAR DEFAULT ========================*/
+
+/*
+ * month calendar style
+ *-------------------------------------------------*/
+.dycalendar-month-container {
+    padding : 10px;
+    text-align : center;
+    font-family : Arial;
+        
+}
+
+.dycalendar-month-container div{
+    padding : 0;
+    margin-bottom : 10px;
+}
+
+.dycalendar-month-container .dycalendar-header {
+    position : relative;
+}
+
+.dycalendar-month-container .dycalendar-header .dycalendar-prev-next-btn {
+    position : absolute;
+    top : 0;
+    cursor : pointer;
+}
+
+.dycalendar-month-container .dycalendar-header .dycalendar-prev-next-btn.prev-btn {
+    left : 0;
+}
+
+.dycalendar-month-container .dycalendar-header .dycalendar-prev-next-btn.next-btn {
+    right : 0;
+}
+
+.dycalendar-month-container .dycalendar-span-month-year {
+    margin : 5px;
+    cursor : pointer;
+}
+
+.dycalendar-month-container .dycalendar-body table tr td {
+    padding : 5px;
+}
+
+.dycalendar-month-container .dycalendar-today-date,
+.dycalendar-month-container .dycalendar-target-date {
+    background-color: #111;
+    color : #fff;
+    border-radius: 2px;
+
+}
+
+/*================================== MONTH CALENDAR ENS HERE ===============*/
+
+
+
+/*================================== DYCALENDAR SKIN =======================*/
+
+/*
+ * calendar skin  (default skin)
+ *-------------------------------------------------*/
+.dycalendar-container.gradient {
+    background: #fff;
+    background: linear-gradient(#fff, #d3d3d3);
+    background: -o-linear-gradient(#fff, #d3d3d3);
+    background: -moz-linear-gradient(#fff, #d3d3d3);
+    background: -webkit-linear-gradient(#fff, #d3d3d3);
+}
+
+
+/*
+ * calendar skin  (skin-red)
+ *-------------------------------------------------*/
+.dycalendar-container.skin-red {
+
+    color : #fff;
+    background-color: #e94d40;
+    border : 0;
+}
+
+.dycalendar-container.skin-red.gradient {
+    background: #e94d40;
+    background: linear-gradient(#fb6f62, #e94d40);
+    background: -o-linear-gradient(#fb6f62, #e94d40);
+    background: -moz-linear-gradient(#fb6f62, #e94d40);
+    background: -webkit-linear-gradient(#fb6f62, #e94d40);
+}
+
+.dycalendar-container.skin-red .dycalendar-today-date,
+.dycalendar-container.skin-red .dycalendar-target-date {
+    background-color: #fff;
+    color : #e94d40;
+    border-radius: 2px;
+}
+
+
+
+/*================================== DYCALENDAR SHADOW =====================*/
+/*
+ * calendar shadow  (shadow-default)
+ *-------------------------------------------------*/
+ .dycalendar-container.shadow-default {
+     -o-box-shadow: 0 4px 4px 0 rgba(50, 50, 50, 0.4);
+     -moz-box-shadow: 0 4px 4px 0 rgba(50, 50, 50, 0.4);
+     -webkit-box-shadow: 0 4px 4px 0 rgba(50, 50, 50, 0.4);
+     box-shadow: 0 4px 4px 0 rgba(50, 50, 50, 0.4);
+ }
+
+ 
+/*
+ * calendar shadow  (shadow-red)
+ *-------------------------------------------------*/
+.dycalendar-container.shadow-red {
+   -o-box-shadow: 0 4px 4px 0 rgba(233, 77, 64, 0.4);
+   -moz-box-shadow: 0 4px 4px 0 rgba(233, 77, 64, 0.4);
+   -webkit-box-shadow: 0 4px 4px 0 rgba(233, 77, 64, 0.4);
+   box-shadow: 0 4px 4px 0 rgba(233, 77, 64, 0.4);
+}
+
+
+/*================================== DYCALENDAR SHADOW ENDS HERE ===========*/
