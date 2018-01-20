@@ -5,7 +5,10 @@
   <title></title>
 </head>
 <body>
-  <?php require('../sidenav2.php'); ?>
+
+  <?php
+  require 'sidenav.php'; 
+  ?>
   <br><br><br>
 <div class="container-fluid">
   <h1 class="page-header">Patients List</h1>

@@ -125,7 +125,7 @@
 </style>
 <body class="container-fluid">
 
-<?php require('sidenav2.php'); ?>
+<?php require('sidenav.php'); ?>
 <br><br><br>
 <div id="body">
   <div class="container-fluid">

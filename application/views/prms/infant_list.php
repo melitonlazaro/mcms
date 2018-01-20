@@ -7,7 +7,7 @@
 </head>
 <body>
 	<?php require('sidenav.php'); ?>
-	<br><br><br>
+	<br><br><br><br><br><br>
 	
 
 	<table id="infant_table" class="table table-bordered table-striped">

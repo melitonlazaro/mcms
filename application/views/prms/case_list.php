@@ -6,21 +6,9 @@
 </head>
 <body>
 	<?php require('sidenav.php'); ?>
-	<br><br><br>
+	<br><br><br><br><br><br><br>
 
-	 <div class="container-fluid">
-    <h1 class="page-header">Case List</h1>
-      <div class="pull-right">
-        <ol class="breadcrumb">
-          <li>
-            <a href="../Main/dashboard"><i class="fa fa-dashboard"></i> Dashboard</a>
-          </li>
-          <li class="active">
-            <i class="fa fa-plus-square"></i> Case
-          </li>
-        </ol>
-      </div>
-  </div>
+	
           <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
                  <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
