@@ -214,7 +214,7 @@
 			});
 		});
 	</script>
-	<script>
+	<!-- <script>
     $(function(){
         $( "#crete_new_record" ).click(function(event)
         {
@@ -253,7 +253,7 @@
     });
 
 
-</script>
+</script> -->
 	
 	<!-- <script>
 		$(document).ready(function(){

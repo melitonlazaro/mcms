@@ -47,6 +47,13 @@ class Prms_model extends CI_Model {
     return $result->result();
   }
 
+  public function get_active_maternity_cases()
+  {
+    $this->db->select('case_id, patient_ID, status');
+    $result = $this->db->get('case');
+    return $result->result();
+  }
+
   public function physical_examination($data)
   {
     $result = $this->db->insert('physicalexamination', $data);

@@ -5,9 +5,10 @@
 <body>
   <?php require('sidenav.php'); ?>
   <br><br><br>
-      <H1>Physical Examination</H1>
+      
 
 <?php echo form_open('Prms/physical_examination'); ?>
+
 
 <div class="container">
     <input type="hidden" name="patient_id" value="<?php echo $patient_ID;?>">

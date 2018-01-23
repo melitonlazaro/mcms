@@ -5,66 +5,10 @@
 	<title>MCMS</title>
 </head>
 <body>
-	<?php require('sidenav.php'); ?>
+
+      <?php require('sidenav.php'); ?> 
+
 	<br><br><br><br><br><br><br>
-
-	
-          <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-                 <div class="modal-dialog modal-lg" role="document">
-                      <div class="modal-content">
-                          <div class="modal-header">
-                           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                           <h4 class="modal-title" id="addLabel">New Case</h4>
-                          </div>                            
-                          <div class="modal-body form-horizontal">
-                              <div class="container">
-                                  <div class="row">
-                                      <div class="col-md-6">
-                                          <h3>New Patient</h3>
-                                          <a href="../prms/profiling"><button class="btn btn-success">Create new patient profile</button></a>
-                                      </div>
-                                      <div class="col-md-3">
-                                          <h3>Existing Patient</h3>
-                                          <form method="POST" action="../prms/create_case_existing">
-                                            <div class="form-group">
-                                              <label>Last Name</label>
-                                              <select name="last_name" class="form-control">
-                                                  <option></option>
-                                                  <?php foreach($patient_names as $pn)
-                                                  { 
-                                                      echo '<option>'.$pn->last_name.', '.$pn->given_name.' '.$pn->middle_initial.'</option>';
-                                                  }
-                                                      echo '<input type="hidden" name="patient_id" value="'.$pn->patient_ID.'" >';
-                                                  ?>
-                                              </select>
-                                            </div>
-                                              <div class="form-group">
-                                                <label>Physician ID</label>
-                                                <select name="physician_id" class="form-control">
-                                                    <option></option>
-                                                    <?php 
-                                                        foreach($physician_id as $pi)
-                                                        {
-                                                            echo '<option>'.$pi->physician_id.'</option>';
-                                                        }
-                                                    ?>
-                                                </select>
-                                               </div>
-                                              <br>
-
-                                              <input type="submit" value="Create new case" class="btn btn-success">                                                                                      
-                                          </form>
-                                      </div>
-                                      <div class="col-md-3">
-                                      </div>
-                                  </div>
-                                  <br><br><br>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-  
 
 	<div class="container">
     <div class="pull-right">

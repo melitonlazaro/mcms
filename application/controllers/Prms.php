@@ -103,12 +103,13 @@ class Prms extends CI_Controller {
     }
 
     $last_case_id = $this->Prms_model->create_new_case($patient_ID);
-    $profiling_result = array(
+    $data1 = array(
                               'patient_ID' =>"$patient_ID",
                               'case_ID' =>"$last_case_id"
                              );
-    echo json_encode($profiling_result);
-    
+
+    $this->load->view('prms/medical_history', $data1);
+  
   }
 
   public function medical_history()
@@ -169,11 +170,17 @@ class Prms extends CI_Controller {
           $data1['patient_ID'] = $patient_ID;
           $data1['last_case_id'] = $this->input->post('case_id');
           $this->load->view('prms/physical_examination', $data1);
+
         }
         else
         {
           $error = $this->db->error();
         }
+  }
+
+  public function testing()
+  {
+    $this->load->view('prms/physical_examination');
   }
 
   public function physical_examination()
