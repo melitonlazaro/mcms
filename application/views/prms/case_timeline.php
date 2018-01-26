@@ -37,23 +37,10 @@
 <head>
 	<?php require('extensions.php') ?>
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/Public/css/AdminLTE.css">
-<style type="text/css">
-body
-{
-    background-color: #ecf0f5;
-}
-#case_details
-{
-    background-color: white;
-}
-#card
-{
-    background-color: white;
-}
-</style>
+
 </head>
 <body>
-	<?php require('sidenav.php');  ?>
+	<?php require 'sidenav.php';  ?>
 	<br><br><br>
     <div class="container-fluid">
         <h1 class="page-header">Maternity Case Profile</h1>
@@ -145,7 +132,7 @@ body
                     
                 </div>
             </div>
-            <div class="jumbotron" id="case_details">
+            <!-- <div class="jumbotron" id="case_details">
                 <?php 
                     echo '
                         <div class="row">
@@ -219,8 +206,8 @@ body
                         </div>
                         ';
                     endforeach ?>
-            </div>
-           <h2 class="page-header">Timeline</h2>
+            </div> -->
+           <h2 class="page-header">Maternity Case Timeline</h2>
         	<ul class="timeline">
 
                 <?php 
@@ -243,6 +230,7 @@ body
                                     <h3 class="timeline-header"> Prenatal Checkup</h3>
                                     <div class="timeline-body">
                                         <button data-toggle="collapse" data-target="#result-'.$pr->Num.'" class="btn btn-success btn-sm">View Result</button>
+                                        <a href="../../Prms/print_pe_report/'.$pr->Num.'"><button class="btn btn-info btn-sm">Report</button></a>
                                         <div class="collapse" id="result-'.$pr->Num.'">
                                             <div class="row">
                                                 <div class="col-lg-2">
@@ -455,7 +443,8 @@ body
                                     </div>
                                 </div>
                                 <div class="timeline-footer">
-                                    <a href="../../Prms/medicalhistory_result/'.$mh->Num.'"<button class="btn btn-success btn-xs">View Result </button></a>
+                                    <a href="../../Prms/medicalhistory_result/'.$mh->Num.'"><button class="btn btn-success btn-sm">View Result </button></a>
+                                    <a href="../../Prms/print_mh_report/'.$mh->Num.'"><button class="btn btn-info btn-sm">Report</button></a>
                                 </div>
                             </div>
                         </li>

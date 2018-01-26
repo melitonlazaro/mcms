@@ -23,6 +23,21 @@ class Main_model extends CI_Model {
            }  
 	}
 
+  public function patient_login($username, $password)
+  {
+    $this->db->where('username', $username);
+    $this->db->where('password', $password);
+    $query = $this->db->get('patient_account');
+    if($query->num_rows() > 0)
+    {
+      return TRUE;
+    }
+    else
+    {
+      return FALSE;
+    }
+  }
+
   public function feedback($data)
   {
     $result = $this->db->insert('feedback', $data);
@@ -50,6 +65,14 @@ class Main_model extends CI_Model {
   {
     $query = $this->db->query("SELECT * FROM `case` WHERE `status` = 'Active' ORDER BY `case_id` DESC LIMIT 5 "  );
     return $query->result();
+  }
+
+  public function count_todays_appointment()
+  {
+
+    $start_date = date('Y-m-d');
+    $query = $this->db->query("SELECT * from `calendar_events` WHERE `start` = '$start_date' ");
+    return $query->num_rows();
   }
 
   public function get_first_names()

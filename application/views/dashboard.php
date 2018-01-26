@@ -126,30 +126,23 @@
 <body class="container-fluid">
 
 <?php require('sidenav.php'); ?>
-<br><br><br>
+<br><br><br><br><br>
+
+
 <div id="body">
-  <div class="container-fluid">
-    <h1 class="page-header">Dashboard</h1>
-      <div class="pull-right">
-        <ol class="breadcrumb">
-          <li class="active">
-            <i class="fa fa-dashboard"></i> Dashboard
-          </li>
-        </ol>
-      </div>
-  </div>
+
 
   <div class="container-fluid">
     <div class="row">  
       <div class="col-md-4">
         <div class="panel panel-default" id="panels_pending">
           <div class="panel-body">
-            <h6 id="title"><b>Pending Appointments</b></h6>
-            <h3>7<span class="fa fa-tasks" id="glyph" aria-hidden="true"></span></h3>
+            <h6 id="title"><b>Today's Appointments</b></h6>
+            <h3><?php echo $todays_appointment; ?><span class="fa fa-tasks" id="glyph" aria-hidden="true"></span></h3>
           </div>
           <a href="">
             <div class="panel-footer" id="panel-footer-pending">
-                View Details
+                View Details 
               <div class="pull-right">
                 <i class="fa fa-arrow-circle-right"></i>
               </div>
@@ -179,7 +172,7 @@
       <div class="col-md-4">
         <div class="panel panel-default" id="panels_unsolved">
           <div class="panel-body">
-           <h6 id="title"><b>Case Count</b>&nbsp;<small style="color:white;">(<?php echo date('Y-m-d');?>)</small></h6>
+           <h6 id="title"><b>Active Maternity Case</b>&nbsp;<small style="color:white;">(<?php echo date('Y-m-d');?>)</small></h6>
            <h3><?php echo $total_case; ?> <span class="fa fa-plus-square" id="glyph" aria-hidden="true"></span></h3>
           </div>
           <a href="">
@@ -230,7 +223,7 @@
             <div class="col-md-4">
               <div class="panel panel-default">
                 <div class="panel-heading">
-                  <h4>Latest Cases</h4>
+                  <h4>Latest Maternity Cases</h4>
                 </div>
                 <div class="panel-body">
                   <table class="table table-responsive table-hover table-bordered">
@@ -278,37 +271,6 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-6">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4><i class="fa fa-clipboard"></i>To Do list</h4>
-            </div>
-            <div class="panel panel-body">
-              <div id="todo">
-                <button class="btn btn-info btn-sm" id="addtodo">Add</button>
-                <table id="todolist" class="table table-bordered table-hover">
-                    <thead>
-                      <tr>
-                        <td>Task</td>
-                        <td>Created by</td>
-                        <td>Date </td>
-                        <td>Time </td>
-                      </tr>
-                    </thead>
-                      <?php foreach($tasks as $ts)
-                          {
-                            echo '
-                                  <tr>
-                                    <td>'.$ts->task_content.'</td>
-                                    <td>'.$ts->task_creator.'</td>
-                                    <td>'.$ts->date.'</td>
-                                    <td>'.$ts->time.'</td>
-                                  </tr>
-                                 ';
-                          }
-                      ?>
-                </table>
-              </div>
-              <div class="container">
 
                 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                   <div class="modal-dialog" role="document">
@@ -406,9 +368,6 @@
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
     </div>
 </div>
 </body>

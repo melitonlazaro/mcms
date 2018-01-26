@@ -80,15 +80,6 @@ a, a:hover, a:focus {
     color: #494d55;
 }
 
-.overlay {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 998;
-    display: none;
-}
-
 #sidebar .sidebar-header {
     padding: 20px;
     background: #68dff0;

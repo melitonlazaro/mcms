@@ -3,6 +3,7 @@
 	<?php require('extensions.php'); ?>
 	<link rel="stylesheet" href="<?php echo base_url();?>/Public/css/dataTables.bootstrap.min.css">
 	<title>MCMS</title>
+
 </head>
 <body>
 
@@ -10,11 +11,9 @@
 
 	<br><br><br><br><br><br><br>
 
-	<div class="container">
-    <div class="pull-right">
-      <a href="<?php echo base_url(); ?>Prms/profiling"><button class="btn btn-info">Create Maternity Case</button></a>
-    </div>
-    <br><br><br>
+	<div id="content">
+    	<button class="btn btn-info"></button>
+    	<br><br><br>
 		<table id="example1" class="table table-bordered table-striped">
 			<thead>
 				<tr>

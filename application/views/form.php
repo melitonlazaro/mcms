@@ -5,7 +5,7 @@
   <title>Stork</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="shortcut icon" type="../image/png" href="img/w-ico.png">
+  <link rel="shortcut icon" type="../image/png" href="<?php echo base_url();?>Public/website_extensions2/img/w-ico.png">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
@@ -21,12 +21,28 @@
   <div class="panel panel-default scd">
       <div class="panel-heading ">
         <div class="row text-center">
-          <div class="col-md-4"><img src="img/a-ico.png"></div>
+          <div class="col-md-4"><img src="<?php echo base_url();?>Public/website_extensions2/img/a-ico.png"></div>
           <div class="col-md-4"><h3 style="text-transform: uppercase;">Appointment</h3></div>
         </div>
       </div>
 
     <div class="panel-body">
+              <?php echo form_open('Main/Patient_login'); ?>
+              <?php if($this->session->flashdata('login_failed')) 
+              {
+                echo "<div class='alert alert-danger' role='alert'>";
+                echo $this->session->flashdata('login_failed');
+                echo "</div>";
+              }
+              ?>
+                <div class="form-group">
+                  <input type="text" name="patient_username" placeholder="Username" class="form-control" required>
+                  <br>
+                  <input type="password" name="patient_password" class="form-control" placeholder="Password" required>
+                  <br>
+                  <button type="submit" class="btn btn-info"><i class="fa fa-user"></i>Login</button>
+                </div>
+              </form>
               <form>
                 <div class="form-group">
                   <label>Reason to ...</label>
@@ -58,13 +74,13 @@
   </div>
 
 
-    <script src="js/jquery.js"></script>
+    <script src="<?php echo base_url();?>Public/website_extensions2/js/jquery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 
-    <script type="text/javascript" src="js/jquery.backstretch.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url();?>Public/website_extensions2/js/jquery.backstretch.min.js"></script>
     <script>
-        $.backstretch("img/a-bac.jpg", {speed: 500});
+        $.backstretch("<?php echo base_url();?>Public/website_extensions2/img/a-bac.jpg", {speed: 500});
 
          var myDate = new Date();
     var hrs = myDate.getHours();

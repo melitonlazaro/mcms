@@ -370,5 +370,25 @@ class Prms extends CI_Controller {
     // echo json_encode($data);
   }
 
+   public function print_report_all()
+  {
+    $this->load->model('Prms_model');
+    $data['get_all'] = $this->Prms_model->report_all();
+    $this->load->view('report/reporta', $data);
+  }
 
+  public function print_pe_report($Num)
+    {
+      $this->load->model('Prms_model');
+      $data['get_pe'] = $this->Prms_model->report_pe($Num);
+      $this->load->view('report/reportpe', $data);
+    }
+
+   public function print_mh_report($Num)
+   {
+      $this->load->model('Prms_model');
+      $data['get_mh'] = $this->Prms_model->report_mh($Num);
+      $this->load->view('report/reportmh', $data);
+   } 
+   
 }

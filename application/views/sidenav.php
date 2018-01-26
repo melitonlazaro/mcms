@@ -1,3 +1,13 @@
+<?php if($this->session->userdata('username')) 
+    {
+
+    }
+    else
+    {
+        redirect('Main');
+    }
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -80,8 +90,6 @@
         </div>
 
 
-
-        <div class="overlay"></div>
 
 
         <!-- jQuery CDN -->

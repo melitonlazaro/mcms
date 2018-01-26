@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-  <title>Stork</title>
+  <title>JFMLMC </title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" type="../image/png" href="<?php echo base_url(); ?>/Public/website_extensions2/img/w-ico.png">
@@ -25,7 +25,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand brd" href="#myPage"><s>Storks</s></a>
+      <a class="navbar-brand brd" href="#myPage"><s>MCMS</s></a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
@@ -50,16 +50,16 @@
 
 <div class="jumbotron text-center">
 	<p data-aos="fade-right"><img src="<?php echo base_url(); ?>/Public/website_extensions2/img/w-ico.png"></p>
-  <h1 style="text-transform: uppercase;" data-aos="fade-up">Storks</h1> 
-  <p>We specialize in delivering babies</p>
+  <h1 style="text-transform: uppercase;" data-aos="fade-up">Jewel's First Maternity Lying-in and Medical Clinic</h1> 
+  <p>We specialize in delivering BABIES</p>
 </div>
 
 <!-- Container (About Section) -->
 <div id="about" class="container-fluid">
   <div class="row">
     <div class="col-sm-8">
-      <h2>About Jewel's First Maternity</h2><br>
-      <h4>PUT SOMETHING</h4><br>
+      <h2>About Us</h2><br>
+      <h4></h4><br>
       <p>SAME</p>
 
     </div>
@@ -95,22 +95,18 @@
     <div class="col-sm-3">
       <span><img src="<?php echo base_url(); ?>/Public/website_extensions2/img/s-1.png"></span>
       <h4>Pre Natal</h4>
-      <p>short definition</p>
     </div>
     <div class="col-sm-3">
       <span><img src="<?php echo base_url(); ?>/Public/website_extensions2/img/s-2.png"></span>
       <h4>Post Natal</h4>
-      <p>short def</p>
     </div>
     <div class="col-sm-3">
       <span><img src="<?php echo base_url(); ?>/Public/website_extensions2/img/s-3.png"></span>
       <h4>Child Birth</h4>
-      <p>short def</p>
     </div>
     <div class="col-sm-3">
       <span><img src="<?php echo base_url(); ?>/Public/website_extensions2/img/s-4.png"></span>
       <h4>Paps Smear</h4>
-      <p>short def</p>
     </div>
   </div>
   <br><br>
@@ -118,22 +114,18 @@
     <div class="col-sm-3">
       <span><img src="<?php echo base_url(); ?>/Public/website_extensions2/img/s-5.png"></span>
       <h4>Laboratory</h4>
-      <p>short def</p>
     </div>
     <div class="col-sm-3">
       <span><img src="<?php echo base_url(); ?>/Public/website_extensions2/img/s-6.png"></span>
       <h4>Ultra Sound</h4>
-      <p>short def</p>
     </div>
     <div class="col-sm-3">
       <span><img src="<?php echo base_url(); ?>/Public/website_extensions2/img/s-7.png"></span>
       <h4 style="color:#303030;">Consultation</h4>
-      <p>short def</p>
     </div>
     <div class="col-sm-3">
       <span><img src="<?php echo base_url(); ?>/Public/website_extensions2/img/s-8.png"></span>
       <h4 style="color:#303030;">Immunization</h4>
-      <p>short def</p>
     </div>
 
   </div>
@@ -181,7 +173,7 @@
     <div class="row text-center">
         <div class="col-md-6" data-aos="zoom-in-up"><img src="<?php echo base_url(); ?>/Public/website_extensions2/img/a-cal.png"></div>
         <div class="col-md-6 slide-tr" data-aos="zoom-in-up"><p class="letit"> Appointment Scheduling for Free</p><br>
-            <a href="form.html" type="button" class="btn btn-lg btn-outline-info">Book Now</a>  
+            <a href="<?php echo base_url();?>Main/appointment"><button type="button" class="btn btn-lg btn-outline-info">Book Now</button></a>  
         </div>
     </div>
 <br><br>
@@ -190,29 +182,44 @@
 
 <!-- Container (Contact Section) -->
 <div id="contact" class="container-fluid bg-grey">
-  <h2 class="text-center">CONTACT</h2>
+  <h2 class="text-center">CONTACT US</h2>
   <div class="row">
     <div class="col-sm-5">
       <p>Contact us and we'll get back to you within 24 hours.</p>
-      <p><span class="glyphicon glyphicon-map-marker"></span> Taguig City</p>
-      <p><span class="glyphicon glyphicon-phone"></span> #########</p>
+      <p><span class="glyphicon glyphicon-map-marker"></span> 136 Block 8, Zone 2, Barangay Fort Bonifacio, Taguig City</p>
     </div>
-    <div class="col-sm-7" data-aos="fade-up">
-      <div class="row">
-        <div class="col-sm-6 form-group">
-          <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+    <?php echo form_open('Main/feedback') ?>
+      <div class="col-sm-7" data-aos="fade-up">
+        <?php if($this->session->flashdata('feedback_result')): ?>
+          <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong><i class="fa fa-thumbs-o-up"></i></strong><?php echo $this->session->flashdata('feedback_result'); ?>
+          </div>
+        <?php endif ?>
+        <div class="row">
+          <div class="col-sm-6 form-group">
+            <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+          </div>
+          <div class="col-sm-6 form-group">
+            <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+          </div>
         </div>
-        <div class="col-sm-6 form-group">
-          <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+        <div class="row">
+          <div class="col-sm-6 form-group">
+            <input class="form-control" id="phone" name="phone" placeholder="Phone Number" type="text">
+          </div>
+          <div class="col-sm-6 form-group">
+            <input class="form-control" id="company" name="company" placeholder="Company">
+          </div>
         </div>
+        <textarea class="form-control" id="message" name="message" placeholder="Message" rows="5" required></textarea><br>
+        <div class="row">
+          <div class="col-sm-12 form-group">
+            <button class="btn btn-default pull-right" type="submit">Send</button>
+          </div>
+        </div>  
       </div>
-      <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
-      <div class="row">
-        <div class="col-sm-12 form-group">
-          <button class="btn btn-default pull-right" type="submit">Send</button>
-        </div>
-      </div>  
-    </div>
+    </form>
   </div>
 </div>
 

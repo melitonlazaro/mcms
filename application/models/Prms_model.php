@@ -330,5 +330,45 @@ public function dt_re()
     $this->db->where("last_name", $p_info);
     return $this->db->get('patient_info')->result();
   }
+
+  public function report_info($patient_ID)
+ {
+  $this->db->select('*');
+  $this->db->from('patient_info');
+  $this->db->where('patient_ID', $patient_ID);
+  $query = $this->db->get();
+  return $query->result();
+ }
+
+ public function report_pe($Num)
+ {
+    $this->db->select('*');
+    $this->db->from('physicalexamination');
+    $this->db->where('Num', $Num);
+    $this->db->join('patient_info', 'patient_info.patient_ID = physicalexamination.Patient_ID');
+   // $this->db->where('Num', $Num);
+    $query = $this->db->get();
+    return $query->result();
+
+ }
+
+ public function report_mh($Num)
+ {
+    $this->db->select('*');
+    $this->db->from('medicalhistory');
+    $this->db->where('Num', $Num);
+    $this->db->join('patient_info', 'patient_info.patient_ID = medicalhistory.Patient_ID');
+    $query = $this->db->get(); 
+    return $query->result();
+ }
+
+ public function report_all()
+ {
+  $this->db->select('*');
+  $this->db->from('patient_info');
+  $query = $this->db->get();
+  return $query->result();
+ }
+
 }
 ?>

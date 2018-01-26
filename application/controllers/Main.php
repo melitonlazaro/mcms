@@ -32,22 +32,34 @@ class Main extends CI_Controller {
     $this->load->view('login');
   }
 
-	public function home()
+	public function appointment()
 	{
-		$this->load->view('online');
+		$this->load->view('form');
 	}
 
-  public function contact_us()
+  public function Patient_login()
   {
-    $this->load->view('contact_us');
+
+    $username = $this->input->post('patient_username');
+    $password = md5($this->input->post('patient_password'));
+    $this->load->model('Main_model');
+    $login_result = $this->Main_model->patient_login($username, $password);
+    if($login_result)
+    {
+      
+    }
+    else
+    {
+      $this->session->set_flashdata('login_failed', 'Please insert correct username and password.');
+      $this->load->view('Form');
+    }
   }
 
   public function feedback()
   {
     $data = array(
                 'feedback_id' => NULL,
-                'first_name' => $this->input->post('first_name'),
-                'last_name' => $this->input->post('last_name'),
+                'name' => $this->input->post('name'),
                 'email' => $this->input->post('email'),
                 'phone' => $this->input->post('phone'),
                 'company' => $this->input->post('company'),
@@ -57,7 +69,7 @@ class Main extends CI_Controller {
     if($result)
       {
        $this->session->set_flashdata('feedback_result', 'Thank you for sending your feedback!');
-       $this->load->view('contact');
+       $this->load->view('index');
       }
   }
 
@@ -101,9 +113,9 @@ class Main extends CI_Controller {
     	redirect('Main');
     }	
 
-    public function Book_appointment()
+    public function book_appointment()
     {
-      $this->load->view('Form');
+      $this->load->view('form');
     }
 
     public function online_appointment()
@@ -147,7 +159,7 @@ class Main extends CI_Controller {
       $data['latest_patients'] = $this->Main_model->count_latest_patients();
       $data['latest_infants'] = $this->Main_model->count_latest_infants();
       $data['active_cases'] = $this->Main_model->count_active_cases();
-      $data['tasks'] = $this->Main_model->get_tasks();
+      $data['todays_appointment'] = $this->Main_model->count_todays_appointment();
       $this->load->view('dashboard', $data);
     }
 
@@ -205,29 +217,29 @@ class Main extends CI_Controller {
       $start_date = $this->input->post("start_date", TRUE);
       $end_date = $this->input->post("end_date", TRUE);
 
-      if(!empty($start_date))
-      {
-        $sd = DateTime::createFromFormat("Y/m/d H:i", $start_date);
-        $start_date = $sd->format('Y-m-d H:i:s');
-        $start_date_timestamp = $sd->getTimestamp();
-      }
-      else
-      {
-        $start_date = date("Y-m-d H:i:s", time());
-        $start_date_timestamp = time();
-      }
+      // if(!empty($start_date))
+      // {
+      //   $sd = DateTime::createFromFormat("Y/m/d H:i", $start_date);
+      //   $start_date = $sd->format('Y-m-d H:i:s');
+      //   $start_date_timestamp = $sd->getTimestamp();
+      // }
+      // else
+      // {
+      //   $start_date = date("Y-m-d H:i:s", time());
+      //   $start_date_timestamp = time();
+      // }
 
-      if(!empty($end_date))
-      {
-        $ed = DateTime::createFromFormat("Y/m/d H:i", $end_date);
-        $end_date = $ed->format('Y-m-d H:i:s');
-        $end_date_timestamp = $ed->getTimestamp();
-      }
-      else
-      {
-        $end_date = date("Y-m-d H:i:s", time());
-        $end_date_timestamp = time();
-      }
+      // if(!empty($end_date))
+      // {
+      //   $ed = DateTime::createFromFormat("Y/m/d H:i", $end_date);
+      //   $end_date = $ed->format('Y-m-d H:i:s');
+      //   $end_date_timestamp = $ed->getTimestamp();
+      // }
+      // else
+      // {
+      //   $end_date = date("Y-m-d H:i:s", time());
+      //   $end_date_timestamp = time();
+      // }
 
       $insert_event_result = $this->Main_model->add_event(array(
           "ID" => NULL,

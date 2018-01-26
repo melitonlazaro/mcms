@@ -237,13 +237,13 @@
                                     <strong>Fullterm:</strong>  
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="number" min="0" name="fullterm" id="fullterm" class="form-control">
+                                    <input type="number" value="0" min="0" name="fullterm" id="fullterm" class="form-control">
                                 </div>
                                 <div class="col-md-3">
                                     <strong>Preterm:</strong>  
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="number" min="0" name="preterm" id="preterm" class="form-control">
+                                    <input type="number" min="0" value="0" name="preterm" id="preterm" class="form-control">
                                 </div>
                             </div><br>
                             <div class="row">
@@ -251,13 +251,13 @@
                                     <strong>Abortion:</strong>  
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="number" min="0" name="abortion" id="abortion" class="form-control"> 
+                                    <input type="number" min="0"  value="0" name="abortion" id="abortion" class="form-control"> 
                                 </div>
                                 <div class="col-md-3">
                                     <strong>Living Children:</strong> 
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="number" min="0" name="livingchildren" id="livingchildren" class="form-control">
+                                    <input type="number" min="0" value="0" name="livingchildren" id="livingchildren" class="form-control">
                                 </div>  
                             </div><br>
                             <div class="row">
@@ -283,7 +283,7 @@
                                     <strong>Age of Gestation:</strong>  
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="number" min="0" name="agegestation" id="agegestation" class="form-control">
+                                    <input type="number" min="0" value="0" name="agegestation" id="agegestation" class="form-control">
                                 </div> 
                                 <div class="col-md-3">
                                     <strong>Expected Date of Confinement:</strong>
