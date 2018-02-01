@@ -25,7 +25,7 @@
           <div class="col-md-4"><h3 style="text-transform: uppercase;">Appointment</h3></div>
         </div>
       </div>
-
+      <br>
     <div class="panel-body">
               <?php echo form_open('Main/Patient_login'); ?>
               <?php if($this->session->flashdata('login_failed')) 
@@ -36,40 +36,14 @@
               }
               ?>
                 <div class="form-group">
-                  <input type="text" name="patient_username" placeholder="Username" class="form-control" required>
-                  <br>
-                  <input type="password" name="patient_password" class="form-control" placeholder="Password" required>
-                  <br>
-                  <button type="submit" class="btn btn-info"><i class="fa fa-user"></i>Login</button>
+                  <div class="row">
+                    <div class="col-sm-4"><input type="text" name="patient_username" placeholder="Username" class="form-control" required></div>
+                    <div class="col-sm-4"><input type="password" name="patient_password" class="form-control" placeholder="Password" required></div>
+                    <div class="col-sm-4"><button type="submit" class="btn btn-block btn-info"><i class="fa fa-user"></i>Login</button></div>
+                  </div>
                 </div>
               </form>
-              <form>
-                <div class="form-group">
-                  <label>Reason to ...</label>
-                  <select class="form-control" id="reason">
-                                  <option>Prenatal Checkup</option>
-                                  <option>Postnatal Checkup</option>
-                                  <option>Laboratory</option>
-                                  <option>Infant Consultation</option>
-                                  <option>Paps Smear</option>
-                                  <option>Immunization</option>
-                                  <option>Ultrasound</option>
-                  </select>
-                            <label>Name</label>
-                            <input class="form-control" type="text" name="">
-
-                            <label>Email</label>
-                            <input class="form-control" type="text" name="">
-              
-                            <label>Contact Number</label>
-                            <input class="form-control" type="text"onkeypress='return event.charCode >= 48 && event.charCode <= 57' name=""><br>
-              </form>
-
-           <div class="row text-center">
-                              <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
-
-                              <button class="btn btn-fix" type="button">Submit</button>
-          </div>
+         <br>      
     </div>
   </div>
 

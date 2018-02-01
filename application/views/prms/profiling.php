@@ -46,7 +46,7 @@
 		<div class="page-header">
 			<h2>Profiling</h2>
 		</div>
-		<?php echo form_open('Prms/process_profiling'); ?>
+		<?php echo form_open_multipart('Prms/process_profiling'); ?>
 			<div class="row">
 				<div class="col-md-4">
 					<label for="last_name">Last Name</label>
@@ -80,7 +80,7 @@
 			<div class="row">
 				<div class="col-md-4">
 					<label for="street_no">Street Number</label>
-				    <input type="text" name="street_no" class="form-control" id="street_no" placeholder="Contact Number" required>
+				    <input type="text" name="street_no" class="form-control" id="street_no" placeholder="Street Number" required>
 				</div>
 				<div class="col-md-4">
 					<label for="brgy">Barangay</label>
@@ -107,6 +107,14 @@
 				</div>
 			</div>
 			<br>
+			<div class="row">
+				<div class="col-md-2">
+					<h4><b>Upload Picture</b></h4>
+				</div>
+				<div class="col-md-5">
+					<input type="file" class="form-control" name="userfile" size="20" />
+				</div>
+			</div>
 			<div class="row">
 				<div class="col-md-12">
 					<button type="submit" id="crete_new_record" class="btn btn-success"><i class="fa  fa-user-plus"></i> Create New Patient Record</button>
@@ -143,7 +151,7 @@
 					echo '</td>';
 					echo '<td>'.$pn->last_name.', '.$pn->given_name.' '.$pn->middle_initial.'</td>';
 					echo '<td>'.$pn->date_of_birth.'</td>'; ?>
-					<td><center><a href="<?php echo base_url();?>/Prms/create_case_existing/<?php echo $pn->patient_ID; ?>"><button class="btn btn-success"><i class="fa fa-user-plus"></i> Choose</button></a></center></td>
+					<td><center><a href="<?php echo base_url();?>Prms/create_case_existing/<?php echo $pn->patient_ID; ?>"><button class="btn btn-success"><i class="fa fa-user-plus"></i> Choose</button></a></center></td>
 				<?php	echo '</tr>';
 				}
 				?>

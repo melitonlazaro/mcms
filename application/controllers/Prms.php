@@ -25,20 +25,19 @@ class Prms extends CI_Controller {
 
   public function create_case_existing($patient_ID)
   {
-    echo $patient_ID;
-    // $this->load->model('Prms_model');
-    // $patient_ID = $this->input->post('patient_id');
-    // $last_case_id = $this->Prms_model->create_new_case($patient_ID);
-    // if($last_case_id)
-    // {
-    //   $data['patient_ID'] = $patient_ID;
-    //   $data['last_case_id'] = $last_case_id; 
-    //   $this->load->view('prms/medical_history', $data);
-    // }
-    // else
-    // {
-    //   $error = $this->db->error();
-    // }
+    //echo $patient_ID;
+    $this->load->model('Prms_model');
+    $last_case_id = $this->Prms_model->create_new_case($patient_ID);
+    if($last_case_id)
+    {
+      $data['patient_ID'] = $patient_ID;
+      $data['case_ID'] = $last_case_id; 
+      $this->load->view('prms/medical_history', $data);
+    }
+    else
+    {
+      $error = $this->db->error();
+    }
   }
 
   public function view_id($last_case_id)
@@ -57,7 +56,28 @@ class Prms extends CI_Controller {
   public function process_profiling()
   {
     $this->load->model('Prms_model');
-    $data = array(
+      $config['upload_path'] = './uploads/';
+      $config['allowed_types']        = 'jpg|png';
+      $config['max_size']             = 1000;
+      $config['max_width']            = 2024;
+      $config['max_height']           = 1024;
+      $this->load->library('upload', $config);
+
+      if(!$this->upload->do_upload('userfile'))
+      {
+        $this->form_validation->set_error_delimiters('<p class="error">', '</p>');
+        $error = array('error' => $this->upload->display_errors());
+        print_r($error);
+      }
+      else
+      {
+        $upload_details = $this->upload->data();
+        $file_name = $upload_details['file_name'];
+
+      }
+
+
+        $data = array(
                   'patient_ID'  => NULL,
                   'last_name'   => $this->input->post('last_name'),
                   'given_name'   => $this->input->post('given_name'),
@@ -71,15 +91,14 @@ class Prms extends CI_Controller {
                   'emergency_contact_name'   => $this->input->post('emergency_contact_name'),
                   'emergency_contact_num'   => $this->input->post('emergency_contact_num'),
                   'emergency_contact_address'   => $this->input->post('emergency_contact_address'),
-                  'date_registered' => date('Y-m-d')
+                  'date_registered' => date('Y-m-d'),
+                  'picture' => $file_name
                  );
-
     $patient_ID = $this->Prms_model->profiling($data);
-
     $patient_last_name = $this->input->post('last_name');
     $patient_given_name = $this->input->post('given_name');
     $username_check = $this->Prms_model->check_existing_username($patient_last_name, $patient_given_name);
-    $default_password = 12345;
+    $default_password = md5(12345);
     if($username_check)
     {
       $username1 = "".$patient_last_name.".".$patient_given_name."";
@@ -193,7 +212,8 @@ class Prms extends CI_Controller {
       'date' => date('Y-m-d'), 
       'height' => $this->input->post('height'),
       'weight' => $this->input->post('weight'),
-      'blood_pressure' => $this->input->post('blood_pressure'),
+      'systolic' => $this->input->post('systolic'),
+      'diastolic' => $this->input->post('diastolic'),
       'blood_type' => $this->input->post('blood_type'),
       'conjunctiva_pale' => $this->input->post('pale'),
       'conjunctiva_yellowish' => $this->input->post('yellowish'),
@@ -285,11 +305,11 @@ class Prms extends CI_Controller {
 
   public function case_timeline($case_id)
   {
-
     $this->load->model('Prms_model');
     $data['prenatal'] = $this->Prms_model->get_prenatal_case_timeline($case_id);
     $data['medicalhistory'] = $this->Prms_model->get_medical_history_case_timeline($case_id);
     $data['case_details'] = $this->Prms_model->get_case_details($case_id);
+    $data['expected_date_of_confinement'] = $this->Prms_model->get_expected_date_of_confinement($case_id);
     $data['case_id'] = $case_id;
     $this->load->view('prms/case_timeline', $data);
   }
@@ -391,4 +411,35 @@ class Prms extends CI_Controller {
       $this->load->view('report/reportmh', $data);
    } 
    
+   public function childbirth()
+   {
+      $this->load->model('Prms_model');
+      $data = array(
+                    'infant_id' => NULL,
+                    'patient_ID' => $this->input->post('patient_ID'),
+                    'case_id' => $this->input->post('case_id'),
+                    'infant_first_name' => $this->input->post('infant_first_name'),
+                    'infant_last_name' => $this->input->post('infant_last_name'),
+                    'infant_middle_initial' => $this->input->post('infant_middle_initial'),
+                    'gravida' => $this->input->post('gravida'),
+                    'para' => $this->input->post('para'),
+                    'gender' => $this->input->post('gender'),
+                    'time_of_birth' => $this->input->post('time_of_birth'),
+                    'infant_date_of_birth' => $this->input->post('infant_date_of_birth'),
+                    'weight' => $this->input->post('weight'),
+                    'length' => $this->input->post('length'),
+                    'head_circumference' => $this->input->post('head_circumference'),
+                    'chest_circumference' => $this->input->post('chest_circumference'),
+                    'newborn_screening' => $this->input->post('newborn_screening'),
+                   );
+      $query_result = $this->Prms_model->childbirth_model($data);
+      if($query_result)
+      {
+        $this->load->view('dashboard');
+      }
+      else
+      {
+        echo "error";
+      }
+   }
 }

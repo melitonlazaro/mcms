@@ -51,12 +51,12 @@
 <html>
 <head>
 	<?php require('extensions.php'); ?>
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/Public/css/AdminLTE.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/Public/css/LTE.css">
 
 </head>
-<body>
+<body style="margin-right: 20px; margin-left: 20px;">
 	<?php require('sidenav.php'); ?>
-	<br><br><br>
+    <br><br><br><br>
     <h1 class="page-header">Patient Profile</h1>
    <div class="pull-right">
         <ol class="breadcrumb">
@@ -99,7 +99,9 @@
     				<div class="panel-body">
     					<div class="row">
     						<div class="col-md-4">
-    							
+                                    <a href="#" class="thumbnail">
+                                      <img src="<?php echo base_url();?>/Uploads/<?php echo $patient_information->picture; ?>" alt="..." height="250" width="150">
+                                    </a>
     						</div>
     						<div class="col-md-8">
     							<table class="table table-condensed table-striped table-hover">

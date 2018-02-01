@@ -9,7 +9,7 @@
 
 <?php echo form_open('Prms/physical_examination'); ?>
 
-
+<br>
 <div class="container">
     <input type="hidden" name="patient_id" value="<?php echo $patient_ID;?>">
     <input type="hidden" name="case_id" value="<?php echo $last_case_id;?>"> 
@@ -55,7 +55,8 @@
                                 <strong>Blood Pressure:</strong>
                             </div>
                             <div class="col-md-3">
-                                <input type="text" class="form-control pull-right" name="blood_pressure">
+                                <input type="text" class="form-control pull-right" placeholder="Systolic" name="systolic"><br>
+                                <input type="text" class="form-control pull-right" placeholder="Diastolic" name="diastolic">
                             </div>
                         </div><br>
                         <div class="row">
@@ -192,7 +193,7 @@
                                 <strong>Abnormal heart sounds/Cardiac rate:</strong>
                             </div>
                             <div class="col-md-3">
-                                <input type="text" class="form-control pull-right" name="abdomenheight" placeholder="in Centimeters">
+                                <input type="text" class="form-control pull-right" name="abdomenheight">
                             </div>
                             <div class="col-md-3">
                                 <strong>Fetal Movement:</strong>

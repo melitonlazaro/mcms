@@ -145,13 +145,13 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
       <div class="item active">
-        <h4>"This clinic is the best. BABIES ON THE WAY!"<br><span>Someone idk, Comment Box</span></h4>
+        <h4>"This clinic is the best."<br><span>Someone idk, Comment Box</span></h4>
       </div>
       <div class="item">
-        <h4>"NYANYA"<br><span>Random pips</span></h4>
+        <h4>"Nayana"<br><span>Random pips</span></h4>
       </div>
       <div class="item">
-        <h4>"shit brix"<br><span>No one</span></h4>
+        <h4>"Hello"<br><span>No one</span></h4>
       </div>
     </div>
 

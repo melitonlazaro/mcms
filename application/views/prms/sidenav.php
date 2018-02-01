@@ -28,11 +28,12 @@
             <!-- Sidebar Holder -->
             <nav id="sidebar">
                 <div id="dismiss">
-                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                    <i style="padding-top: 10px;" class="fa fa-arrow-left" aria-hidden="true"></i>
                 </div>
 
+
                 <div class="sidebar-header">
-                    <h1>Stork</h1>
+                    <h3>Management System</h3>
                 </div>
 
                 <ul class="list-unstyled components">
@@ -73,30 +74,20 @@
                     <div class="container-fluid">
 
                         <div class="navbar-header">
-                            <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+                            <button style="padding-bottom: 10px;" type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
                                 <i class="glyphicon glyphicon-align-left"></i>
                             </button>
                              <span id="lblGreetings"></span>
-                        </div>
-
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a href="#"><b><i class="fa fa-television" aria-hidden="true"></i>DASHBOARD<b></a></li>
-                            </ul>
                         </div>
                     </div>
                 </nav>
             </div>
         </div>
 
+        <div class="overlay"></div>
 
 
-
-        <!-- jQuery CDN -->
-
-        <!-- Bootstrap Js CDN -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <!-- jQuery Custom Scroller CDN -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
 
         <script type="text/javascript">
@@ -138,3 +129,4 @@
 
     </body>
 </html>
+    

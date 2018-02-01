@@ -16,6 +16,7 @@
     }
 
 ?>
+<?php require('sidenav.php'); ?>
 <div class="container">
     <div class="panel panel-primary">
         <div class="panel-heading">
@@ -31,15 +32,15 @@
                 <input type="hidden" name="case_id" id="case_id" value="<?php echo $case_ID;?>">
 
                 <div class="col-md-4">
-                    <ul class="nav nav-tabs nav-stacked">
-                      <li class="active"><a data-toggle="tab" href="#Heent">Heent</a></li>
-                      <li><a data-toggle="tab" href="#chestheart">Chest/Heart</a></li>
-                      <li><a data-toggle="tab" href="#extremeties">Extremeties</a></li>
-                      <li><a data-toggle="tab" href="#skin">Skin</a></li>
-                      <li><a data-toggle="tab" href="#obstetrical_history">Obstetrical History</a></li>
-                      <li><a data-toggle="tab" href="#history">History of any of the ff.</a></li>
-                      <li><a data-toggle="tab" href="#abdomen">Abdomen</a></li>
-                      <li><a data-toggle="tab" href="#obstetrical_history2">Obstetrical History</a></li>
+                    <ul class="nav nav-pills nav-stacked">
+                      <li class="active"><a data-toggle="pill" href="#Heent">Heent</a></li>
+                      <li><a data-toggle="pill" href="#chestheart">Chest/Heart</a></li>
+                      <li><a data-toggle="pill" href="#extremeties">Extremeties</a></li>
+                      <li><a data-toggle="pill" href="#skin">Skin</a></li>
+                      <li><a data-toggle="pill" href="#obstetrical_history">Obstetrical History</a></li>
+                      <li><a data-toggle="pill" href="#history">History of any of the ff.</a></li>
+                      <li><a data-toggle="pill" href="#abdomen">Abdomen</a></li>
+                      <li><a data-toggle="pill" href="#obstetrical_history2">Obstetrical History</a></li>
                     </ul>
                 </div>
                 <div class="col-md-8">

@@ -219,6 +219,15 @@ class Prms_model extends CI_Model {
   return $query->result();
  }
 
+ public function get_expected_date_of_confinement($case_id)
+ {
+  $this->db->select('oh_expected_date_of_confinement');
+  $this->db->from('medicalhistory');
+  $this->db->where('case_id', $case_id);
+  $query = $this->db->get();
+  return $query->row()->oh_expected_date_of_confinement;
+ }
+
  public function get_medical_history_case_timeline($case_id)
  {
   $this->db->select('Num, Patient_ID, case_id, Date, oh_last_delivery_date, oh_age_of_gestation_weeks, oh_expected_date_of_confinement,');
@@ -370,5 +379,10 @@ public function dt_re()
   return $query->result();
  }
 
+ public function childbirth_model($data)
+ {
+  $query_result = $this->db->insert('infant_info', $data);
+  return $query_result;
+ }
 }
 ?>
