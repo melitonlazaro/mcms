@@ -58,9 +58,9 @@
 <div id="about" class="container-fluid">
   <div class="row">
     <div class="col-sm-8">
-      <h2>About Us</h2><br>
+      <h2>Jewel's Firsrt Maternity and Lying-In Medical Clinic</h2>
       <h4></h4><br>
-      <p>SAME</p>
+      <p>Jewel's First Maternity and Lying in Medical Clinic, Taguig. The clinic is visited by pediatricians like Dr. Jo Anne Ramos. The timings of Mom's and Baby Maternity Clinic are: Mon to Sat: 9:00 AM-5:00 PM. Some of the services provided by the clinic are: Vagina Surgery, Quad Screen, Copper T Insertion, Postnatal and Intracytoplasmic Sperm Injection (ICSI). Click on map to find directions to reach Mom's and Baby Maternity Clinic</p>
 
     </div>
     <div class="col-sm-4">
@@ -131,48 +131,12 @@
   </div>
 </div>
 
-<!-- Container (People Section) -->
-<div id="people" class="container-fluid text-center bg-grey">
-  <h2>What our customers say</h2>
-  <div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
-
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner" role="listbox">
-      <div class="item active">
-        <h4>"This clinic is the best."<br><span>Someone idk, Comment Box</span></h4>
-      </div>
-      <div class="item">
-        <h4>"Nayana"<br><span>Random pips</span></h4>
-      </div>
-      <div class="item">
-        <h4>"Hello"<br><span>No one</span></h4>
-      </div>
-    </div>
-
-    <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
-</div>
-
 
 <!-- Container (Schedule Section) -->
-<div id="schedule" class="container-fluid text-center">
+<div id="schedule" class="container-fluid text-center bg-grey">
     <div class="row text-center">
         <div class="col-md-6" data-aos="zoom-in-up"><img src="<?php echo base_url(); ?>/Public/website_extensions2/img/a-cal.png"></div>
-        <div class="col-md-6 slide-tr" data-aos="zoom-in-up"><p class="letit"> Appointment Scheduling for Free</p><br>
+        <div class="col-md-6 slide-tr" data-aos="zoom-in-up"><p class="letit">Schedule an Appointment for Free!</p><br>
             <a href="<?php echo base_url();?>Main/appointment"><button type="button" class="btn btn-lg btn-outline-info">Book Now</button></a>  
         </div>
     </div>
@@ -181,7 +145,7 @@
 
 
 <!-- Container (Contact Section) -->
-<div id="contact" class="container-fluid bg-grey">
+<div id="contact" class="container-fluid">
   <h2 class="text-center">CONTACT US</h2>
   <div class="row">
     <div class="col-sm-5">

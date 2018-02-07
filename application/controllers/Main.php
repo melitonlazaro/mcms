@@ -46,7 +46,11 @@ class Main extends CI_Controller {
     $login_result = $this->Main_model->patient_login($username, $password);
     if($login_result)
     {
-      
+      $session_data = array(  
+                          'patient_username' => $username  
+                     );
+      $this->session->set_userdata($session_data);
+      $this->load->view('patient_account');
     }
     else
     {

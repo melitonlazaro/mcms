@@ -384,5 +384,14 @@ public function dt_re()
   $query_result = $this->db->insert('infant_info', $data);
   return $query_result;
  }
+
+ public function change_maternity_case_status($case_id)
+ {
+  $new_status = "For Prenatal";
+  $this->db->set('status', $new_status);
+  $this->db->where('case_id', $case_id);
+  $this->db->update('case');
+ }
+
 }
 ?>

@@ -435,6 +435,8 @@ class Prms extends CI_Controller {
       $query_result = $this->Prms_model->childbirth_model($data);
       if($query_result)
       {
+        $case_id = $this->input->post('case_id');
+        $this->Prms_model->change_maternity_case_status($case_id);
         $this->load->view('dashboard');
       }
       else

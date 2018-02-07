@@ -83,6 +83,10 @@
                                     <td><?php echo $cs->case_id;?></td>
                                 </tr>
                                 <tr>
+                                    <td>Status</td>
+                                    <td><?php echo $cs->status; ?></td>
+                                </tr>
+                                <tr>
                                     <td>Date Started</td>
                                     <td><?php echo $cs->date_start; ?></td>
                                 </tr>
@@ -106,6 +110,29 @@
                         </div>
                     </div>
                     <div class="row">
+                        <?php 
+                            $for_postnatal = "For Postnatal";
+                            $complete = "Complete";
+                            $active = "Active";
+                            if($cs->status === $for_postnatal){ ?>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button class="btn btn-block btn-lg btn-info">Postnatal</button>
+                                    </div>
+                                </div>
+                            <?php }
+                            elseif($cs->status === $complete)
+                            {?>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <center>
+                                                    <h2 class="text-success bg-success">Maternity Case Completed</h2>
+                                                </center>
+                                            </div>
+                                        </div>
+                            <?php } 
+                            elseif($cs->status === $active)
+                            {?>
                         <div class="col-md-6">
                             <a href="<?php echo base_url();?>Prms/prenatal/<?php echo $cs->case_id;?>/<?php echo $cs->patient_ID; ?>"><button class="btn btn-info btn-block btn-lg">Prenatal</button></a>
                         </div>
@@ -229,7 +256,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> 
+                            <?php } ?>
+
                     </div>
                 </div>
                 <div class="col-md-6">
