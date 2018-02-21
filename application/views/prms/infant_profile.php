@@ -69,12 +69,13 @@
 <html>
 <head>
 	<?php require('extensions.php'); ?>
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/Public/css/AdminLTE.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/Public/css/LTE.css">
 	<title>JFMLMC</title>
 </head>
 <body>
 	<?php require('sidenav.php'); ?>
-	<br><br><br>
+	<br><br><br><br><br>
+	<h1 class="page-header">Infant Profile</h1>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-5">
@@ -82,18 +83,18 @@
 					<div class="panel-heading">
 						<div class="row">
 							<div class="col-md-6">
-									<p style="text-align: left;">
+									<h6 style="text-align: left;">
 									<?php //print_r($infant_info);
 										echo $infant_info->infant_first_name;
 									?>
-									</p>
+									</h6>
 							</div>
 							<div class="col-md-6">
-								<p style="text-align: right;">
+								<h6 style="text-align: right;">
 									<?php 
 										echo $infant_info->infant_id;
 									?>
-								</p>
+								</h6>
 							</div>
 						</div>
 					</div>
@@ -198,36 +199,60 @@
 		</div>
 	</div>
 	<div class="container-fluid">
+		<h2 class="page-header">Consultations</h2>
 		<ul class="timeline">
 
-    <!-- timeline time label -->
-    <li class="time-label">
-        <span class="bg-red">
-            10 Feb. 2014
-        </span>
-    </li>
-    <!-- /.timeline-label -->
+			<?php foreach ($consultations as $cs) 
+			{
+				echo '
+					<li class="time-label">
+				        <span class="bg-blue">
+				            Consultation Date: '.$cs->date.'
+				        </span>
+				    </li>
+				    <li>
+				        <i class="fa fa-plus-square bg-blue"></i>
+				        <div class="timeline-item">
+				            <h3 class="timeline-header">Consultation Results</h3>
 
-    <!-- timeline item -->
-    <li>
-        <!-- timeline icon -->
-        <i class="fa fa-envelope bg-blue"></i>
-        <div class="timeline-item">
-            <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
+				            <div class="timeline-body">
+				            	<div class="row">
+				            		<div class="col-md-3">
+				            			<strong>Weight: </strong>'.$cs->weight.' g
+				            		</div>
+				            		<div class="col-md-3">
+				            			<strong>Height: </strong>'.$cs->height.' cm
+				            		</div>
+				            		<div class="col-md-3">
+				            			<strong>Pulse Rate: </strong>'.$cs->pulse_rate.' BPM
+				            		</div>
+				            		<div class="col-md-3">
+				            			<strong>Heart Rate: </strong>'.$cs->heart_rate.' BPM
+				            		</div>
+				            	</div>
+				            	<br><br>
+				            	<div class="row">
+				            		<div class="col-md-6">
+				            			<strong>Chief Complaint: </strong>
+				            			<br>
+				            			'.$cs->chief_complaint.'
+				            		</div>
+				            		<div class="col-md-6">
+				            			<strong>Remarks: </strong>
+				            			<br>
+				            			'.$cs->remarks.'
+				            		</div>
+				            	</div>
+				            </div>
 
-            <h3 class="timeline-header"><a href="#">Support Team</a> ...</h3>
+				            <div class="timeline-footer">
+				                <a class="btn btn-primary btn-xs">...</a>
+				            </div>
+				        </div>
+				    </li>
+					 ';
+			} ?>
 
-            <div class="timeline-body">
-                ...
-                Content goes here
-            </div>
-
-            <div class="timeline-footer">
-                <a class="btn btn-primary btn-xs">...</a>
-            </div>
-        </div>
-    </li>
-    <!-- END timeline item -->
 
 
 </ul>

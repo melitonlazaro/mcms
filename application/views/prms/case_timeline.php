@@ -382,7 +382,6 @@
                             <li>
                                 <i class="fa fa-plus-square bg-blue"></i>
                                 <div class="timeline-item">
-                                    <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
                                     <h3 class="timeline-header"> Prenatal Checkup</h3>
                                     <div class="timeline-body">
                                         <button data-toggle="collapse" data-target="#result-'.$pr->Num.'" class="btn btn-success btn-sm">View Result</button>
@@ -574,7 +573,6 @@
                             <!-- timeline icon -->
                             <i class=" fa fa-medkit bg-green"></i>
                             <div class="timeline-item">
-                                <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
                                 <h3 class="timeline-header"><a href="#">Medical History</a></h3>
                                 <div class="timeline-body">
                                     <div class="row">
@@ -616,8 +614,6 @@
                     <!-- timeline icon -->
                     <i class=" fa fa-user-plus bg-blue"></i>
                     <div class="timeline-item">
-                        <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
-
                         <h3 class="timeline-header"><a href="#">Date Created</a> ...</h3>
                         <div class="timeline-body">
                             <?php echo $cs->date_start;?>
@@ -638,8 +634,6 @@
                     <!-- timeline icon -->
                     <i class=" fa fa-wanning bg-red"></i>
                     <div class="timeline-item">
-                        <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
-
                         <h3 class="timeline-header"><a href="#">No Records</a></h3>
                         <div class="timeline-body">
                             This case has no records. <br>

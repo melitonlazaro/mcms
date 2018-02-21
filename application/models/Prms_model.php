@@ -11,7 +11,20 @@ class Prms_model extends CI_Model {
     $result = $this->db->insert('patient_info', $data);
     if($result)
     {
-    return $this->db->insert_id();
+      $profiling_last_id = $this->db->insert_id();
+      $date = date('Y-m-d');
+      $time = date('H:m:s');
+      $activity = "Profiling";
+      $module = "PRMS";
+      $data = array(
+        'activity_log_id' => NULL,
+        'activity' => $activity,
+        'module' => $module,
+        'date' => $date,
+        'time' => $time
+      );
+      $this->activity_log($data);
+      return $profiling_last_id;
     }
     else
     {
@@ -39,6 +52,18 @@ class Prms_model extends CI_Model {
   public function create_patient_account($account)
   {
     $this->db->insert('patient_account', $account);
+      $date = date('Y-m-d');
+      $time = date('H:m:s');
+      $activity = "Created patient account";
+      $module = "Online Appointment";
+      $data = array(
+        'activity_log_id' => NULL,
+        'activity' => $activity,
+        'module' => $module,
+        'date' => $date,
+        'time' => $time
+      );
+      $this->activity_log($data);
   }
 
   public function get_patient_records()
@@ -57,13 +82,38 @@ class Prms_model extends CI_Model {
   public function physical_examination($data)
   {
     $result = $this->db->insert('physicalexamination', $data);
+    $date = date('Y-m-d');
+      $time = date('H:m:s');
+      $activity = "Added Physical Examination record";
+      $module = "PRMS";
+      $data = array(
+        'activity_log_id' => NULL,
+        'activity' => $activity,
+        'module' => $module,
+        'date' => $date,
+        'time' => $time
+      );
+      $this->activity_log($data);
     return $result;
+      
   }
 
   public function medical_history($data)
   {
     $result = $this->db->insert('medicalhistory', $data);
     return $result;
+      $date = date('Y-m-d');
+      $time = date('H:m:s');
+      $activity = "Added Medical History record";
+      $module = "PRMS";
+      $data = array(
+        'activity_log_id' => NULL,
+        'activity' => $activity,
+        'module' => $module,
+        'date' => $date,
+        'time' => $time
+      );
+      $this->activity_log($data);
   }
   public function get_patient_profile($patient_ID)
   {
@@ -101,6 +151,18 @@ class Prms_model extends CI_Model {
                  );
     $result = $this->db->insert('case', $data);
     return $this->db->insert_id();
+      $date = date('Y-m-d');
+      $time = date('H:m:s');
+      $activity = "Created new Maternity Case";
+      $module = "PRMS";
+      $data = array(
+        'activity_log_id' => NULL,
+        'activity' => $activity,
+        'module' => $module,
+        'date' => $date,
+        'time' => $time
+      );
+      $this->activity_log($data);
   }
 
  public function count_all()
@@ -124,45 +186,6 @@ class Prms_model extends CI_Model {
  {
   $query = $this->db->get("patient_info");
   return $query->num_rows();
- }
-
- public function fetch_patient_details($limit, $start)
- {
-  $output = '';
-  $this->db->select("*");
-  $this->db->from("patient_info");
-  $this->db->order_by("patient_ID", "ASC");
-  $this->db->limit($limit, $start);
-  $query = $this->db->get();
-  $output .= '
-  <div class="container-fluid">
-  <table class="table table-bordered">
-   <tr>
-    <th>Patient ID</th>
-    <th>Patient Name</th>
-    <th>Date of Birth</th>
-    <th>Contact Number</th>
-    <th>Date Registered</th>
-    <th> Action</th>
-   </tr>
-  ';
-  foreach($query->result() as $row)
-  {
-   $output .= '
-   <tr>
-    <td>'.$row->patient_ID.'</td>
-    <td>'.$row->last_name.' , '.$row->given_name.' '.$row->middle_initial.'</td>
-    <td>'.$row->date_of_birth.'</td>
-    <td>'.$row->contact_num.'</td>
-    <td>'.$row->date_registered.'</td>
-    <td>
-      <a href="../prms/patient_timeline/'.$row->patient_ID.'"><button type="submit" class="btn btn-info" name="update">View Profile</button></a></button> 
-    </td>     
-   </tr>
-   ';
-  }
-  $output .= '</table></div>';
-  return $output;
  }
 
  public function get_patient_cases($patient_ID)
@@ -190,13 +213,6 @@ class Prms_model extends CI_Model {
   $this->db->where('patient_ID', $patient_ID);
   $query = $this->db->get();
   return $query->result();
- }
- 
- public function drop_case($case_id)
- {
-  $this->db->where('case_id', $case_id);
-  $result = $this->db->delete('case');
-  return $result;
  }
 
  public function get_prenatal_case_timeline($case_id)
@@ -383,6 +399,18 @@ public function dt_re()
  {
   $query_result = $this->db->insert('infant_info', $data);
   return $query_result;
+      $date = date('Y-m-d');
+      $time = date('H:m:s');
+      $activity = "Added new Childbirth record.";
+      $module = "PRMS";
+      $data = array(
+        'activity_log_id' => NULL,
+        'activity' => $activity,
+        'module' => $module,
+        'date' => $date,
+        'time' => $time
+      );
+      $this->activity_log($data);
  }
 
  public function change_maternity_case_status($case_id)
@@ -391,6 +419,29 @@ public function dt_re()
   $this->db->set('status', $new_status);
   $this->db->where('case_id', $case_id);
   $this->db->update('case');
+ }
+
+ public function get_consultation($infant_id)
+ {
+  $this->db->select('*');
+  $this->db->from('consultation');
+  $this->db->where('infant_id', $infant_id);
+  $this->db->order_by('consultation_id', 'DESC');
+  $query = $this->db->get();
+  return $query->result();
+ }
+
+ public function activity_log($data)
+ {
+  $this->db->insert('activity_log', $data);
+ }
+
+ public function get_activity_log()
+ {
+  $this->db->select('*');
+  $this->db->from('activity_log');
+  $query = $this->db->get();
+  return $query->result();
  }
 
 }

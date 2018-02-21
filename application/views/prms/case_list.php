@@ -17,6 +17,7 @@
 					<button class="btn btn-info">
 						<h5><i class="fa fa-plus-square-o"></i>&nbsp; Create Maternity Case</h5>
 					</button>
+					</a>
 				</div>
 				<br><br><br><br>
 				<table id="example1" class="table table-bordered table-striped table-hover">

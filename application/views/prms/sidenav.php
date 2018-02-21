@@ -48,12 +48,11 @@
                             <li><a href="<?php echo base_url();?>Prms/Infant_list">Infants</a></li>
                         </ul>
                     </li>
-
-                    <li>
-                        <a href=""><i class="fa fa-archive" aria-hidden="true"></i> E-prescription</a>
-                    </li>
                     <li>
                         <a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Report</a>
+                    </li>
+                    <li>
+                        <a href=""><i class="fa fa-list-alt" aria-hidden="true"></i> Activity Log</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-cogs" aria-hidden="true"></i>  About</a>

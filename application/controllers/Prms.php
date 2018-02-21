@@ -197,11 +197,6 @@ class Prms extends CI_Controller {
         }
   }
 
-  public function testing()
-  {
-    $this->load->view('prms/physical_examination');
-  }
-
   public function physical_examination()
   {
     $this->load->model('Prms_model');
@@ -353,6 +348,7 @@ class Prms extends CI_Controller {
   {
     $this->load->model('Prms_model');
     $data['infant_info'] = $this->Prms_model->infant_profile($infant_id); 
+    $data['consultations'] = $this->Prms_model->get_consultation($infant_id);
     $this->load->view('prms/infant_profile', $data);
   }
 
@@ -443,5 +439,30 @@ class Prms extends CI_Controller {
       {
         echo "error";
       }
-   }
+  }
+
+
+  public function activity_log()
+  {
+    $this->load->model('Prms_model');
+    $data['activity_log'] = $this->Prms_model->get_activity_log();
+    $this->load->view('activity_log', $data);
+
+  }
+
+  public function testing()
+  {
+    // $this->load->model('Prms_model');
+    // $case_id = 1;
+    // // $data = $this->Prms_model->get_case_details($case_id);
+    // // print_r($data);
+    // // $time = date('H:m:s');
+    // // echo $time;
+    // $data['pe_result'] = $this->Prms_model->get_all_pe($case_id);
+    // $this->load->view('testing', $data);
+    date_default_timezone_set('Asia/Manila');
+    $time = date('H:m:s');
+    echo $time;
+  }
+
 }

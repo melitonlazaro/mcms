@@ -188,7 +188,7 @@
     	</div>
     </div>
 
-			<h2 class="page-header">List of Cases</h2>
+			<h2 class="page-header">Maternity Cases</h2>
         	<ul class="timeline">
 
 			<?php foreach($cases as $cs)
@@ -204,13 +204,13 @@
                                 <i class="fa fa-plus-square bg-blue"></i>
                                 <div class="timeline-item">
                                     <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
-                                    <h3 class="timeline-header">Case '.$cs->case_id.'</h3>
+                                    <h3 class="timeline-header">Maternity Case Number: '.$cs->case_id.'</h3>
                                     <div class="timeline-body">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <p>Plans</p>
+                                                <h3>Status</h3>
                                                 <div class="well well-sm">
-                                                    '.$cs->status.'
+                                                    <h4>'.$cs->status.'</h4>
                                                 </div>
                                             </div>                                        
                                         </div>
