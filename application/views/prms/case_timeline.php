@@ -117,7 +117,7 @@
                             if($cs->status === $for_postnatal){ ?>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <button class="btn btn-block btn-lg btn-info">Postnatal</button>
+                                        <button class="btn btn-block btn-lg btn-info" data-toggle="modal" data-target="#postnatal_modal">Postnatal</button>
                                     </div>
                                 </div>
                             <?php }

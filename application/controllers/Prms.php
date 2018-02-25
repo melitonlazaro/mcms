@@ -447,7 +447,33 @@ class Prms extends CI_Controller {
     $this->load->model('Prms_model');
     $data['activity_log'] = $this->Prms_model->get_activity_log();
     $this->load->view('activity_log', $data);
+  }
 
+  public function consultation() 
+  {
+    $date = date('Y-m-d');
+    $this->load->model('Prms_model');
+    $data = array(
+                  'consultation_id' => NULL,
+                  'infant_id' => $this->input->post('infant_id'), 
+                  'date' => $date,
+                  'weight' => $this->input->post('weight'),
+                  'height' => $this->input->post('height'),
+                  'pulse_rate' => $this->input->post('pulse_rate'),
+                  'heart_rate' => $this->input->post('heart_rate'),
+                  'chief_complaint' => $this->input->post('chief_complaint'),
+                  'remarks' => $this->input->post('remarks')
+                 );
+    $result = $this->Prms_model->add_consultation($data);
+    if($result)
+    {
+      $infant_id = $this->input->post('infant_id');
+      $this->infant_profile($infant_id);
+    }
+    else
+    {
+
+    }
   }
 
   public function testing()

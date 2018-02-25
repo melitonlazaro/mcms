@@ -157,7 +157,58 @@
 						<div class="float-right">
 							<button class="btn btn-warning"><i class="fa fa-edit"></i></button>
 							<button class="btn btn-danger"><i class="fa fa-remove"></i></button>
-							
+						</div>
+					</div>
+				</div>
+				<div class="pull-right">
+					<button type="button" class="btn btn-info" data-toggle="modal" data-target="#consultation_modal">Consultation</button> 
+					<div class="modal fade" id="consultation_modal" role="dialog">
+						<div class="modal-dialog modal-lg">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title">Consultation</h4>
+								</div>
+								<div class="modal-body">
+									<?php echo form_open('Prms/consultation') ?>
+										<input type="hidden" name="infant_id" value="<?php echo $infant_info->infant_id; ?>">
+										<div class="row">	
+											<div class="col-md-3">
+												<label>Weight:</label>
+												<input type="number" name="weight" class="form-control" placeholder="Weight in grams" min="0">
+											</div>
+											<div class="col-md-3">
+												<label>Height:</label>
+												<input type="number" name="height" class="form-control" placeholder="Height in centimeters" min="0">
+											</div>
+											<div class="col-md-3">
+												<label>Pulse Rate:</label>
+												<input type="number" name="pulse_rate" class="form-control" placeholder="Pulse Rate" min="0">
+											</div>
+											<div class="col-md-3">
+												<label>Heart Rate:</label>
+												<input type="number" name="heart_rate" class="form-control" placeholder="Heart Rate" min="0">
+											</div>								
+										</div><br>
+										<div class="row">
+											<div class="col-md-6">
+												<label>Chief Complaint</label>
+												<textarea class="form-control" name="chief_complaint" rows="10" cols="10"></textarea>
+											</div>
+											<div class="col-md-6">
+												<label>Remarks</label>
+												<textarea class="form-control" name="remarks" rows="10" cols="10"></textarea>
+											</div>
+										</div>
+								</div>
+								<div class="modal-footer">
+									<div class="pull-right">
+											<button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+											<button type="submit" class="btn btn-success">Submit</button>
+									</div>
+								</div>
+								</form>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -301,7 +352,7 @@ Morris.Line({
  data:[<?php echo $chart_data; ?>],
  xkey:'date',
  ykeys:['height'],
- labels:['height'],
+ labels:['height - centimeters'],
  hideHover:'auto',
  stacked:true
 });
@@ -312,7 +363,7 @@ Morris.Line({
  data:[<?php echo $chart_data1; ?>],
  xkey:'date',
  ykeys:['weight'],
- labels:['weight'],
+ labels:['weight - grams'],
  hideHover:'auto',
  stacked:true
 });
@@ -323,7 +374,7 @@ Morris.Line({
   data:[<?php echo $chart_data2; ?>],
   xkey: 'date',
   ykeys: ['pulse_rate'],
-  labels: ['pulse_rate'],
+  labels: ['Pulse rate - Beats/minute'],
   hideHover: 'auto',
   stacked:true
  });
@@ -334,7 +385,7 @@ Morris.Line({
 		data: [<?php echo $chart_data3; ?>],
 		xkey: 'date',
 		ykeys: ['heart_rate'],
-		labels: ['heart_rate'],
+		labels: ['Heart rate - Beats/minute'],
 		hideHover:'auto',
 		stacked: true
 	});

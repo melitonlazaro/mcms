@@ -58,7 +58,7 @@
 <div id="about" class="container-fluid">
   <div class="row">
     <div class="col-sm-8">
-      <h2>Jewel's Firsrt Maternity and Lying-In Medical Clinic</h2>
+      <h2>Jewel's First Maternity and Lying-In Medical Clinic</h2>
       <h4></h4><br>
       <p>Jewel's First Maternity and Lying in Medical Clinic, Taguig. The clinic is visited by pediatricians like Dr. Jo Anne Ramos. The timings of Mom's and Baby Maternity Clinic are: Mon to Sat: 9:00 AM-5:00 PM. Some of the services provided by the clinic are: Vagina Surgery, Quad Screen, Copper T Insertion, Postnatal and Intracytoplasmic Sperm Injection (ICSI). Click on map to find directions to reach Mom's and Baby Maternity Clinic</p>
 

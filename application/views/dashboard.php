@@ -21,12 +21,12 @@
         $chart_data = substr($chart_data, 0, -2);
 ?>
 <?php 
-    $query1 = "SELECT COUNT(1) as `case_id`, date_start as date FROM `CASE` WHERE `date_start` between '$date1' and '$date2' GROUP BY date_start LIMIT 0, 30";        
+    $query1 = "SELECT COUNT(1) as `case_id`, date_start as date FROM `case` WHERE `date_start` between '$date1' and '$date2' GROUP BY date_start LIMIT 0, 30";        
     $res = $conn->query($query1);
     $chart_data1 = '';
     while($row1 = $res->fetch_array())
     {
-        $chart_data1 .= "{ date:'".$row["date"]."', case_id:".$row["case_id"]."}, ";
+        $chart_data1 .= "{ date:'".$row1["date"]."', case_id:".$row1["case_id"]."}, ";
     }
         $chart_data1 = substr($chart_data1, 0, -2)
 ?>
@@ -257,15 +257,31 @@
    </div>
 
     <div class="container-fluid">
-      <div class="panel panel-success">
-        <div class="panel-heading">
-          <h4>Prenatal Count (<?php echo date('M-Y');?>)</h4>
-        </div>
-        <div class="panel-body">
-            <div id="chart">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h4>Prenatal Count (<?php echo date('M-Y');?>)</h4>
             </div>
+            <div class="panel-body">
+                <div id="chart">
+                </div>
+            </div>
+          </div>
         </div>
-      </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                <h4>Case Count(<?php echo date('M-Y');?>)</h4>
+              </div>
+              <div class="panel-body">
+                <div id="charts"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
     </div>
 
     <div class="container-fluid">
@@ -387,7 +403,7 @@ Morris.Bar({
 </script>
 <script>
 Morris.Line({
- element : 'case_chart',
+ element : 'charts',
  data:[<?php echo $chart_data1; ?>],
  xkey:'date',
  ykeys:['case_id'],
@@ -396,23 +412,7 @@ Morris.Line({
  stacked:true
 });
 </script>
-<script>
-  $(function(){
-    $('#todolist').DataTable({
-      'paging' : true,
-      'searching' : false,
-      'info'    : false,
-      'ordering'  : false,
-      'autoWidth'  : false,
-      'lengthChange' : false,
-    })
-  })
-</script>
-<script>
-    $(document).ready(function(){
-        $('#todoform').hide();
-});
-</script>
+
 <script>
 $(document).ready(function() {
   $('#addtodo').click(function(){
@@ -426,23 +426,6 @@ $(document).ready(function() {
 });
 </script>
 
-<script>
-  $(document).on('submit', '#task_form', function(event){
-    event.preventDefault();
-    var task_name = $('#task_name').val();
-    $.ajax({
-      type:"post",
-      url: "<?php echo site_url();?>/Main/add_task",
-      data: {task_name:task_name},
-      success:function(data)
-      {
-        alert("Task created");
-        $('#task_content').val('');
-        $('#todo').html(data);
-      }
-    });
-  });
-</script>
 <script type="text/javascript">
     $(document).ready(function(){
       $('#calendar').fullCalendar({

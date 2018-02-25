@@ -100,7 +100,7 @@ class Main extends CI_Controller {
                 else  
                 {  
                      $this->session->set_flashdata('error', 'Invalid Username and Password');  
-                     redirect(base_url() . 'main');  
+                     redirect(base_url() . 'main/employee_login');  
                 }  
            }  
            else  
@@ -324,6 +324,13 @@ class Main extends CI_Controller {
         redirect(site_url("main/dashboard"));
       } 
     }
+
+  public function visitor_messages()
+  {
+    $this->load->model('Main_model');
+    $data['vm'] = $this->Main_model->get_visitor_messages();
+    $this->load->view('visitor_messages', $data);
+  }
 
 }
 ?>

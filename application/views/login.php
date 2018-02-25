@@ -25,9 +25,16 @@
 		      
 		        <label class="form-login-heading" id="lblGreetings"></label><br><br>
 		        <div class="login-wrap">
-		            <input type="text" name="username" class="form-control" placeholder="User ID" autofocus>
+		        	<?php if($this->session->flashdata('error')) 
+		        		{
+		        			echo '<div class="alert alert-danger">';
+		        			echo $this->session->flashdata('error');
+		        			echo '</div>';
+		        		}
+		        	?>
+		            <input type="text" name="username" class="form-control" placeholder="User ID" autofocus required>
 		            <br>
-		            <input type="password" name="password" class="form-control" placeholder="Password">
+		            <input type="password" name="password" class="form-control" placeholder="Password" required>
 		            <label class="checkbox">
 		                <span class="pull-right">
 		                    <a data-toggle="modal" href="login.html#myModal"> Forgot Password?</a>

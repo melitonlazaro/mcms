@@ -431,6 +431,12 @@ public function dt_re()
   return $query->result();
  }
 
+ public function add_consultation($data)
+ {
+  $result = $this->db->insert('consultation', $data);
+  return $result;
+ }
+
  public function activity_log($data)
  {
   $this->db->insert('activity_log', $data);

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 07, 2018 at 10:40 AM
+-- Generation Time: Feb 25, 2018 at 10:10 AM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -19,6 +19,67 @@ SET time_zone = "+00:00";
 --
 -- Database: `mcms`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `activity_log`
+--
+
+CREATE TABLE `activity_log` (
+  `activity_log_id` int(11) NOT NULL,
+  `activity` varchar(1500) NOT NULL,
+  `module` varchar(500) NOT NULL,
+  `date` varchar(100) NOT NULL,
+  `time` varchar(100) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `activity_log`
+--
+
+INSERT INTO `activity_log` (`activity_log_id`, `activity`, `module`, `date`, `time`) VALUES
+(1, 'testing', 'testing', 'testing', 'testing'),
+(2, 'Added Physical Examination record', 'PRMS', '2018-02-14', '11:02:48'),
+(3, 'Profiling', 'PRMS', '2018-02-22', '11:02:28'),
+(4, 'Created patient account', 'Online Appointment', '2018-02-22', '11:02:28'),
+(5, 'Added Physical Examination record', 'PRMS', '2018-02-22', '11:02:53'),
+(6, 'Profiling', 'PRMS', '2018-02-22', '12:02:47'),
+(7, 'Created patient account', 'Online Appointment', '2018-02-22', '12:02:47'),
+(8, 'Added Physical Examination record', 'PRMS', '2018-02-22', '12:02:05'),
+(9, 'Profiling', 'PRMS', '2018-02-22', '12:02:21'),
+(10, 'Created patient account', 'Online Appointment', '2018-02-22', '12:02:22'),
+(11, 'Added Physical Examination record', 'PRMS', '2018-02-22', '12:02:34'),
+(12, 'Profiling', 'PRMS', '2018-02-22', '12:02:17'),
+(13, 'Created patient account', 'Online Appointment', '2018-02-22', '12:02:17'),
+(14, 'Added Physical Examination record', 'PRMS', '2018-02-22', '12:02:21'),
+(15, 'Profiling', 'PRMS', '2018-02-22', '13:02:37'),
+(16, 'Created patient account', 'Online Appointment', '2018-02-22', '13:02:37'),
+(17, 'Added Physical Examination record', 'PRMS', '2018-02-22', '13:02:34'),
+(18, 'Profiling', 'PRMS', '2018-02-22', '13:02:31'),
+(19, 'Created patient account', 'Online Appointment', '2018-02-22', '13:02:31'),
+(20, 'Added Physical Examination record', 'PRMS', '2018-02-22', '13:02:00'),
+(21, 'Profiling', 'PRMS', '2018-02-22', '13:02:51'),
+(22, 'Created patient account', 'Online Appointment', '2018-02-22', '13:02:51'),
+(23, 'Added Physical Examination record', 'PRMS', '2018-02-22', '13:02:48'),
+(24, 'Profiling', 'PRMS', '2018-02-22', '14:02:09'),
+(25, 'Created patient account', 'Online Appointment', '2018-02-22', '14:02:09'),
+(26, 'Added Physical Examination record', 'PRMS', '2018-02-22', '14:02:05'),
+(27, 'Profiling', 'PRMS', '2018-02-22', '14:02:20'),
+(28, 'Created patient account', 'Online Appointment', '2018-02-22', '14:02:20'),
+(29, 'Added Physical Examination record', 'PRMS', '2018-02-22', '14:02:54'),
+(30, 'Profiling', 'PRMS', '2018-02-22', '14:02:39'),
+(31, 'Created patient account', 'Online Appointment', '2018-02-22', '14:02:39'),
+(32, 'Added Physical Examination record', 'PRMS', '2018-02-22', '14:02:43'),
+(33, 'Profiling', 'PRMS', '2018-02-22', '15:02:48'),
+(34, 'Created patient account', 'Online Appointment', '2018-02-22', '15:02:48'),
+(35, 'Added Physical Examination record', 'PRMS', '2018-02-22', '15:02:35'),
+(36, 'Profiling', 'PRMS', '2018-02-22', '15:02:20'),
+(37, 'Created patient account', 'Online Appointment', '2018-02-22', '15:02:20'),
+(38, 'Added Physical Examination record', 'PRMS', '2018-02-22', '15:02:53'),
+(39, 'Added Physical Examination record', 'PRMS', '2018-02-24', '07:02:35'),
+(40, 'Added Physical Examination record', 'PRMS', '2018-02-24', '07:02:52'),
+(41, 'Added Physical Examination record', 'PRMS', '2018-02-24', '08:02:05');
 
 -- --------------------------------------------------------
 
@@ -43,7 +104,6 @@ INSERT INTO `calendar_events` (`ID`, `title`, `start`, `end`, `description`) VAL
 (2, 'New Event', '2017-03-23 00:00:00', '2017-03-23 00:00:00', ''),
 (5, 'Loyalty-Kendricks', '2017-12-30 12:30:00', '2017-12-30 13:30:00', 'Loyalty'),
 (6, 'happy new year1', '2018-01-01 12:30:00', '2018-01-01 14:30:00', ''),
-(8, '123', '2018-01-30 12:30:00', '2018-01-30 14:30:00', '123'),
 (9, '321111', '2018-01-02 05:25:00', '2018-01-02 05:25:00', '3211'),
 (10, 'prenatal', '2018-01-25 08:30:00', '2018-01-25 09:00:00', 'prenatal');
 
@@ -69,7 +129,19 @@ INSERT INTO `case` (`case_id`, `patient_ID`, `date_start`, `date_completed`, `st
 (1, 1, '2018-10-08', '', 'Complete'),
 (138, 99, '2018-02-01', '', 'Active'),
 (139, 104, '2018-02-01', '', 'Active'),
-(140, 105, '2018-02-01', '', 'Active');
+(140, 105, '2018-02-01', '', 'Active'),
+(141, 106, '2018-02-22', '', 'Active'),
+(142, 107, '2018-02-22', '', 'Active'),
+(143, 108, '2018-02-22', '', 'Active'),
+(144, 109, '2018-02-22', '', 'Active'),
+(145, 110, '2018-02-22', '', 'Active'),
+(146, 111, '2018-02-22', '', 'Active'),
+(147, 112, '2018-02-22', '', 'Active'),
+(148, 113, '2018-02-22', '', 'Active'),
+(149, 114, '2018-02-22', '', 'Active'),
+(150, 115, '2018-02-22', '', 'Active'),
+(151, 116, '2018-02-22', '', 'Active'),
+(152, 117, '2018-02-22', '', 'Active');
 
 -- --------------------------------------------------------
 
@@ -94,12 +166,14 @@ CREATE TABLE `consultation` (
 --
 
 INSERT INTO `consultation` (`consultation_id`, `infant_id`, `date`, `weight`, `height`, `pulse_rate`, `heart_rate`, `chief_complaint`, `remarks`) VALUES
-(1, 1, '2017-12-24', '8.84', '45', '75', '140', '', ''),
-(2, 1, '2017-12-25', '8.92', '46', '75', '140', '', ''),
-(4, 1, '2017-12-29', '9.01', '55', '75', '140', '', ''),
-(5, 1, '2017-12-30', '9.22', '57', '75', '140', '', ''),
-(6, 1, '2017-12-31', '9.22', '60', '75', '140', '', ''),
-(7, 1, '2018-01-01', '9.25', '62', '75', '140', '', '');
+(1, 1, '2017-12-24', '8.84', '45', '75', '140', 'test1', 'test1'),
+(2, 1, '2017-12-25', '8.92', '46', '75', '140', 'test1', 'test1'),
+(4, 1, '2017-12-29', '9.01', '55', '75', '140', 'test1', 'test1'),
+(5, 1, '2017-12-30', '9.22', '57', '75', '140', 'test1', 'test1'),
+(6, 1, '2017-12-31', '9.22', '60', '75', '140', 'test1', 'test1'),
+(7, 1, '2018-01-01', '9.25', '62', '75', '140', 'test1', 'test1'),
+(8, 1, '2018-02-24', '7500', '75', '120', '120', 'Cough for 3 days', 'test\r\n'),
+(9, 1, '2018-02-24', '7300', '123', '120', '120', 'Rashes in elbows and knees', '');
 
 -- --------------------------------------------------------
 
@@ -123,7 +197,8 @@ CREATE TABLE `feedback` (
 INSERT INTO `feedback` (`feedback_id`, `name`, `email`, `phone`, `company`, `message`) VALUES
 (1, 'guccigang', 'guccigang', 'guccigang', '', 'guccigang'),
 (2, 'feedback_result', 'feedback_result', 'feedback_result', '', 'feedback_result'),
-(3, 'Meliton Diego Lazaro', 'melilazaro1@gmail.com', '09234644144', 'None', 'Hi guys');
+(3, 'Meliton Diego Lazaro', 'melilazaro1@gmail.com', '09234644144', 'None', 'Hi guys'),
+(4, 'Meliton Diego Lazaro', 'melitonlazaro1@gmail.com', '09234644144', 'Student', 'Hello, testing procedure.');
 
 -- --------------------------------------------------------
 
@@ -228,7 +303,19 @@ INSERT INTO `medicalhistory` (`Num`, `Patient_ID`, `case_id`, `Date`, `heent_epi
 (15, 99, 138, '2018-02-01', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', '0', '0', '0', '0', '2016-07-06', 'Spontaneous', '0', '2018-02-02', 'No', 'No', 'No', 'No', 'No', 'No'),
 (16, 104, 139, '2018-02-01', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'Yes', 'No', 'No', 'No', 'No', 'No', 'No', '0', '1', '0', '1', '2016-12-01', 'Ceasarian', '4', '2018-09-12', 'Yes', 'No', 'No', 'No', 'No', 'No'),
 (17, 104, 139, '2018-02-01', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'Yes', 'No', 'No', 'No', 'No', 'No', 'No', '0', '1', '0', '1', '2016-12-01', 'Ceasarian', '4', '2018-09-12', 'Yes', 'No', 'No', 'No', 'No', 'No'),
-(18, 105, 140, '2018-02-01', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', '0', '0', '0', '2', '2017-03-07', 'Spontaneous', '4', '2018-10-25', 'No', 'No', 'No', 'No', 'No', 'No');
+(18, 105, 140, '2018-02-01', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', '0', '0', '0', '2', '2017-03-07', 'Spontaneous', '4', '2018-10-25', 'No', 'No', 'No', 'No', 'No', 'No'),
+(19, 106, 141, '2018-02-22', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', '0', '2', '0', '2', '2017-08-09', 'Ceasarian', '4', '2018-10-22', 'No', 'No', 'No', 'No', 'No', 'No'),
+(20, 107, 142, '2018-02-22', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', '0', '0', '0', '0', '2017-06-14', 'Ceasarian', '0', '2018-08-09', 'No', 'No', 'No', 'No', 'No', 'No'),
+(21, 108, 143, '2018-02-22', 'Yes', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', '0', '0', '0', '2', '2017-08-01', 'Forcep', '0', '2018-10-22', 'Yes', 'No', 'No', 'No', 'No', 'No'),
+(22, 109, 144, '2018-02-22', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', '0', '0', '0', '2', '2017-04-05', 'Ceasarian', '3', '2018-10-23', 'No', 'No', 'No', 'No', 'No', 'No'),
+(23, 110, 145, '2018-02-22', 'Yes', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', '1', '1', '0', '1', '2017-04-11', 'Ceasarian', '4', '2018-10-24', 'No', 'No', 'No', 'No', 'No', 'No'),
+(24, 111, 146, '2018-02-22', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', '0', '0', '0', '0', '2017-03-16', 'Spontaneous', '4', '2018-12-20', 'No', 'No', 'No', 'No', 'No', 'No'),
+(25, 112, 147, '2018-02-22', 'Yes', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', '2', '2', '0', '2', '2017-06-14', 'Ceasarian', '3', '2018-10-24', 'No', 'No', 'No', 'No', 'No', 'No'),
+(26, 113, 148, '2018-02-22', 'Yes', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'Yes', 'No', 'No', 'No', 'No', 'No', 'No', '2', '0', '0', '2', '2017-04-12', 'Ceasarian', '3', '2018-11-07', 'No', 'No', 'No', 'No', 'No', 'No'),
+(27, 114, 149, '2018-02-22', 'Yes', 'Yes', 'No', 'Yes', 'Yes', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'Yes', 'No', 'No', 'No', 'Yes', 'No', 'Yes', 'No', 'Yes', 'No', 'No', '0', '0', '0', '1', '2017-03-08', 'Spontaneous', '5', '2018-10-30', 'No', 'No', 'No', 'No', 'No', 'No'),
+(28, 115, 150, '2018-02-22', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', '0', '0', '0', '0', '2017-03-08', 'Forcep', '3', '2018-11-08', 'No', 'No', 'No', 'No', 'No', 'No'),
+(29, 116, 151, '2018-02-22', 'No', 'No', 'No', 'No', 'No', 'Yes', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', '0', '0', '0', '1', '2017-05-09', 'Spontaneous', '3', '2018-10-31', 'No', 'No', 'No', 'No', 'No', 'No'),
+(30, 117, 152, '2018-02-22', 'Yes', 'Yes', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'Yes', 'No', 'No', 'No', 'No', 'No', 'No', '0', '0', '0', '0', '2017-05-09', 'Spontaneous', '3', '2018-10-23', 'No', 'No', 'No', 'No', 'No', 'No');
 
 -- --------------------------------------------------------
 
@@ -282,7 +369,19 @@ INSERT INTO `patient_account` (`account_ID`, `patient_ID`, `username`, `password
 (56, 102, 'Salinas.Khrismar', '827ccb0eea8a706c4c34a16891f84e7b'),
 (57, 103, 'Salinas.Khrismar103', '827ccb0eea8a706c4c34a16891f84e7b'),
 (58, 104, 'Valenzue.Jeru', '827ccb0eea8a706c4c34a16891f84e7b'),
-(59, 105, 'Garcia.May ', '827ccb0eea8a706c4c34a16891f84e7b');
+(59, 105, 'Garcia.May ', '827ccb0eea8a706c4c34a16891f84e7b'),
+(60, 106, 'Test.test1', '827ccb0eea8a706c4c34a16891f84e7b'),
+(61, 107, 'Morales.Shiela', '827ccb0eea8a706c4c34a16891f84e7b'),
+(62, 108, 'Capistrano.Roberta', '827ccb0eea8a706c4c34a16891f84e7b'),
+(63, 109, 'Alcantara.Christine', '827ccb0eea8a706c4c34a16891f84e7b'),
+(64, 110, 'Capistrano.Christine', '827ccb0eea8a706c4c34a16891f84e7b'),
+(65, 111, 'Gonzales.Ciarra Roxanne', '827ccb0eea8a706c4c34a16891f84e7b'),
+(66, 112, 'perez.hugo', '827ccb0eea8a706c4c34a16891f84e7b'),
+(67, 113, 'Capistrano.Ciarra Roxanne', '827ccb0eea8a706c4c34a16891f84e7b'),
+(68, 114, 'Sumaray.Mia Sheen', '827ccb0eea8a706c4c34a16891f84e7b'),
+(69, 115, 'Capistrano.Christine115', '827ccb0eea8a706c4c34a16891f84e7b'),
+(70, 116, 'Capistrano.Christine116', '827ccb0eea8a706c4c34a16891f84e7b'),
+(71, 117, 'Capistrano.Christine117', '827ccb0eea8a706c4c34a16891f84e7b');
 
 -- --------------------------------------------------------
 
@@ -325,7 +424,19 @@ INSERT INTO `patient_info` (`patient_ID`, `last_name`, `given_name`, `middle_ini
 (102, 'Salinas', 'Khrismar', 'A', 'Student', '1998-04-30', '09151232213', '138 block 8 zone 2', 'Fort Bonifacio', 'Taguig City', 'Jenny Noarin', '09153864099', 'same', '2018-02-01', NULL),
 (103, 'Salinas', 'Khrismar', 'G', 'HR ', '1998-04-30', '09151232213', '138 block 8 zone 2', 'Fort Bonifacio', 'Taguig City', 'John Robert Capistrano', '09153864099', 'same', '2018-02-01', '26913848_1987410777942306_1081251553_n1.jpg'),
 (104, 'Valenzue', 'Jeru', 'A', 'HR', '1998-04-30', '09151232213', '138 block 8 zone 2', 'Fort Bonifacio', 'Taguig City', 'Veronica Martinez', '09153864099', 'same', '2018-02-01', '2x21.png'),
-(105, 'Garcia', 'May ', 'A', 'Teacher', '1998-04-30', '09151232213', '138 block 8 zone 2', 'Fort Bonifacio', 'Taguig City', 'Veronica Martinez', '09153864099', 'same', '2018-02-01', NULL);
+(105, 'Garcia', 'May ', 'A', 'Teacher', '1998-04-30', '09151232213', '138 block 8 zone 2', 'Fort Bonifacio', 'Taguig City', 'Veronica Martinez', '09153864099', 'same', '2018-02-01', NULL),
+(106, 'Test', 'test1', 'a', 'Teacher', '1998-04-30', '0912312321', '123', '123', '123', '12', '123', '123', '2018-02-22', '2x22.png'),
+(107, 'Morales', 'Shiela', 'C', 'Student', '1998-04-30', '0912312321', '123', '123', '123', 'Jeru Valenzuela', '09153864099', 'same', '2018-02-22', '2x23.png'),
+(108, 'Capistrano', 'Roberta', 'C', 'Professor', '1998-04-30', '09234644144', '123', '123', '123', 'Jeru Valenzuela', '09153864099', 'same address', '2018-02-22', '1.png'),
+(109, 'Alcantara', 'Christine', 'A', 'Teacher', '1998-04-30', '09151232213', '138 block 8 zone 2', 'Fort Bonifacio', 'Taguig City', 'Jeru Valenzuela', '09153864099', 'same address', '2018-02-22', '11.png'),
+(110, 'Capistrano', 'Christine', 'A', 'Teacher', '1998-04-30', '09151232213', '138 block 8 zone 2', 'Fort Bonifacio', 'Taguig City', 'Madeline G. Lazaro', '09153864099', 'same address', '2018-02-22', '12.png'),
+(111, 'Gonzales', 'Ciarra Roxanne', 'G', 'Student', 'August 13, 1998', '09751142946', '1509', '7', 'Caloocan', 'Ma. Carina G. Gonzales', '09751142946', 'Caloocan City', '2018-02-22', '2x24.png'),
+(112, 'perez', 'hugo', 'cru', 'housewife', '1998-9-7', '099766544', '789', 'tayuman', 'cavite', 'severino lapidario', '09876543213', 'manila', '2018-02-22', '13.png'),
+(113, 'Capistrano', 'Ciarra Roxanne', 'G', 'Teacher', '1998-04-30', '09151232213', '138 block 8 zone 2', 'Fort Bonifacio', 'Taguig City', 'Jeru Valenzuela', '09153864099', 'same address', '2018-02-22', '14.png'),
+(114, 'Sumaray', 'Mia Sheen', 'Nan', 'IT expert', '1997-01-13', '09151232213', 'Felix st.', 'Sangandaan', 'Taguig City', 'Jhoniever Dulay', '09301149799', 'Medel. St ', '2018-02-22', '2x25.png'),
+(115, 'Capistrano', 'Christine', 'A', 'Teacher', '1998-04-30', '09151232213', '138 block 8 zone 2', 'Fort Bonifacio', 'Taguig City', 'Jeru Valenzuela', '09153864099', 'same address', '2018-02-22', '15.png'),
+(116, 'Capistrano', 'Christine', 'A', 'Teacher', '1998-04-30', '09151232213', '138 block 8 zone 2', 'Fort Bonifacio', 'Taguig City', 'Jeru Valenzuela', '09153864099', 'same', '2018-02-22', '16.png'),
+(117, 'Capistrano', 'Christine', 'A', 'Teacher', '1998-04-30', '09151232213', '138 block 8 zone 2', 'Fort Bonifacio', 'Taguig City', 'Jeru Valenzuela', '09153864099', 'same address', '2018-02-22', '17.png');
 
 -- --------------------------------------------------------
 
@@ -410,7 +521,23 @@ INSERT INTO `physicalexamination` (`Num`, `patient_ID`, `case_id`, `date`, `heig
 (9, 103, 132, '2018-02-01', '146', '61', '120', '80', 'O', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'None', 'None', 'Clockwise', 'None', 'Firm', 'None', 'None', 'Normal', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'Normal', 'Normal', 'Normal', 'Normal', '8 weeks pregnant, Normal delivery', 'Continue taking Folic Acid.'),
 (10, 99, 138, '2018-02-01', '146', '61', '120', '80', 'O', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'None', 'None', 'clockwise', 'None', 'None', 'Normal', 'None', 'Normal', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'Normal', 'Normal', 'Normal', 'Normal', '4 weeks pregnant', 'Continue taking folic acid'),
 (11, 104, 139, '2018-02-01', '146', '61', '120', '80', 'O', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'None', 'None', 'Clockwise', 'None', 'None', 'None', 'None', 'Normal', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'Normal', 'Normal', 'Normal', 'Normal', '4 weeks pregnant, no notable problems', 'Continue taking Folic Acid'),
-(12, 105, 140, '2018-02-01', '146', '61', '120', '80', 'O', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'None', 'None', 'Clockwise', 'None', 'None', 'None', 'None', 'Normal', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'Normal', 'None', 'None', 'Normal', '7 weeks pregnant. ', 'Continue taking Folic Acid.. ');
+(12, 105, 140, '2018-02-01', '146', '61', '120', '80', 'O', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'None', 'None', 'Clockwise', 'None', 'None', 'None', 'None', 'Normal', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'Normal', 'None', 'None', 'Normal', '7 weeks pregnant. ', 'Continue taking Folic Acid.. '),
+(13, 138, 99, '2018-02-08', '146', '56', '120', '80', 'O', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'Normal', 'None', 'Clockwise', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'Normal', 'None', 'Normal', 'None', 'test', 'test'),
+(14, 138, 99, '2018-02-14', '1', '', '120', '80', 'O', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', '', '', '', '', '', '', '', '', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', '', '', '', '', '', ''),
+(15, 138, 99, '2018-02-14', '146', '61', '120', '80', 'O', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'None', 'Normal', 'Clockwise', 'None', 'None', 'None', 'None', 'Normal', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'None', 'None', 'None', 'None', '8 weeks pregnant. ', 'Continue taking folic acid, be careful on what she eats'),
+(16, 138, 99, '2018-02-14', '146', '61', '120', '80', 'O', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'None', 'None', 'None', 'None', 'None', 'None'),
+(17, 106, 141, '2018-02-22', '146', '61', '120', '80', 'O', 'No', 'No', 'No', 'No', 'Yes', 'No', 'No', 'No', 'No', 'No', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', '', '', '', '', '2 weeks pregnant.', 'Continue taking Folic Acid.'),
+(18, 107, 142, '2018-02-22', '146', '61', '120', '80', 'O', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'None', 'none', 'None', 'None', 'None', 'Normal ', 'Normal', 'Normal', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'None', 'None', 'Non', 'None', '3 weeks pregnant', 'continue taking Folic Acid.'),
+(19, 108, 143, '2018-02-22', '146', '61', '120', '80', 'O', 'No', 'No', 'Yes', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'None', 'None', 'None', 'Normal', 'Normal', 'Normal', 'Normal', 'None', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'Normal', 'Normal', 'None', 'None', '4 weeks pregnant. ', 'Continue taking Folic Acid. '),
+(20, 109, 144, '2018-02-22', '146', '61', '120', '80', 'O', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'None', 'Normal', 'None', 'None', 'None', 'None', '', '', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', '', '', '', '', '', ''),
+(21, 110, 145, '2018-02-22', '146', '61', '120', '80', 'O', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal'),
+(22, 111, 146, '2018-02-22', '146', '61', '120', '80', 'O', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', '', '', '', '', '', '', '', '', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', '', '', '', '', 'test', 'test'),
+(23, 112, 147, '2018-02-22', '146', '61', '120', '80', 'O', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'Normal', 'Normal', 'Normal', 'Normal', '3 weeks pregnant.. ', 'continue taking folic acid.'),
+(24, 113, 148, '2018-02-22', '146', '61', '120', '80', 'O', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'Normal', 'Normal', 'Normal', 'Normal', '3 weeks pregnant.', 'continue taking folic acid,'),
+(25, 114, 149, '2018-02-22', '146', '61', '120', '80', 'O', 'Yes', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'Yes', 'No', 'Normal', 'Normal', 'Normal', 'Normal', '4 weeks pregnant. Dangerous in love that is why needed to forcep the baby like now na as in now na labas na baby now na.', 'continue taking folic acid. and tempra and drink orange juice in the midnight regularly.'),
+(26, 115, 150, '2018-02-22', '146', '61', '120', '80', 'O', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'Normal', 'Normal', 'Normal', 'Normal', '3 weeks pregnant. ', 'continue anmun and folic acid.'),
+(27, 116, 151, '2018-02-22', '146', '61', '120', '80', 'O', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'Normal', 'Normal', 'Normal', 'Normal', '4 weeks pregnant. ', 'Continue taking folic acid. '),
+(28, 117, 152, '2018-02-22', '146', '61', '120', '80', 'O', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'Normal', 'Normal', 'Normal', 'Normal', '', 'Continue taking folic acid');
 
 -- --------------------------------------------------------
 
@@ -420,6 +547,7 @@ INSERT INTO `physicalexamination` (`Num`, `patient_ID`, `case_id`, `date`, `heig
 
 CREATE TABLE `postnatal` (
   `postnatal_id` int(11) NOT NULL,
+  `case_id` int(11) NOT NULL,
   `patient_id` int(11) NOT NULL,
   `infant_id` int(11) NOT NULL,
   `date` varchar(20) NOT NULL,
@@ -483,6 +611,12 @@ INSERT INTO `user_admin` (`user_id`, `username`, `password`) VALUES
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `activity_log`
+--
+ALTER TABLE `activity_log`
+  ADD PRIMARY KEY (`activity_log_id`);
 
 --
 -- Indexes for table `calendar_events`
@@ -563,7 +697,8 @@ ALTER TABLE `physicalexamination`
 -- Indexes for table `postnatal`
 --
 ALTER TABLE `postnatal`
-  ADD PRIMARY KEY (`postnatal_id`);
+  ADD PRIMARY KEY (`postnatal_id`),
+  ADD KEY `case_id` (`case_id`);
 
 --
 -- Indexes for table `tasks`
@@ -582,6 +717,11 @@ ALTER TABLE `user_admin`
 --
 
 --
+-- AUTO_INCREMENT for table `activity_log`
+--
+ALTER TABLE `activity_log`
+  MODIFY `activity_log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+--
 -- AUTO_INCREMENT for table `calendar_events`
 --
 ALTER TABLE `calendar_events`
@@ -590,17 +730,17 @@ ALTER TABLE `calendar_events`
 -- AUTO_INCREMENT for table `case`
 --
 ALTER TABLE `case`
-  MODIFY `case_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
+  MODIFY `case_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=153;
 --
 -- AUTO_INCREMENT for table `consultation`
 --
 ALTER TABLE `consultation`
-  MODIFY `consultation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `consultation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `feedback_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `feedback_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `infant_info`
 --
@@ -610,7 +750,7 @@ ALTER TABLE `infant_info`
 -- AUTO_INCREMENT for table `medicalhistory`
 --
 ALTER TABLE `medicalhistory`
-  MODIFY `Num` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `Num` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `online_appointment`
 --
@@ -620,12 +760,12 @@ ALTER TABLE `online_appointment`
 -- AUTO_INCREMENT for table `patient_account`
 --
 ALTER TABLE `patient_account`
-  MODIFY `account_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `account_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 --
 -- AUTO_INCREMENT for table `patient_info`
 --
 ALTER TABLE `patient_info`
-  MODIFY `patient_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
+  MODIFY `patient_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
 --
 -- AUTO_INCREMENT for table `pending_appointment`
 --
@@ -635,7 +775,7 @@ ALTER TABLE `pending_appointment`
 -- AUTO_INCREMENT for table `physicalexamination`
 --
 ALTER TABLE `physicalexamination`
-  MODIFY `Num` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `Num` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- Constraints for dumped tables
 --
@@ -651,6 +791,12 @@ ALTER TABLE `case`
 --
 ALTER TABLE `patient_account`
   ADD CONSTRAINT `patient_account_ibfk_1` FOREIGN KEY (`patient_ID`) REFERENCES `patient_info` (`patient_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `postnatal`
+--
+ALTER TABLE `postnatal`
+  ADD CONSTRAINT `postnatal_ibfk_1` FOREIGN KEY (`case_id`) REFERENCES `case` (`case_id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

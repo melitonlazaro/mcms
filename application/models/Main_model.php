@@ -140,4 +140,12 @@ class Main_model extends CI_Model {
   {
     $this->db->where("ID", $id)->delete("calendar_events");
   }
+
+  public function get_visitor_messages()
+  {
+    $this->db->select('*');
+    $this->db->from('feedback');
+    $query = $this->db->get();
+    return $query->result();
+  }
 }

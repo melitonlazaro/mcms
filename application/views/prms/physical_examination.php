@@ -1,6 +1,13 @@
 <html>
 <head>
 <?php require('extensions.php'); ?>
+<style type="text/css">
+  .button-bottom
+  {
+    position: relative;
+    margin-top: 100%;
+  }
+</style>
 </head>
 <body>
   <?php require('sidenav.php'); ?>
@@ -55,8 +62,8 @@
                                 <strong>Blood Pressure:</strong>
                             </div>
                             <div class="col-md-3">
-                                <input type="text" class="form-control pull-right" placeholder="Systolic" name="systolic"><br>
-                                <input type="text" class="form-control pull-right" placeholder="Diastolic" name="diastolic">
+                                <input type="text" class="form-control pull-right " placeholder="Systolic" name="systolic"><br>
+                                <input type="text" class="form-control pull-right " placeholder="Diastolic" name="diastolic">
                             </div>
                         </div><br>
                         <div class="row">
@@ -72,6 +79,10 @@
                             <div class="col-md-3">
                                 <input type="text" class="form-control pull-right" name="weight" placeholder="in kilograms">
                             </div>
+                        </div>
+                        <div class="pull-right">
+                          <button type="button" class="btn btn-info button-bottom" disabled>Previous</button>
+                          <a data-toggle="pill" href="#conjunctiva"><button type="button" class="btn btn-info button-bottom" >Next</button></a>
                         </div>
                       </div>
                       <div id="conjunctiva" class="tab-pane fade">
@@ -96,6 +107,10 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="pull-right">
+                          <a data-toggle="pill" href="#vital_signs"><button type="button" class="btn btn-info button-bottom" >Previous</button></a>
+                          <a data-toggle="pill" href="#Neck"><button type="button" class="btn btn-info button-bottom" >Next</button></a>
+                        </div>
                       </div>
                       <div id="Neck" class="tab-pane fade">
                         <h3>Neck</h3>
@@ -119,6 +134,10 @@
                                 </select>  
                             </div>
                         </div>
+                        <div class="pull-right">
+                          <a data-toggle="pill" href="#conjunctiva"><button type="button" class="btn btn-info button-bottom" >Previous</button></a>
+                          <a data-toggle="pill" href="#thorax"><button type="button" class="btn btn-info button-bottom" >Next</button></a>
+                        </div>
                       </div>
                       <div id="thorax" class="tab-pane fade">
                         <h3>Thorax</h3>
@@ -141,6 +160,10 @@
                                          <option value="Yes">Yes</option>
                                 </select> 
                             </div>
+                        </div>
+                        <div class="pull-right">
+                          <a data-toggle="pill" href="#neck"><button type="button" class="btn btn-info button-bottom" >Previous</button></a>
+                          <a data-toggle="pill" href="#breast"><button type="button" class="btn btn-info button-bottom" >Next</button></a>
                         </div>
                       </div>
                       <div id="breast" class="tab-pane fade">
@@ -185,6 +208,10 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="pull-right">
+                          <a data-toggle="pill" href="#thorax"><button type="button" class="btn btn-info button-bottom" >Previous</button></a>
+                          <a data-toggle="pill" href="#abdomen"><button type="button" class="btn btn-info button-bottom" >Next</button></a>
+                        </div>
                       </div>
                       <div id="abdomen" class="tab-pane fade">
                         <h3>Abdomen</h3>
@@ -209,6 +236,10 @@
                             <div class="col-md-3">
                                 <input type="text" class="form-control pull-right" name="fetalhearttone" placeholder="if applicable by AOG">
                             </div>
+                        </div>
+                        <div class="pull-right">
+                          <a data-toggle="pill" href="#breast"><button type="button" class="btn btn-info button-bottom" >Previous</button></a>
+                          <a data-toggle="pill" href="#LM"><button type="button" class="btn btn-info button-bottom" >Next</button></a>
                         </div>
                       </div>
                       <div id="LM" class="tab-pane fade">
@@ -249,7 +280,10 @@
                                 <input type="text" class="form-control pull-right" name="urineactivity" >
                             </div>
                         </div>
-
+                        <div class="pull-right">
+                          <a data-toggle="pill" href="#abdomen"><button type="button" class="btn btn-info button-bottom" >Previous</button></a>
+                          <a data-toggle="pill" href="#perinuem"><button type="button" class="btn btn-info button-bottom" >Next</button></a>
+                        </div>
                       </div>
                       <div id="perinuem" class="tab-pane fade">
                         <h3>Perinuem</h3>
@@ -292,6 +326,10 @@
                                          <option value="Yes">Yes</option>
                                 </select>
                             </div>
+                        </div>
+                        <div class="pull-right">
+                          <a data-toggle="pill" href="#LM"><button type="button" class="btn btn-info button-bottom" >Previous</button></a>
+                          <a data-toggle="pill" href="#vagina"><button type="button" class="btn btn-info button-bottom" >Next</button></a>
                         </div>
                       </div>
                       <div id="vagina" class="tab-pane fade">
@@ -347,6 +385,10 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="pull-right">
+                          <a data-toggle="pill" href="#perinuem"><button type="button" class="btn btn-info button-bottom" >Previous</button></a>
+                          <a data-toggle="pill" href="#cervix"><button type="button" class="btn btn-info button-bottom" >Next</button></a>
+                        </div>
                       </div>
                       <div id="cervix" class="tab-pane fade">
                         <h3>Cervix</h3>
@@ -378,6 +420,10 @@
                                 <input type="text" class="form-control pull-right" name="statusofbagofwater">
                             </div>
                         </div>
+                        <div class="pull-right">
+                          <a data-toggle="pill" href="#vagina"><button type="button" class="btn btn-info button-bottom" >Previous</button></a>
+                          <a data-toggle="pill" href="#InP"><button type="button" class="btn btn-info button-bottom" >Next</button></a>
+                        </div>
                       </div>
                       <div id="InP" class="tab-pane fade">
                         <h3>Impression and Plans</h3>
@@ -401,9 +447,10 @@
                                 <textarea rows="4" cols="50" name="plans" class="form-control"></textarea>
                             </div>
                         </div>
-                            <center>
-                                <input type="submit" value="Submit" class="btn btn-success">
-                            </center>
+                        <div class="pull-right">
+                          <a data-toggle="pill" href="#conjunctiva"><button type="button" class="btn btn-info button-bottom" >Previous</button></a>
+                           <input type="submit" value="Submit" class="btn btn-success">
+                        </div>
                       </div>
                 </div>  
             </div>  

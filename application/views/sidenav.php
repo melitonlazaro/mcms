@@ -20,7 +20,7 @@
         <link rel="stylesheet" href="<?php echo base_url();?>Public/sidenav/css/Admin.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
        <!--  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
-        
+        <title>MCMS</title>
     </head>
     <body>
 
@@ -32,7 +32,7 @@
                 </div>
 
                 <div class="sidebar-header">
-                    <h1>Stork</h1>
+                    <h1>MCMS</h1>
                 </div>
 
                 <ul class="list-unstyled components">
@@ -54,10 +54,13 @@
                         <a href="<?php echo base_url();?>/Prms/activity_log"><i class="fa fa-list-alt" aria-hidden="true"></i> Activity Log</a>
                     </li>
                     <li>
+                        <a href="<?php echo base_url(); ?>Main/visitor_messages"><i class="fa fa-comments" aria-hidden="true"></i> Messages</a>
+                    </li>
+                    <li>
                         <a href="#"><i class="fa fa-cogs" aria-hidden="true"></i>  About</a>
                     </li>
                     <li>
-                        <a href="#">ANYTHING</a>
+                        <a href="<?php echo base_url();?>/Main"><i class="fa  fa-globe"></i> Website</a>
                     </li>
                 </ul>
 
