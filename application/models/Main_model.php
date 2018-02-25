@@ -95,7 +95,9 @@ class Main_model extends CI_Model {
 
   public function count_case()
   {
+    $status = "Active";
     $this->db->select('*');
+    $this->db->where('status', $status);
     $this->db->from('case');
     $query = $this->db->get();
     return $query->num_rows();

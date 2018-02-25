@@ -432,7 +432,7 @@ class Prms extends CI_Controller {
       if($query_result)
       {
         $case_id = $this->input->post('case_id');
-        $this->Prms_model->change_maternity_case_status($case_id);
+        $this->Prms_model->change_maternity_case_status_for_postnatal($case_id);
         $this->load->view('dashboard');
       }
       else
@@ -476,19 +476,60 @@ class Prms extends CI_Controller {
     }
   }
 
+  public function postnatal_checkup()
+  {
+    $date = date('Y-m-d');
+    $this->load->model('Prms_model');
+    $data = array(
+                  'postnatal_id' => NULL,
+                  'case_id' => $this->input->post('case_id'),
+                  'patient_id' => $this->input->post('patient_id'),
+                  'date' => $this->input->post('date_today'),
+                  'patient_weight' => $this->input->post('patient_weight'),
+                  'patient_height' => $this->input->post('patient_height'),
+                  'systolic' => $this->input->post('systolic'),
+                  'diastolic' => $this->input->post('diastolic'),
+                  'pulse_rate' => $this->input->post('pulse_rate'),
+                  'impression' => $this->input->post('impression'),
+                  'plans' => $this->input->post('plans')
+                 );
+    $result = $this->Prms_model->insert_postnatal_checkup($data);
+    if($result)
+    {
+      $case_id = $this->input->post('case_id');
+      $this->Prms_model->change_maternity_case_status_complete($case_id);
+      $this->case_timeline($case_id);
+    }
+    else
+    {
+
+    }
+
+  }
+
   public function testing()
   {
-    // $this->load->model('Prms_model');
-    // $case_id = 1;
-    // // $data = $this->Prms_model->get_case_details($case_id);
-    // // print_r($data);
-    // // $time = date('H:m:s');
-    // // echo $time;
-    // $data['pe_result'] = $this->Prms_model->get_all_pe($case_id);
-    // $this->load->view('testing', $data);
-    date_default_timezone_set('Asia/Manila');
-    $time = date('H:m:s');
-    echo $time;
+    $this->load->view('testing');
+  }
+
+  public function testing_one()
+  {
+    $this->load->model('Prms_model');
+    
+    $this->Prms_model->add_particulars();
+    // $quantity = "test";
+    // $price = "100";
+    // foreach ($input as $in) 
+    // {
+    //   $data = array(
+    //               'particular_id' => NULL,
+    //               'particular' => ,
+    //               'quantity' => $quantity,
+    //               'price' => $price
+    //               );
+    //   $this->Prms_model->add_particulars($data);
+    // }
+
   }
 
 }

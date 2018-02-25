@@ -413,9 +413,17 @@ public function dt_re()
       $this->activity_log($data);
  }
 
- public function change_maternity_case_status($case_id)
+ public function change_maternity_case_status_for_postnatal($case_id)
  {
-  $new_status = "For Prenatal";
+  $new_status = "For Postnatal";
+  $this->db->set('status', $new_status);
+  $this->db->where('case_id', $case_id);
+  $this->db->update('case');
+ }
+
+ public function change_maternity_case_status_complete($case_id)
+ {
+  $new_status = "Complete";
   $this->db->set('status', $new_status);
   $this->db->where('case_id', $case_id);
   $this->db->update('case');
@@ -434,6 +442,31 @@ public function dt_re()
  public function add_consultation($data)
  {
   $result = $this->db->insert('consultation', $data);
+  return $result;
+ }
+
+ public function insert_postnatal_checkup($data)
+ {
+  $result = $this->db->insert('postnatal', $data);
+  return $result;
+ }
+
+ public function add_particulars()
+ {
+  $particular_id[] = $this->input->post('particular_id');
+  $particulars[] = $this->input->post('particular');
+  $quantity[] = $this->input->post('quantity');
+  $price[] = $this->input->post('price');
+  $i = 0;
+  foreach ($particular_id as $key => $val) 
+  {
+    $data[$i]['particular_id'] = $val;
+    $data[$i]['particular'] = $particulars[$key];
+    $data[$i]['quantity'] = $quantity[$key];
+    $data[$i]['price'] = $price[$key];
+    $i++;
+  }
+  $result = $this->db->insert_batch('soa_particulars', $data);
   return $result;
  }
 

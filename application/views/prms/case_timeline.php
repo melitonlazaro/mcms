@@ -115,21 +115,105 @@
                             $complete = "Complete";
                             $active = "Active";
                             if($cs->status === $for_postnatal){ ?>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <button class="btn btn-block btn-lg btn-info" data-toggle="modal" data-target="#postnatal_modal">Postnatal</button>
-                                    </div>
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <button class="btn btn-block btn-lg btn-info" data-toggle="modal" data-target="#postnatal_modal">Postnatal</button>
+                                        </div>
+                                    </div>    
                                 </div>
+                                <!-- Modal for Postnatal -->
+                                    <div class="modal fade" role="dialog" id="postnatal_modal">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <strong>Postnatal Checkup</strong>
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <?php echo form_open('Prms/postnatal_checkup') ?>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <label>Maternity Case Number</label>
+                                                            <input type="text" class="form-control" name="case_id" value="<?php echo $cs->case_id;?>" readonly>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label>Patient ID</label>
+                                                            <input type="text" class="form-control" name="patient_id" value="<?php echo $cs->patient_ID;?>" readonly>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label>Date</label>
+                                                            <?php $date_today = date('Y-m-d'); ?>
+                                                            <input type="text" class="form-control" name="date_today" value="<?php echo $date_today;?>" readonly>
+                                                        </div>
+                                                    </div><br>
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <label>Weight</label>
+                                                            <div class="input-group">
+                                                                <input type="number" min="0" class="form-control" name="patient_weight">
+                                                              <div class="input-group-addon">Kg</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label>Height</label>
+                                                            <div class="input-group">
+                                                                <input type="number" min="0" class="form-control" name="patient_height">
+                                                              <div class="input-group-addon">cm</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label>Pulse Rate</label>
+                                                            <div class="input-group">
+                                                                <input type="number" min="0" class="form-control" name="pulse_rate">
+                                                              <div class="input-group-addon">BPM</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label>Blood Pressure</label>
+                                                            <div class="input-group">
+                                                                <input type="number" min="0" class="form-control" name="systolic" placeholder="systolic">
+                                                              <div class="input-group-addon">mmHg</div>
+                                                            </div>
+                                                            <div class="input-group">
+                                                                <input type="number" min="0" class="form-control" name="diastolic" placeholder="diastolic">
+                                                              <div class="input-group-addon">mmHg</div>
+                                                            </div>
+                                                        </div>  
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <label>Impression</label>
+                                                            <textarea rows="4" cols="10" name="impression" class="form-control"></textarea>
+                                                        </div>
+                                                    </div><br>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <label>Plans</label>
+                                                            <textarea rows="4" cols="50" name="plans" class="form-control"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <div class="pull-right">
+                                                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+                                                        <button type="submit" class="btn btn-success">Submit</button>    
+                                                    </div>
+                                                </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
                             <?php }
                             elseif($cs->status === $complete)
                             {?>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <center>
-                                                    <h2 class="text-success bg-success">Maternity Case Completed</h2>
-                                                </center>
-                                            </div>
-                                        </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <center>
+                                            <h2 class="text-success bg-success">Maternity Case Completed</h2>
+                                        </center>
+                                    </div>
+                                </div>
                             <?php } 
                             elseif($cs->status === $active)
                             {?>
