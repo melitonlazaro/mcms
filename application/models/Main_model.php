@@ -51,7 +51,7 @@ class Main_model extends CI_Model {
 
   public function count_latest_patients()
   {
-    $query = $this->db->query("SELECT `last_name`, `given_name`, `date_registered` FROM `patient_info` ORDER BY `patient_ID` LIMIT 5");
+    $query = $this->db->query("SELECT `last_name`, `given_name`, `date_registered` FROM `patient_info` ORDER BY `patient_ID` DESC LIMIT 5");
     return $query->result();
   }
 
@@ -147,6 +147,16 @@ class Main_model extends CI_Model {
   {
     $this->db->select('*');
     $this->db->from('feedback');
+    $query = $this->db->get();
+    return $query->result();
+  }
+
+  public function get_recent_activities()
+  {
+    $this->db->select('*');
+    $this->db->from('activity_log');
+    $this->db->limit(5);
+    $this->db->order_by('activity_log_id', 'DESC');
     $query = $this->db->get();
     return $query->result();
   }

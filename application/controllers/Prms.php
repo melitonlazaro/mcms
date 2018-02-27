@@ -47,10 +47,14 @@ class Prms extends CI_Controller {
 
 	public function profiling()
   {
+    $this->load->view('prms/New');
+  }
+
+  public function choose_patient()
+  {
     $this->load->model('Prms_model');
     $data['patient_names'] = $this->Prms_model->get_patient_names();
-    $data['maternity_cases'] = $this->Prms_model->get_active_maternity_cases();
-    $this->load->view('prms/profiling', $data);
+    $this->load->view('prms/Existing', $data);
   }
 
   public function process_profiling()
@@ -65,17 +69,15 @@ class Prms extends CI_Controller {
 
       if(!$this->upload->do_upload('userfile'))
       {
-        $this->form_validation->set_error_delimiters('<p class="error">', '</p>');
-        $error = array('error' => $this->upload->display_errors());
-        print_r($error);
+        $file_name="Default";
       }
       else
       {
         $upload_details = $this->upload->data();
         $file_name = $upload_details['file_name'];
-
       }
 
+        $mc = "Active";
 
         $data = array(
                   'patient_ID'  => NULL,
@@ -92,6 +94,7 @@ class Prms extends CI_Controller {
                   'emergency_contact_num'   => $this->input->post('emergency_contact_num'),
                   'emergency_contact_address'   => $this->input->post('emergency_contact_address'),
                   'date_registered' => date('Y-m-d'),
+                  'mc' => $mc,
                   'picture' => $file_name
                  );
     $patient_ID = $this->Prms_model->profiling($data);
@@ -248,8 +251,9 @@ class Prms extends CI_Controller {
         $physical_examination_result = $this->Prms_model->physical_examination($data); 
         if($physical_examination_result)
         {
-          $this->session->set_flashdata('new_case', 'New case is added!');
-          redirect('Main/dashboard');
+          $this->session->set_flashdata('new_case', 'New maternity case is added!');
+          $case_id = $this->input->post('case_id');
+          $this->case_timeline($case_id);
         }
         else
         {
@@ -428,17 +432,10 @@ class Prms extends CI_Controller {
                     'chest_circumference' => $this->input->post('chest_circumference'),
                     'newborn_screening' => $this->input->post('newborn_screening'),
                    );
-      $query_result = $this->Prms_model->childbirth_model($data);
-      if($query_result)
-      {
+        $infant_id = $this->Prms_model->childbirth_model($data);
         $case_id = $this->input->post('case_id');
         $this->Prms_model->change_maternity_case_status_for_postnatal($case_id);
-        $this->load->view('dashboard');
-      }
-      else
-      {
-        echo "error";
-      }
+        $this->infant_profile($infant_id);
   }
 
 
@@ -497,39 +494,175 @@ class Prms extends CI_Controller {
     if($result)
     {
       $case_id = $this->input->post('case_id');
-      $this->Prms_model->change_maternity_case_status_complete($case_id);
-      $this->case_timeline($case_id);
+      $query_result = $this->Prms_model->change_maternity_case_status_complete($case_id);
+      if($query_result)
+      {
+        $patient_id = $this->input->post('patient_id');
+        $query_result1 = $this->Prms_model->change_mc_status_patient($patient_id);
+        if($query_result1)
+        {
+          $this->case_timeline($case_id);
+        }
+        else
+        {
+
+        }
+      }
+      else
+      {
+
+      }
     }
     else
     {
 
     }
+  }
 
+  public function t_photo()
+  {
+    $this->load->view('prms/webcam');
+  }
+    
+  public function s_photo()
+  {
+    $this->load->view('prms/saveimage');
+  }
+
+  public function archive_maternity_case()
+  {
+    $date_archived = date('Y-m-d');
+    $case_id = $this->input->post('case_id');
+    $remarks = $this->input->post('archive_remarks');
+
+    $data = array(
+                  'archive_id' => NULL,
+                  'case_id' => $case_id,
+                  'date_archived' => $date_archived,
+                  'remarks' => $remarks
+                 );
+    $this->load->model('Prms_model');
+    $result = $this->Prms_model->archive_m_case($data);
+    if($result)
+    {
+      $result1 = $this->change_maternity_case_status_archived($case_id);
+      if($result1)
+      {
+        $this->case_timeline($case_id);
+      }
+    }
+    $this->case_timeline($case_id);
+  }
+
+  public function change_maternity_case_status_archived($case_id)
+  {
+    $this->load->model('Prms_model');
+    $result =  $this->Prms_model->change_into_archived($case_id);
+    return $result;
+  }
+
+  public function emergency_childbirth()
+  {
+    $this->load->view('prms/emergency_childbirth');  
+  }
+  public function emergency_childbirth_profiling()
+  {
+      $this->load->model('Prms_model');
+      $config['upload_path'] = './uploads/';
+      $config['allowed_types']        = 'jpg|png';
+      $config['max_size']             = 1000;
+      $config['max_width']            = 2024;
+      $config['max_height']           = 1024;
+      $this->load->library('upload', $config);
+
+      if(!$this->upload->do_upload('userfile'))
+      {
+        $file_name="Default";
+      }
+      else
+      {
+        $upload_details = $this->upload->data();
+        $file_name = $upload_details['file_name'];
+      }
+
+
+        $data = array(
+                  'patient_ID'  => NULL,
+                  'last_name'   => $this->input->post('last_name'),
+                  'given_name'   => $this->input->post('given_name'),
+                  'middle_initial'   => $this->input->post('middle_initial'),
+                  'occupation'   => $this->input->post('occupation'),
+                  'date_of_birth'   => $this->input->post('date_of_birth'),
+                  'contact_num'   => $this->input->post('contact_num'),
+                  'street_no'   => $this->input->post('street_no'),
+                  'brgy'   => $this->input->post('brgy'),
+                  'city'   => $this->input->post('city'),
+                  'emergency_contact_name'   => $this->input->post('emergency_contact_name'),
+                  'emergency_contact_num'   => $this->input->post('emergency_contact_num'),
+                  'emergency_contact_address'   => $this->input->post('emergency_contact_address'),
+                  'date_registered' => date('Y-m-d'),
+                  'picture' => $file_name
+                 ); 
+              $patient_ID = $this->Prms_model->profiling($data);
+              $patient_last_name = $this->input->post('last_name');
+              $patient_given_name = $this->input->post('given_name');
+              $username_check = $this->Prms_model->check_existing_username($patient_last_name, $patient_given_name);
+              $default_password = md5(12345);
+              if($username_check)
+              {
+                $username1 = "".$patient_last_name.".".$patient_given_name."";
+                $account = array(
+                                "patient_ID" => $patient_ID,
+                                "username" => $username1,
+                                "password" => $default_password
+                                );
+                $this->Prms_model->create_patient_account($account);
+
+              }
+              else
+              {
+                $username = "".$patient_last_name.".".$patient_given_name."".$patient_ID."";
+                $account = array(
+                                "patient_ID" => $patient_ID,
+                                "username" => $username,
+                                "password" => $default_password
+                                );
+                $this->Prms_model->create_patient_account($account);
+              }
+
+              $last_case_id = $this->Prms_model->create_new_case($patient_ID);
+              $data1 = array(
+                                        'patient_ID' =>"$patient_ID",
+                                        'case_ID' =>"$last_case_id"
+                                       );
+
+              $this->load->view('prms/emergency_childbirth_recording', $data1);
   }
 
   public function testing()
   {
-    $this->load->view('testing');
+    $this->load->view('prms/existing');
   }
 
   public function testing_one()
   {
     $this->load->model('Prms_model');
-    
-    $this->Prms_model->add_particulars();
-    // $quantity = "test";
-    // $price = "100";
-    // foreach ($input as $in) 
-    // {
-    //   $data = array(
-    //               'particular_id' => NULL,
-    //               'particular' => ,
-    //               'quantity' => $quantity,
-    //               'price' => $price
-    //               );
-    //   $this->Prms_model->add_particulars($data);
-    // }
+    $result = $this->Prms_model->add_particulars();
+    if($result)
+    {
+      echo "true";
+    }
+    else
+    {
 
+    }
+  }
+
+  public function testing_two()
+  {
+    $this->load->model('Prms_model');
+    $result = $this->Prms_model->testing_two_mdl();
+    print_r($result);
   }
 
 }

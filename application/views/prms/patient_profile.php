@@ -80,18 +80,20 @@
     					<div class="row">
 							<div class="col-md-6">
 									<?php 
-										echo "<p style='text-align: left;''>"; 
+										echo "<strong style='text-align: left;''>"; 
 										echo  $patient_information->last_name;
 										echo ', '; 
 										echo $patient_information->given_name;
-										echo "</p>";
+										echo "</strong>";
 									?>
 							</div>
 							<div class="col-md-6">
 									<?php 
-										echo "<p style='text-align: right;''>";
+                                        echo '<div class="pull-right">';
+										echo "<strong style='text-align: right;''>";
 										echo $patient_information->patient_ID;
-										echo "</p>";
+										echo "</strong>";
+                                        echo '</div>';
 									?>
 							</div>
 						</div>

@@ -74,7 +74,11 @@ class Prms_model extends CI_Model {
 
   public function get_active_maternity_cases()
   {
-    $this->db->select('case_id, patient_ID, status');
+    $active = "Active";
+    $postnatal = "For Postnatal";
+    $this->db->select('case_id, patient_ID');
+    $this->db->where('status', $active);
+    $this->db->or_where('status', $postnatal);
     $result = $this->db->get('case');
     return $result->result();
   }
@@ -124,7 +128,9 @@ class Prms_model extends CI_Model {
 
   public function get_patient_names()
   {
+    $status = "None";
     $this->db->select('patient_ID, last_name, given_name, middle_initial, date_of_birth');
+    $this->db->where('mc', $status);
     $this->db->from('patient_info');
     $query = $this->db->get();
     return $query->result();
@@ -316,6 +322,7 @@ public function dt_re()
  public function infant_profile($infant_id)
  {
   $this->db->select('*');
+  $this->db->where('infant_id', $infant_id);
   $this->db->from('infant_info');
   $query = $this->db->get();
   return $query->row();
@@ -398,7 +405,8 @@ public function dt_re()
  public function childbirth_model($data)
  {
   $query_result = $this->db->insert('infant_info', $data);
-  return $query_result;
+  $last_id = $this->db->insert_id();
+  return $last_id;
       $date = date('Y-m-d');
       $time = date('H:m:s');
       $activity = "Added new Childbirth record.";
@@ -427,6 +435,16 @@ public function dt_re()
   $this->db->set('status', $new_status);
   $this->db->where('case_id', $case_id);
   $this->db->update('case');
+  return TRUE;
+ }
+
+ public function change_mc_status_patient($patient_id)
+ {
+  $mc_status = "None";
+  $this->db->set('mc', $mc_status);
+  $this->db->where('patient_ID', $patient_id);
+  $this->db->update('patient_info');
+  return TRUE;
  }
 
  public function get_consultation($infant_id)
@@ -453,19 +471,21 @@ public function dt_re()
 
  public function add_particulars()
  {
-  $particular_id[] = $this->input->post('particular_id');
-  $particulars[] = $this->input->post('particular');
-  $quantity[] = $this->input->post('quantity');
-  $price[] = $this->input->post('price');
-  $i = 0;
-  foreach ($particular_id as $key => $val) 
+  $particulars = $this->input->post('particular');
+  $quantity = $this->input->post('quantity');
+  $price = $this->input->post('price');
+  $count = count($particulars);
+  $data = array();
+  for($i=0; $i<$count; $i++)
   {
-    $data[$i]['particular_id'] = $val;
-    $data[$i]['particular'] = $particulars[$key];
-    $data[$i]['quantity'] = $quantity[$key];
-    $data[$i]['price'] = $price[$key];
-    $i++;
+    $data[] = array(
+    'particular_id' => NULL,
+    'particular' => $particulars[$i],
+    'quantity' => $quantity[$i],
+    'price' => $price[$i]
+    );
   }
+
   $result = $this->db->insert_batch('soa_particulars', $data);
   return $result;
  }
@@ -483,5 +503,46 @@ public function dt_re()
   return $query->result();
  }
 
+ public function archive_m_case($data)
+ {
+    $query = $this->db->insert('maternity_case_archive', $data);
+    return $query;
+ }
+
+ public function change_into_archived($case_id)
+ {
+    $new_status = "Archived";
+    $this->db->set('status', $new_status);
+    $this->db->where('case_id', $case_id);
+    $this->db->update('case');
+ }
+
+ public function get_pe_f($Num)
+ {
+    $this->db->select('*');
+    $this->db->from('physicalexamination');
+    $this->db->where('Num', $Num);
+    $this->db->join('patient_info', 'patient_info.patient_ID = physicalexamination.Patient_ID');
+    $query = $this->db->get()->last_row(); 
+    // echo $this->db->last_query();
+    //  exit;
+     // echo '<pre>';
+     // print_r($query);
+     // echo '</pre>';
+    return $query;
+     // echo '<pre>';
+     // print_r($data);
+     // echo '</pre>';
+ }
+
+ public function testing_two_mdl()
+ {
+    $case_id = 1;
+    $this->db->select('height, date');
+    $this->db->from('physicalexamination');
+    $this->db->where('case_id', $case_id);
+    $query = $this->db->get();
+    return $query->result();
+ }
 }
 ?>

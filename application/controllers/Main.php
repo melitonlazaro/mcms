@@ -163,6 +163,7 @@ class Main extends CI_Controller {
       $data['latest_patients'] = $this->Main_model->count_latest_patients();
       $data['latest_infants'] = $this->Main_model->count_latest_infants();
       $data['active_cases'] = $this->Main_model->count_active_cases();
+      $data['recent_activities'] = $this->Main_model->get_recent_activities();
       $data['todays_appointment'] = $this->Main_model->count_todays_appointment();
       $this->load->view('dashboard', $data);
     }

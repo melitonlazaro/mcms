@@ -5,8 +5,7 @@
 
 </head>
 <body>
-     
-      <br><br><br>
+    
 <?php 
     if($this->session->flashdata('success'))
     {
@@ -17,6 +16,7 @@
 
 ?>
 <?php require('sidenav.php'); ?>
+      <br><br><br>
 <div class="container">
     <div class="panel panel-primary">
         <div class="panel-heading">

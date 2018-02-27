@@ -83,18 +83,20 @@
 					<div class="panel-heading">
 						<div class="row">
 							<div class="col-md-6">
-									<h6 style="text-align: left;">
+									<strong style="text-align: left;">
 									<?php //print_r($infant_info);
 										echo $infant_info->infant_first_name;
 									?>
-									</h6>
+									</strong>
 							</div>
 							<div class="col-md-6">
-								<h6 style="text-align: right;">
-									<?php 
-										echo $infant_info->infant_id;
-									?>
-								</h6>
+								<div class="pull-right">
+									<strong style="text-align: right;">
+										<?php 
+											echo $infant_info->infant_id;
+										?>
+									</strong>
+								</div>
 							</div>
 						</div>
 					</div>

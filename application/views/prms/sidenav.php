@@ -9,6 +9,7 @@
 ?>
 
 <!DOCTYPE html>
+
 <html>
     <head>
         <meta charset="utf-8">
@@ -20,7 +21,7 @@
         <link rel="stylesheet" href="<?php echo base_url();?>Public/sidenav/css/Admin.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
        <!--  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
-        <title>MCMS</title>
+        
     </head>
     <body>
 
@@ -28,9 +29,8 @@
             <!-- Sidebar Holder -->
             <nav id="sidebar">
                 <div id="dismiss">
-                    <i style="padding-top: 10px;" class="fa fa-arrow-left" aria-hidden="true"></i>
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
                 </div>
-
 
                 <div class="sidebar-header">
                     <h3>MCMS</h3>
@@ -41,6 +41,14 @@
                         <a href="<?php echo base_url();?>Main/dashboard"><i class="fa fa-television" aria-hidden="true"></i>  Dashboard </a>
                     </li>
                     <li>
+                        <a href="#Create" data-toggle="collapse" aria-expanded="false"><i class="fa fa-plus-square"></i> &nbsp; Profiling</a>
+                        <ul class="link-gray collapse list-unstyled" id="Create">
+                            <li><a href="<?php echo base_url();?>Prms/Profiling">New</a></li>
+                            <li><a href="<?php echo base_url();?>Prms/Patient_list">Existing</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
                         <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"><i class="fa fa-bar-chart"></i>   Records</a>
                         <ul class="link-gray collapse list-unstyled" id="homeSubmenu">
                             <li><a href="<?php echo base_url();?>Prms/case_list">Maternity Case</a></li>
@@ -49,12 +57,15 @@
                         </ul>
                     </li>
                     <li>
+                        <a href="<?php echo base_url(); ?>Prms/emergency_childbirth"><i class="fa fa-heartbeat"></i> Emergency Childbirth</a>
+                    </li>
+                    <li>
                         <a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Report</a>
                     </li>
                     <li>
                         <a href="<?php echo base_url();?>/Prms/activity_log"><i class="fa fa-list-alt" aria-hidden="true"></i> Activity Log</a>
                     </li>
-                    <li>
+                     <li>
                         <a href="<?php echo base_url(); ?>Main/visitor_messages"><i class="fa fa-comments" aria-hidden="true"></i> Messages</a>
                     </li>
                     <li>
@@ -76,7 +87,7 @@
                     <div class="container-fluid">
 
                         <div class="navbar-header">
-                            <button style="padding-bottom: 10px;" type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+                            <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
                                 <i class="glyphicon glyphicon-align-left"></i>
                             </button>
                              <span id="lblGreetings"></span>
@@ -86,10 +97,14 @@
             </div>
         </div>
 
+
         <div class="overlay"></div>
 
+        <!-- jQuery CDN -->
 
+        <!-- Bootstrap Js CDN -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <!-- jQuery Custom Scroller CDN -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
 
         <script type="text/javascript">
@@ -128,7 +143,5 @@
 
         </script>
 
-
     </body>
 </html>
-    

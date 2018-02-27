@@ -43,7 +43,7 @@
                     </label>
                   </div><br>
                   <div class="row">
-                    <div class="col-sm-6"><a href="<?php echo base_url(); ?>/Main"><button type="button" class="btn btn-block btn-info"><i class="fa fa-user"></i>Cancel</button></a></div>
+                    <div class="col-sm-6"><button type="submit" class="btn btn-block btn-info"><i class="fa fa-user"></i>Cancel</button></div>
                     <div class="col-sm-6"><button type="submit" class="btn btn-block btn-info"><i class="fa fa-user"></i>Login</button></div>
                   </div>
                 </div>

@@ -62,8 +62,15 @@
                                 <strong>Blood Pressure:</strong>
                             </div>
                             <div class="col-md-3">
-                                <input type="text" class="form-control pull-right " placeholder="Systolic" name="systolic"><br>
-                                <input type="text" class="form-control pull-right " placeholder="Diastolic" name="diastolic">
+                                <div class="input-group">
+                                  <input type="text" class="form-control pull-right " placeholder="Systolic" name="systolic">
+                                  <span class="input-group-addon">mmHg</span>
+                                </div>
+                                <br>
+                                <div class="input-group">
+                                  <input type="text" class="form-control pull-right " placeholder="Diastolic" name="diastolic">
+                                  <span class="input-group-addon">mmHg</span>
+                                </div>
                             </div>
                         </div><br>
                         <div class="row">
@@ -71,13 +78,19 @@
                                 <strong>Height:</strong>
                             </div>
                             <div class="col-md-3">
-                                <input type="text" class="form-control pull-right" name="height" placeholder="in Centimeters">                                  
+                                <div class="input-group">
+                                  <input type="text" class="form-control pull-right" name="height">
+                                  <span class="input-group-addon">cm</span>   
+                                </div>                               
                             </div>
                             <div class="col-md-3">
                                 <strong>Weight:</strong>
                             </div>
                             <div class="col-md-3">
-                                <input type="text" class="form-control pull-right" name="weight" placeholder="in kilograms">
+                                <div class="input-group">
+                                  <input type="text" class="form-control pull-right" name="weight">
+                                  <span class="input-group-addon">Kg</span> 
+                                </div>
                             </div>
                         </div>
                         <div class="pull-right">
@@ -234,7 +247,10 @@
                                 <strong>Fetal Heart Tone:</strong>
                             </div>
                             <div class="col-md-3">
-                                <input type="text" class="form-control pull-right" name="fetalhearttone" placeholder="if applicable by AOG">
+                                <div class="input-group">
+                                  <input type="number" class="form-control pull-right" name="fetalhearttone">
+                                  <span class="input-group-addon">BPM</span>
+                                </div>
                             </div>
                         </div>
                         <div class="pull-right">
@@ -397,7 +413,10 @@
                                 <strong>Consistency:</strong>
                             </div>
                             <div class="col-md-3">
-                                <input type="text" class="form-control pull-right" name="consistency">
+                                <select class="form-control pull-right" name="consistency">
+                                  <option value="Firm">Firm</option>
+                                  <option value="Soft">Soft</option>
+                                </select>
                             </div>
                             <div class="col-md-3">
                                 <strong>Dilation:</strong>
@@ -411,13 +430,19 @@
                                 <strong>Palpable Presenting Part:</strong>
                             </div>
                             <div class="col-md-3">
-                                <input type="text" class="form-control pull-right" name="palpablepresentingpart">
+                                <select class="form-control pull-right" name="palpablepresentingpart">
+                                  <option>Head</option>
+                                  <option>Buttocks</option>
+                                </select>
                             </div>
                             <div class="col-md-3">
                                 <strong>Status of Bag of Water:</strong>
                             </div>
                             <div class="col-md-3">
-                                <input type="text" class="form-control pull-right" name="statusofbagofwater">
+                                <select class="form-control pull-right" name="statusofbagofwater">
+                                  <option>Intact</option>
+                                  <option>Ruptured</option>
+                                </select>
                             </div>
                         </div>
                         <div class="pull-right">

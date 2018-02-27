@@ -251,11 +251,55 @@
               </div>
             </div>
             <div class="col-md-4">
-              <div id="calendar"></div>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4>Recent Activities</h4>
+                </div>
+                <div class="panel-body">
+                  <table class="table table-responsive table-hover table-bordered">
+                      <tr id="tablehead">
+                          <th>Log ID</th>
+                          <th>Activity</th>
+                          <th>Module</th>
+                          <th>Date</th>
+                          <th>Time</th>
+                      </tr>
+                  <?php foreach($recent_activities as $ra)
+                  {
+                      echo '
+                          <tr>
+                          <td>'.$ra->activity_log_id.'</td>
+                          <td>'.$ra->activity.'</td>
+                          <td>'.$ra->module.'</td>
+                          <td>'.$ra->date.'</td>
+                          <td>'.$ra->time.'</td>
+                          </tr>
+                           ';
+                  } 
+                  ?>
+                  </table>  
+                  <div class="pull-right">                   
+                    <a href="../prms/activity_log"><button type="submit" class="btn btn-info" name="update">View All</button></a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-   </div>
-
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <strong><i class="fa fa-calendar"></i> Calendar</strong>
+            </div>
+            <div class="panel-body">
+              <div id="calendar"></div>              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-6">
