@@ -39,9 +39,20 @@ $pdf->SetSubject('TCPDF Tutorial');
 $pdf->SetKeywords('TCPDF, PDF, example, test, guide');
 
 // set default header data
-$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 006', PDF_HEADER_STRING);
+$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE. '', PDF_HEADER_STRING, '', '');
+class MYPDF extends TCPDF {
 
-// set header and footer fonts
+    //Page header
+    public function Header() {
+        // Logo
+        $image_file = K_PATH_IMAGES.'1.png';
+        $this->Image($image_file, 10, 10, 15, '', 'PNG', '', 'T', false, 300, '', false, false, 0, false, false, false);
+        // Set font
+        $this->SetFont('helvetica', 'B', 20);
+        // Title
+        $this->Cell(0, 15, '<< TCPDF Example 003 >>', 0, false, 'C', 0, '', 0, false, 'M', 'M');
+    }
+}
 $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
 $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
 
@@ -99,7 +110,7 @@ $table .= '
 				<td align="right">Checkup Date: '.$dt->Date.' </td>
 			</tr>
 			<tr>		
-				<td align="left">Patient Name: '.$dt->last_name.','.$dt->given_name.','.$dt->middle_initial.'</td>
+				<td align="left">Patient Name: '.$dt->last_name.', '.$dt->given_name.' '.$dt->middle_initial.'.</td>
 				<td align="right">Contact Number: '.$dt->contact_num.'</td>
 			</tr>
 			<tr>

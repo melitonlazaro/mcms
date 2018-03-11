@@ -1,89 +1,258 @@
+<?php 
+    $server = "localhost";
+    $username = "root";
+    $password= "";
+    $db = "mcms";
+
+    $conn = new mysqli($server, $username, $password, $db);
+    if($conn->connect_error)
+    {
+        echo "Connecting to database failed. ";
+    }
+    $query = "SELECT `date`, `weight` FROM `physicalexamination` WHERE `patient_ID` = $patient_information->patient_ID ORDER BY `date` ASC";
+    $result = $conn->query($query);
+    $chart_data = '';
+    while($row = $result->fetch_array())
+    {
+        $chart_data .= "{ date:'".$row["date"]."', weight:".$row["weight"]."}, "; //Error was caused by a missing "space" between Comma and Parenthesis 
+
+    }
+        $chart_data = substr($chart_data, 0, -2);
+?>
+<?php 
+    if($conn->connect_error)
+    {
+        echo "Connecting to database failed.";
+    }
+    $query1 = "SELECT `date`, `height` FROM `physicalexamination` WHERE `patient_ID` = $patient_information->patient_ID ORDER BY `date` ASC";
+    $result = $conn->query($query1);
+    $chart_data1 = '';
+    while($row = $result->fetch_array())
+    {
+        $chart_data1 .= "{ date:'".$row["date"]."', height:".$row["height"]."}, ";
+    }
+        $chart_data1 = substr($chart_data1, 0, -2);
+?>
+<?php 
+    if($conn->connect_error)
+    {
+        echo "Connecting to database failed.";
+    }
+    $query2 = "SELECT `date`, `systolic`, `diastolic` FROM `physicalexamination` WHERE `patient_ID` = $patient_information->patient_ID ORDER BY `date` ASC";
+    $result = $conn->query($query2);
+    $chart_data2 = '';
+    while($row = $result->fetch_array())
+    {
+      $chart_data2 .= "{ date:'".$row["date"]."', systolic:".$row["systolic"].", diastolic:".$row["diastolic"]."}, ";  
+    }
+      $chart_data2 = substr($chart_data2, 0, -2);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-  <title>Stork</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="shortcut icon" type="../image/png" href="<?php echo base_url();?>Public/website_extensions2/img/w-ico.png">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="<?php echo base_url();?>Public/website_extensions2/css/Index.css">
-  <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
-  <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  
+  <?php require('extensions.php'); ?>  
 </head>
-
 <body>
-  <div class="panel panel-default scd">
-      <div class="panel-heading ">
-        <div class="row text-center">
-          <div class="col-md-4"><img src="<?php echo base_url();?>Public/website_extensions2/img/a-ico.png"></div>
-          <div class="col-md-4"><h3 style="text-transform: uppercase;">Appointment</h3></div>
-        </div>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="<?php echo base_url();?>Main">MCMS</a>
       </div>
-
-    <div class="panel-body">
-      <h5>Welcome <?php echo $this->session->userdata('patient_username'); ?></h5>
-              <form>
-                <div class="form-group">
-                  <label>Reason to ...</label>
-                  <select class="form-control" id="reason">
-                                  <option>Prenatal Checkup</option>
-                                  <option>Postnatal Checkup</option>
-                                  <option>Laboratory</option>
-                                  <option>Infant Consultation</option>
-                                  <option>Paps Smear</option>
-                                  <option>Immunization</option>
-                                  <option>Ultrasound</option>
-                  </select>
-                            <label>Name</label>
-                            <input class="form-control" type="text" name="">
-
-                            <label>Email</label>
-                            <input class="form-control" type="text" name="">
-              
-                            <label>Contact Number</label>
-                            <input class="form-control" type="text"onkeypress='return event.charCode >= 48 && event.charCode <= 57' name=""><br>
-              </form>
-           <div class="row text-center">
-              <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
-              <button class="btn btn-fix" type="button">Submit</button>
-          </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="<?php echo base_url(); ?>">Home</a></li>
+        <li><a href="<?php echo base_url(); ?>Main/book_appointment">Schedule an Appointment</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="<?php echo base_url(); ?>Main/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+      </ul>
     </div>
-  </div>
+  </nav>
+  <br>
+    <div class="container-fluid">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h2><strong>Patient Profile </strong></h2>
+              <div class="row">
+                <div class="col-md-5"> <!-- Panel for Patient Information -->
+                  <div class="panel panel-primary">
+                    <div class="panel-heading">
+                      <div class="row">
+                      <div class="col-md-6">
+                          <?php 
+                            echo "<strong style='text-align: left;''>"; 
+                            echo  $patient_information->last_name;
+                            echo ', '; 
+                            echo $patient_information->given_name;
+                            echo "</strong>";
+                          ?>
+                      </div>
+                      <div class="col-md-6">
+                          <?php 
+                                                echo '<div class="pull-right">';
+                            echo "<strong style='text-align: right;''>";
+                            echo $patient_information->patient_ID;
+                            echo "</strong>";
+                                                echo '</div>';
+                          ?>
+                      </div>
+                    </div>
+                    </div>
+                    <div class="panel-body">
+                      <div class="row">
+                        <div class="col-md-4">
+                                            <a href="#" class="thumbnail">
+                                              <img src="<?php echo base_url();?>/Uploads/<?php echo $patient_information->picture; ?>" alt="..." height="250" width="150">
+                                            </a>
+                        </div>
+                        <div class="col-md-8">
+                          <table class="table table-condensed table-striped table-hover">
+                            <tr>
+                              <td>Patient ID</td>
+                              <td><?php echo $patient_information->patient_ID; ?></td>
+                            </tr>
+                            <tr>
+                              <td>Last Name</td>
+                              <td><?php echo $patient_information->last_name; ?></td>
+                            </tr>
+                            <tr>
+                              <td>Given Name</td>
+                              <td><?php echo $patient_information->given_name; ?></td>
+                            </tr>
+                            <tr>
+                              <td>Date of Birth</td>
+                              <td><?php echo $patient_information->date_of_birth; ?></td>
+                            </tr>
+                            <tr>
+                              <td>Contact Number</td>
+                              <td><?php echo $patient_information->contact_num; ?></td>
+                            </tr>
+                            <tr>
+                              <td>Occupation</td>
+                              <td><?php echo $patient_information->occupation; ?></td>
+                            </tr>     
+                            <tr>
+                              <td>Street No.</td>
+                              <td><?php echo $patient_information->street_no; ?></td>
+                            </tr>   
+                            <tr>
+                              <td>Barangay</td>
+                              <td><?php echo $patient_information->brgy; ?></td>
+                            </tr>
+                            <tr>
+                              <td>City</td>
+                              <td><?php echo $patient_information->city; ?></td>
+                            </tr>
+                            <tr>
+                              <td>Date Registered</td>
+                              <td><?php echo $patient_information->date_registered ?></td>
+                            </tr>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="panel-footer">
+                      <button class="btn btn-warning"><i class="fa fa-edit"></i></button>
+                      <button class="btn btn-danger"><i class="fa fa-remove"></i></button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-7"> <!-- Panel for Patient Chart -->
+                  <div class="panel panel-primary">
+                    <div class="panel-heading">
+                      <i class="fa fa-line-chart"></i>&nbsp;Patient Chart
+                    </div>
+                    <div class="panel-body">
+                      <div class="row">
+                        <div class="col-md-3">
+                          <button class="btn btn-success btn-block" id="weightbtn">Weight</button>
+                          <button class="btn btn-success btn-block" id="heightbtn">Height</button>
+                          <button class="btn btn-success btn-block" id="bpbtn">Blood Pressure</button>
+                        </div>
+                        <div class="col-md-9">
+                          <div id="weight">
+                            <div id="weight_chart"></div>
+                          </div>
+                          <div id="height">
+                            <div id="height_chart"></div>
+                          </div>
+                          <div id="blood_pressure">
+                            <div id="blood_pressure_chart"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="panel-footer">
+                      
+                    </div>
+                  </div>  
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
 
-    <script src="<?php echo base_url();?>Public/website_extensions2/js/jquery.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-
-    <script type="text/javascript" src="<?php echo base_url();?>Public/website_extensions2/js/jquery.backstretch.min.js"></script>
-    <script>
-        $.backstretch("<?php echo base_url();?>Public/website_extensions2/img/a-bac.jpg", {speed: 500});
-
-         var myDate = new Date();
-    var hrs = myDate.getHours();
-
-    var greet;
-
-    if (hrs < 12)
-        greet = 'Good Morning';
-    else if (hrs >= 12 && hrs <= 17)
-        greet = 'Good Afternoon';
-    else if (hrs >= 17 && hrs <= 24)
-        greet = 'Good Evening';
-
-    document.getElementById('lblGreetings').innerHTML =
-        '<b>' + greet + '</b> and Welcome Admin!';
-    </script>
-
-</body>
-</html>
-
-
+<script>
+ $(document).ready(function(){
+  $('#height').hide();
+  $('#blood_pressure').hide();
+ });
+</script>
+<script>
+  $(document).ready(function(){
+    $('#weightbtn').click(function(){
+      $('#height').hide(100);
+      $('#blood_pressure').hide(100);
+      $('#weight').show(100);
+    });
+    $('#heightbtn').click(function(){
+      $('#blood_pressure').hide(100);
+      $('#weight').hide(100);
+      $('#height').show(100);
+    });
+    $('#bpbtn').click(function(){
+      $('#weight').hide(100);
+      $('#height').hide(100);
+      $('#blood_pressure').show(100);
+    });
+  });
+</script>
+<script>
+Morris.Line({
+ element : 'weight_chart',
+ data:[<?php echo $chart_data; ?>],
+ xkey:'date',
+ ykeys:['weight'],
+ labels:['weight'],
+ hideHover:'auto',
+ stacked:true
+});
+</script>
+<script>
+    Morris.Line({
+        element: 'height_chart',
+        data: [<?php echo $chart_data1; ?>],
+        xkey:'date',
+        ykeys:['height'],
+        labels:['height'],
+        hideHover:'auto',
+        stacked: true,
+        smooth: true,
+        lineColors: ['green'],
+        pointFillColors: ['#000000']
+    });
+</script>
+<script>
+    Morris.Area({
+        element: 'blood_pressure_chart',
+        data: [<?php echo $chart_data2; ?>],
+        xkey: 'date',
+        ykeys: ['systolic', 'diastolic'],
+        labels: ['systolic', 'diastolic'],
+        hideHover: 'auto',
+        stacked: true,
+        lineColors:['gray','red']
+    });
+</script>
 </body>
 </html>
 

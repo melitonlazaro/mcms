@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-  <title>JFMLMC </title>
+  <title>MCMS | Home </title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" type="../image/png" href="<?php echo base_url(); ?>/Public/website_extensions2/img/w-ico.png">
@@ -49,7 +49,7 @@
 </nav>
 
 <div class="jumbotron text-center">
-	<p data-aos="fade-right"><img src="<?php echo base_url(); ?>/Public/website_extensions2/img/w-ico.png"></p>
+  <p data-aos="fade-right"><img src="<?php echo base_url(); ?>/Public/website_extensions2/img/w-ico.png"></p>
   <h1 style="text-transform: uppercase;" data-aos="fade-up">Jewel's First Maternity Lying-in and Medical Clinic</h1> 
   <p>We specialize in delivering BABIES</p>
 </div>
@@ -58,9 +58,12 @@
 <div id="about" class="container-fluid">
   <div class="row">
     <div class="col-sm-8">
-      <h2>Jewel's First Maternity and Lying-In Medical Clinic</h2>
+      <h2>Jewel's Firsrt Maternity and Lying-In Medical Clinic</h2>
       <h4></h4><br>
-      <p>Jewel's First Maternity and Lying in Medical Clinic, Taguig. The clinic is visited by pediatricians like Dr. Jo Anne Ramos. The timings of Mom's and Baby Maternity Clinic are: Mon to Sat: 9:00 AM-5:00 PM. Some of the services provided by the clinic are: Vagina Surgery, Quad Screen, Copper T Insertion, Postnatal and Intracytoplasmic Sperm Injection (ICSI). Click on map to find directions to reach Mom's and Baby Maternity Clinic</p>
+      <p>Maternity Clinic, also Lying-in Clinic, is an institution in the Philippines that provide excellent maternal services for pregnant women, newborn infants, and promoting reproductive health for the community. It offers maternal services including prenatal checkup, postnatal checkup, delivery or child birth, consultation, immunization, newborn screening, laboratory, and Family Planning. Maternity Clinic’s organization must be mainly composed of Midwives, Obstetrician, Gynecologist, and Pediatrician. Midwives, Obstetrician, and Gynecologist are responsible mostly to the maternal services for pregnant patients, while the Pediatrician is the one who manage the health of the child.  
+ 
+     Maternity Clinics are under the Department of Health (DOH) and must secure necessary permits to operate. Some Midwives are affiliated to some associations like the Midwives Association of the Philippines (IMAP, Inc.). IMAP, Inc. was born on 1947 headed by Atty. Angelina C. Ponce where its main visions are to promote highest standards of midwifery practice, enhance the competence of members, reduce maternal and infant mortality, and sustain collaboration and partnership with related agencies. 
+</p>
 
     </div>
     <div class="col-sm-4">
@@ -69,25 +72,25 @@
   </div>
 </div>
 
-<div class="container-fluid bg-grey">
-					  <div class="row text-center">
-					  	<div class="text-center test">
-					  		<h2 class="OCB" data-aos="flip-up">Our Core Beliefs</h2>
-					  		<h4 data-aos="flip-up">Values that we adhere to.</h4>
-						</div><br><br>
-					    <div class="col-sm-4" data-aos="zoom-in"><img src="<?php echo base_url(); ?>/Public/website_extensions2/img/v-bin.png"><br><h3 class="test">VISION</h3><p class="tits test"> By the year 2020, the <i>Jewels First Maeternity Lying-in & Medical Clinic</i> will be a premier health provider of all patient, women's children & pregnant mothers.
-					    	
-					    </p></div>
-					    <div class="col-sm-4" data-aos="zoom-in"><img src="<?php echo base_url(); ?>/Public/website_extensions2/img/v-roc.png"><br><h3 class="test">MISSION</h3><p class="tits test"> To provide quality health care and lessen the number of meternal/fetal mortality and morbity rate.
-					    	
-					    </p></div>
-					    <div class="col-sm-4" data-aos="zoom-in"><img src="<?php echo base_url(); ?>/Public/website_extensions2/img/v-tar.png"><br><h3 class="test">VALUES</h3><p class="tits test"> Dedicated to providing high quality services. Continually striving for the best.				    	
-					    </p></div>
-					  </div>
+<div class="container-fluid">
+            <div class="row text-center">
+              <div class="text-center test">
+                <h2 class="OCB" data-aos="flip-up">Our Core Beliefs</h2>
+                <h4 data-aos="flip-up">Values that we adhere to.</h4>
+            </div><br><br>
+              <div class="col-sm-4" data-aos="zoom-in"><img src="<?php echo base_url(); ?>/Public/website_extensions2/img/v-bin.png"><br><h3 class="test">VISION</h3><p class="tits test"> By the year 2020, the <i>Jewels First Maeternity Lying-in & Medical Clinic</i> will be a premier health provider of all patient, women's children & pregnant mothers.
+                
+              </p></div>
+              <div class="col-sm-4" data-aos="zoom-in"><img src="<?php echo base_url(); ?>/Public/website_extensions2/img/v-roc.png"><br><h3 class="test">MISSION</h3><p class="tits test"> To provide quality health care and lessen the number of meternal/fetal mortality and morbity rate.
+                
+              </p></div>
+              <div class="col-sm-4" data-aos="zoom-in"><img src="<?php echo base_url(); ?>/Public/website_extensions2/img/v-tar.png"><br><h3 class="test">VALUES</h3><p class="tits test"> Dedicated to providing high quality services. Continually striving for the best.             
+              </p></div>
+            </div>
 </div>
 
 <!-- Container (Services Section) -->
-<div id="services" class="container-fluid text-center">
+<div id="services" class="container-fluid text-center  bg-grey">
   <h2 class="OCB">SERVICES</h2>
   <h4>What we offer</h4>
   <br>
@@ -133,7 +136,7 @@
 
 
 <!-- Container (Schedule Section) -->
-<div id="schedule" class="container-fluid text-center bg-grey">
+<div id="schedule" class="container-fluid text-center ">
     <div class="row text-center">
         <div class="col-md-6" data-aos="zoom-in-up"><img src="<?php echo base_url(); ?>/Public/website_extensions2/img/a-cal.png"></div>
         <div class="col-md-6 slide-tr" data-aos="zoom-in-up"><p class="letit">Schedule an Appointment for Free!</p><br>
@@ -145,7 +148,7 @@
 
 
 <!-- Container (Contact Section) -->
-<div id="contact" class="container-fluid">
+<div id="contact" class="container-fluid bg-grey">
   <h2 class="text-center">CONTACT US</h2>
   <div class="row">
     <div class="col-sm-5">
@@ -192,12 +195,12 @@
   <a href="#myPage" title="To Top">
     <span class="glyphicon glyphicon-chevron-up"></span>
   </a>
-			  <div class="row">
-				  <div class="col-md-4"><img src="<?php echo base_url(); ?>/Public/website_extensions2/img/f-pho.png"><p class="for">CALL</p><p>288-42-60</p></div>
-				  <div class="col-md-4"><img src="<?php echo base_url(); ?>/Public/website_extensions2/img/f-map.png"><p class="for">FIND US</p><p>Tauguig city</p></div>
-				  <div class="col-md-4"><img src="<?php echo base_url(); ?>/Public/website_extensions2/img/f-clo.png"><p class="for">OPENING HOURS</p><p>8:00 - 17:00</p></div>
-			  </div>
-			  <h5>all rights reserved 2017</h5>
+        <div class="row">
+          <div class="col-md-4"><img src="<?php echo base_url(); ?>/Public/website_extensions2/img/f-pho.png"><p class="for">CALL</p><p>288-42-60</p></div>
+          <div class="col-md-4"><img src="<?php echo base_url(); ?>/Public/website_extensions2/img/f-map.png"><p class="for">FIND US</p><p>Tauguig city</p></div>
+          <div class="col-md-4"><img src="<?php echo base_url(); ?>/Public/website_extensions2/img/f-clo.png"><p class="for">OPENING HOURS</p><p>8:00 - 17:00</p></div>
+        </div>
+        <h5>all rights reserved 2017</h5>
 </footer>
 
   <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
@@ -241,9 +244,9 @@
   });
 })
 
-			AOS.init({
-		  duration: 1000,
-		})
+      AOS.init({
+      duration: 1000,
+    })
 
 
 </script>

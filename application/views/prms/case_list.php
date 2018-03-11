@@ -57,9 +57,10 @@
 								</thead>
 								<tbody>
 										<?php
-										$date = date('d-m-Y');
-										$total = date('d-m-Y', strtotime('-2 week', strtotime($date)));
-										// echo $total;
+										$for_postnatal = "For Postnatal";
+		                                $complete = "Complete";
+		                                $active = "Active";
+		                                $archive = "Archived";
 										?>
 										<?php foreach ($case_details as $cd) 
 										{
@@ -68,8 +69,24 @@
 											          <td>'.$cd->case_id.'</td>
 											          <td>'.$cd->patient_ID.'</td>
 											          <td>'.$cd->last_name.', '.$cd->given_name.' '.$cd->middle_initial.'</td>
-											          <td>'.$cd->date_start.'</td>
-											          <td>'.$cd->status.'</td> 
+											          <td>'.$cd->date_start.'</td>';
+											          if($cd->status === $complete)
+											          {
+											          	echo '<td><span class="label label-success">'.$cd->status.'</span></td> ';
+											          }
+											          elseif($cd->status === $for_postnatal)
+											          {
+											          	echo '<td><span class="label label-success">'.$cd->status.'</span></td> ';
+											          }
+											          elseif($cd->status === $archive)
+											          {
+											          	echo '<td><span class="label label-danger">'.$cd->status.'</span></td> ';
+											          }
+											          elseif($cd->status === $active)
+											          {
+											          	echo '<td><span class="label label-warning">'.$cd->status.'</span></td> ';
+											          }
+											echo ' 
 											          <td>
 											            <a href="../prms/case_timeline/'.$cd->case_id.'"><button class="btn btn-info">View</button></a>
 											          </td>     

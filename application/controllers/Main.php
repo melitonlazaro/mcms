@@ -40,23 +40,33 @@ class Main extends CI_Controller {
   public function Patient_login()
   {
 
-    $username = $this->input->post('patient_username');
-    $password = md5($this->input->post('patient_password'));
+    $username = $this->input->post('username');
+    $password = md5($this->input->post('password'));
     $this->load->model('Main_model');
     $login_result = $this->Main_model->patient_login($username, $password);
-    if($login_result)
-    {
-      $session_data = array(  
-                          'patient_username' => $username  
+
+    $patient_ID = $login_result->patient_ID;
+    $data['patient_information'] = $this->Main_model->get_patient_info($patient_ID);
+    $session_data = array(  
+                          'username' => $username,
+                          'patient_ID' => $patient_ID
                      );
-      $this->session->set_userdata($session_data);
-      $this->load->view('patient_account');
-    }
-    else
-    {
-      $this->session->set_flashdata('login_failed', 'Please insert correct username and password.');
-      $this->load->view('Form');
-    }
+    $this->session->set_userdata($session_data);
+    $this->load->view('patient_account', $data);
+    // if($login_result)
+    // {
+    //   $session_data = array(  
+    //                       'patient_username' => $username,
+    //                       'patient_ID' => $login_result
+    //                  );
+    //   $this->session->set_userdata($session_data);
+    //   $this->load->view('patient_account');
+    // }
+    // else
+    // {
+    //   $this->session->set_flashdata('login_failed', 'Please insert correct username and password.');
+    //   $this->load->view('Form');
+    // }
   }
 
   public function feedback()
@@ -119,7 +129,7 @@ class Main extends CI_Controller {
 
     public function book_appointment()
     {
-      $this->load->view('form');
+      $this->load->view('book_appointment');
     }
 
     public function online_appointment()

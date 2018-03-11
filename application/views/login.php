@@ -35,39 +35,10 @@
 		            <input type="text" name="username" class="form-control" placeholder="User ID" autofocus required>
 		            <br>
 		            <input type="password" name="password" class="form-control" placeholder="Password" required>
-		            <label class="checkbox">
-		                <span class="pull-right">
-		                    <a data-toggle="modal" href="login.html#myModal"> Forgot Password?</a>
-		
-		                </span><br>
-		            </label>
+		            <br>
 		            <button class="btn btn-blue btn-block" href="index.html" type="submit"><i class="fa fa-sign-in" aria-hidden="true"></i>   Log in</button>
 		            <hr>           
-
 		        </div>
-		
-		          <!-- OPTIONAL DI KO SURE KUNG LALAGYAN PA NATIN -->
-		          <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
-		              <div class="modal-dialog">
-		                  <div class="modal-content">
-		                      <div class="modal-header">
-		                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		                          <h4 class="modal-title">Forgot Password ?</h4>
-		                      </div>
-		                      <div class="modal-body">
-		                          <p>PAANO?</p>
-		                          <input type="text" name="email" placeholder="*shrug*" autocomplete="off" class="form-control placeholder-no-fix">
-		
-		                      </div>
-		                      <div class="modal-footer">
-		                          <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
-		                          <button class="btn btn-blue" type="button">Submit</button>
-		                      </div>
-		                  </div>
-		              </div>
-		          </div>
-		          <!-- modal -->
-		
 		    </form>	  	
 	  	</div>
 	  </div>

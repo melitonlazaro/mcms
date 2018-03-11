@@ -41,14 +41,6 @@
                         <a href="<?php echo base_url();?>Main/dashboard"><i class="fa fa-television" aria-hidden="true"></i>  Dashboard </a>
                     </li>
                     <li>
-                        <a href="#Create" data-toggle="collapse" aria-expanded="false"><i class="fa fa-plus-square"></i> &nbsp; Profiling</a>
-                        <ul class="link-gray collapse list-unstyled" id="Create">
-                            <li><a href="<?php echo base_url();?>Prms/Profiling">New</a></li>
-                            <li><a href="<?php echo base_url();?>Prms/Patient_list">Existing</a></li>
-                        </ul>
-                    </li>
-
-                    <li>
                         <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"><i class="fa fa-bar-chart"></i>   Records</a>
                         <ul class="link-gray collapse list-unstyled" id="homeSubmenu">
                             <li><a href="<?php echo base_url();?>Prms/case_list">Maternity Case</a></li>
@@ -58,9 +50,6 @@
                     </li>
                     <li>
                         <a href="<?php echo base_url(); ?>Prms/emergency_childbirth"><i class="fa fa-heartbeat"></i> Emergency Childbirth</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Report</a>
                     </li>
                     <li>
                         <a href="<?php echo base_url();?>/Prms/activity_log"><i class="fa fa-list-alt" aria-hidden="true"></i> Activity Log</a>

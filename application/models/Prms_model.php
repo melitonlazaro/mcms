@@ -231,6 +231,16 @@ class Prms_model extends CI_Model {
   return $query->result();
  }
 
+ public function get_prenatal_case_timeline1($case_id)
+ {
+  $this->db->select('*');
+  $this->db->from('physicalexamination');
+  $this->db->where('case_id', $case_id);
+ // $this->db->order_by('Num DESC');
+  $query = $this->db->get()->last_row();
+  return $query;
+ }
+
  public function get_case_details($case_id)
  {
   $this->db->select('*');
@@ -241,6 +251,15 @@ class Prms_model extends CI_Model {
   return $query->result();
  }
 
+ public function get_case_main_info($case_id)
+ {
+  $this->db->select('*');
+  $this->db->from('case');
+  $this->db->where('case_id', $case_id);
+  $query = $this->db->get();
+  return $query->row();
+ }
+
  public function get_expected_date_of_confinement($case_id)
  {
   $this->db->select('oh_expected_date_of_confinement');
@@ -248,6 +267,15 @@ class Prms_model extends CI_Model {
   $this->db->where('case_id', $case_id);
   $query = $this->db->get();
   return $query->row()->oh_expected_date_of_confinement;
+ }
+
+ public function get_postnatal_results($case_id)
+ {
+  $this->db->select('*');
+  $this->db->from('postnatal');
+  $this->db->where('case_id', $case_id);
+  $query = $this->db->get();
+  return $query->row();
  }
 
  public function get_medical_history_case_timeline($case_id)
@@ -469,8 +497,9 @@ public function dt_re()
   return $result;
  }
 
- public function add_particulars()
+ public function add_particulars($soa_id)
  {
+
   $particulars = $this->input->post('particular');
   $quantity = $this->input->post('quantity');
   $price = $this->input->post('price');
@@ -480,6 +509,7 @@ public function dt_re()
   {
     $data[] = array(
     'particular_id' => NULL,
+    'soa_id' => $soa_id,
     'particular' => $particulars[$i],
     'quantity' => $quantity[$i],
     'price' => $price[$i]
@@ -488,6 +518,15 @@ public function dt_re()
 
   $result = $this->db->insert_batch('soa_particulars', $data);
   return $result;
+ }
+
+ public function check_soa($case_id)
+ {
+  $this->db->select('soa_id');
+  $this->db->where('case_id');
+  $this->db->from('statement_of_account');
+  $query = $this->db->get();
+  return $query->row();
  }
 
  public function activity_log($data)
@@ -499,6 +538,7 @@ public function dt_re()
  {
   $this->db->select('*');
   $this->db->from('activity_log');
+  $this->db->order_by('activity_log_id', 'DESC');
   $query = $this->db->get();
   return $query->result();
  }
@@ -515,6 +555,102 @@ public function dt_re()
     $this->db->set('status', $new_status);
     $this->db->where('case_id', $case_id);
     $this->db->update('case');
+ }
+
+   public function report_consult_f($consultation_id)
+ {
+    $this->db->select('*');
+    $this->db->from('consultation');
+    $this->db->where('consultation_id', $consultation_id);
+    $this->db->join('infant_info','infant_info.infant_id = consultation.infant_id');
+    $query = $this->db->get();
+    // echo $this->db->last_query();
+    // exit;
+    // echo '<pre>';
+    // print_r($query);
+    // echo '</pre>';
+    return $query->result();
+ }
+
+ public function report_soa1()
+ {
+    $this->db->select('*');
+    $this->db->from('soa_particulars');
+    $query = $this->db->get();
+    return $query->result();
+ }
+
+ 
+ public function report_soa($case_id)
+ {
+    $this->db->select('*');
+    $this->db->from('statement_of_account');
+    $this->db->where('case_id', $case_id);
+    $this->db->join('patient_info','patient_info.patient_ID = statement_of_account.patient_id');
+    $query = $this->db->get();
+    // echo $this->db->last_query();
+    // exit;
+    // echo '<pre>';
+    // print_r($query);
+    // echo '</pre>';
+    return $query->result();
+ }
+
+  public function report_infant_f()
+ {
+    $this->db->select('*');
+    $this->db->from('infant_info');
+    $query = $this->db->get();
+    return $query->result();
+ }
+
+ public function testing_two_mdl()
+ {
+    $case_id = 1;
+    $this->db->select('height, date');
+    $this->db->from('physicalexamination');
+    $this->db->where('case_id', $case_id);
+    $query = $this->db->get();
+    return $query->result();
+ }
+
+ public function get_soa_pre($case_id)
+ {
+  $this->db->select('*');
+  $this->db->from('statement_of_account');
+  $this->db->where('case_id', $case_id);
+  $query = $this->db->get();
+  return $query->result();
+ }
+
+ public function get_status_f($case_id)
+ {
+    $this->db->select('*');
+    $this->db->from('case');
+    $this->db->where('case_id', $case_id);
+    $this->db->join('patient_info', 'patient_info.patient_ID = case.patient_ID');
+    $query = $this->db->get(); 
+    return $query->result();
+ }
+
+public function get_mh_f($case_id)
+ {
+    $this->db->select('*');
+    $this->db->from('medicalhistory');
+    $this->db->where('case_id', $case_id);
+    $this->db->join('patient_info', 'patient_info.patient_ID = medicalhistory.Patient_ID');
+    $query = $this->db->get(); 
+    return $query->result();
+ } 
+
+ public function get_pn_f($postnatal_id)
+ {
+    $this->db->select('*');
+    $this->db->from('postnatal');
+    $this->db->where('postnatal_id', $postnatal_id);
+    $this->db->join('patient_info', 'patient_info.patient_ID = postnatal.Patient_ID');
+    $query = $this->db->get(); 
+    return $query->result();
  }
 
  public function get_pe_f($Num)
@@ -535,14 +671,57 @@ public function dt_re()
      // echo '</pre>';
  }
 
- public function testing_two_mdl()
+  public function get_pe_f1($case_id)
  {
-    $case_id = 1;
-    $this->db->select('height, date');
+    $this->db->select('date, height, weight');
     $this->db->from('physicalexamination');
     $this->db->where('case_id', $case_id);
     $query = $this->db->get();
     return $query->result();
  }
+
+ public function get_pe_date($case_id)
+ {
+  $this->db->select('date');
+  $this->db->from('physicalexamination');
+  $this->db->where('case_id', $case_id);
+  $query = $this->db->get();
+  return $query->result();
+ }
+
+ public function get_pe_height($case_id)
+ {
+  $this->db->select('height');
+  $this->db->from('physicalexamination');
+  $this->db->where('case_id', $case_id);
+  $query = $this->db->get();
+  return $query->result();
+ }
+
+ public function get_pe_weight($case_id)
+ {
+  $this->db->select('weight');
+  $this->db->from('physicalexamination');
+  $this->db->where('case_id', $case_id);
+  $query = $this->db->get();
+  return $query->result();
+ }
+ public function get_infant_f($case_id)
+ {
+    $this->db->select('*');
+    $this->db->from('infant_info');
+    $this->db->where('case_id', $case_id);
+    $this->db->join('patient_info', 'patient_info.patient_ID = infant_info.Patient_ID');
+    $query = $this->db->get(); 
+    return $query->result();
+ }
+
+ public function add_soa($data)
+ {
+  $this->db->insert('statement_of_account', $data);
+  $last_id = $this->db->insert_id();
+  return $last_id;
+ }
+
 }
 ?>

@@ -59,7 +59,7 @@ class Prms extends CI_Controller {
 
   public function process_profiling()
   {
-    $this->load->model('Prms_model');
+      $this->load->model('Prms_model');
       $config['upload_path'] = './uploads/';
       $config['allowed_types']        = 'jpg|png';
       $config['max_size']             = 1000;
@@ -261,6 +261,76 @@ class Prms extends CI_Controller {
         }
   }
 
+  public function view_prenatal_form($case_id, $patient_ID)
+  {
+    // echo $case_id;
+    // echo $patient_ID;
+    $data['patient_ID'] = $patient_ID;
+    $data['case_id']  = $case_id;
+    $this->load->view('prms/prenatal_physical_examination', $data);
+  }
+
+
+  public function prenatal_physical_examination()
+  {
+    $this->load->model('Prms_model');
+    $data = array(
+      'Num' => NULL,
+      'Patient_ID' => $this->input->post('patient_id'),
+      'case_id' => $this->input->post('case_id'),
+      'date' => date('Y-m-d'), 
+      'height' => $this->input->post('height'),
+      'weight' => $this->input->post('weight'),
+      'systolic' => $this->input->post('systolic'),
+      'diastolic' => $this->input->post('diastolic'),
+      'blood_type' => $this->input->post('blood_type'),
+      'conjunctiva_pale' => $this->input->post('pale'),
+      'conjunctiva_yellowish' => $this->input->post('yellowish'),
+      'neck_enlarged_thyroid' => $this->input->post('enlargedthyroid'),
+      'neck_enlarged_lymph_nodes  ' => $this->input->post('enlargedlympnodes'),
+      'breast_mass  ' => $this->input->post('mass'),
+      'breast_nipple_discharge  ' => $this->input->post('nippledischarged'),
+      'breast_dimpling  ' => $this->input->post('skinorangepeel'),
+      'breast_enlarged_axillary_lymph_nodes ' => $this->input->post('enlargedaxilarylympnodes'),
+      'thorax_abnormal_cardiac_rate' => $this->input->post('abnormalheartsound'),
+      'thorax_abnormal_respiratory_rate' => $this->input->post('abnormalbreathsounds'),
+      'abdomen_pe_fundic_height' => $this->input->post('abdomenheight'),
+      'abdomen_pe_fetal_heart_tone' => $this->input->post('fetalhearttone'),
+      'abdomen_pe_fetal_movement' => $this->input->post('fetalmovement'),
+      'lm_presenting_part' => $this->input->post('presentingpart'),
+      'lm_position_of_fetal_back' => $this->input->post('positionfetalback'),
+      'lm_fetal_parts' => $this->input->post('fetalparts'),
+      'lm_presenting_part_status' => $this->input->post('statuspresenntingpart'),
+      'lm_uterine_activity' => $this->input->post('urineactivity'),
+      'perineum_scars' => $this->input->post('scars'),
+      'perineum_warts_or_mass' => $this->input->post('wartsmass'),
+      'perineum_laceration' => $this->input->post('laceration'),
+      'perineum_severe_varicosities' => $this->input->post('severevaricosities'),
+      'vagina_bartholins_cyst' => $this->input->post('bartholinscyst'),
+      'vagina_warts_gland_discharge' => $this->input->post('wartsskenesgland'),
+      'vagina_cystocele_or_rectocoele' => $this->input->post('crystocoele'),
+      'vagina_purulant_discharge' => $this->input->post('purulentdischarged'),
+      'vagina_erosion_or_foreign_body' => $this->input->post('eroslon'),
+      'cervix_consistency' => $this->input->post('consistency'),
+      'cervix_dilatation' => $this->input->post('dilation'),
+      'cervix_palpable_presenting_part' => $this->input->post('palpablepresentingpart'),
+      'cervix_status_BagOfWater' => $this->input->post('statusofbagofwater'),
+      'impression' => $this->input->post('impression'),
+      'plans' => $this->input->post('plans'),
+
+      );
+        $physical_examination_result = $this->Prms_model->physical_examination($data); 
+        if($physical_examination_result)
+        {
+          $case_id = $this->input->post('case_id');
+          $this->case_list();
+        }
+        else
+        {
+          $error = $this->db->error();
+        }
+  }
+
   public function case_list()
   {
     $this->load->model('Prms_model');
@@ -284,13 +354,6 @@ class Prms extends CI_Controller {
     $this->load->view('prms/patient_profile', $data);
   }
 
-  public function prenatal($patient_id, $case_id)
-  {
-    $data['patient_ID'] = $patient_id;
-    $data['last_case_id']  = $case_id;
-    $this->load->view('prms/physical_examination', $data);
-  }
-
   public function drop_case($case_id)
   {
     $this->load->model('Prms_model');
@@ -306,9 +369,14 @@ class Prms extends CI_Controller {
   {
     $this->load->model('Prms_model');
     $data['prenatal'] = $this->Prms_model->get_prenatal_case_timeline($case_id);
+    $data['prenatal1'] = $this->Prms_model->get_prenatal_case_timeline1($case_id);
+    $data['soapre'] = $this->Prms_model->get_soa_pre($case_id);
     $data['medicalhistory'] = $this->Prms_model->get_medical_history_case_timeline($case_id);
     $data['case_details'] = $this->Prms_model->get_case_details($case_id);
+    $data['postnatal'] = $this->Prms_model->get_postnatal_results($case_id);
+    $data['case_main_info'] = $this->Prms_model->get_case_main_info($case_id);
     $data['expected_date_of_confinement'] = $this->Prms_model->get_expected_date_of_confinement($case_id);
+    $data['soa_id'] = $this->Prms_model->check_soa($case_id);
     $data['case_id'] = $case_id;
     $this->load->view('prms/case_timeline', $data);
   }
@@ -639,9 +707,72 @@ class Prms extends CI_Controller {
               $this->load->view('prms/emergency_childbirth_recording', $data1);
   }
 
+  public function print_infant_report($consultation_id){
+      $this->load->model('Prms_model');
+      $data['get_co'] = $this->Prms_model->report_consult_f($consultation_id);
+      $data['get_in'] = $this->Prms_model->report_infant_f();
+      $this->load->view('report/reportin', $data);
+      // echo "<pre>";
+      // print_r($data['get_co']);
+      // echo "</pre>";
+   }
+
+    public function print_soa($case_id){
+      $this->load->model('Prms_model');
+      $soa_id = 1;
+      $data['get_soa'] = $this->Prms_model->report_soa($case_id);
+      $data['get_soa1'] = $this->Prms_model->report_soa1($soa_id);
+      // $this->load->view('report/reportsoa', $data);    
+     echo '<pre>';
+     print_r($data);
+     echo '</pre>';
+    }
+
+   public function print_sum_report(){
+    $this->load->model('Prms_model');
+    $case_id = $this->input->post('case_id');
+    $patient_ID = $this->input->post('patient_ID');
+    $Num = $this->input->post('Num');
+    $data['n_status'] = $this->Prms_model->get_status_f($case_id);
+    $data['n_mh'] = $this->Prms_model->get_mh_f($case_id);
+    $data['n_pe'] = $this->Prms_model->get_pe_f($Num);
+    $data['n_pe1'] = $this->Prms_model->get_pe_f1($case_id);
+    $data['n_pn'] = $this->Prms_model->get_pn_f($case_id);
+    $data['n_infant'] = $this->Prms_model->get_infant_f($case_id); 
+    $data['pe_date'] = $this->Prms_model->get_pe_date($case_id);
+    $data['pe_height'] = $this->Prms_model->get_pe_height($case_id);
+    $data['pe_weight'] = $this->Prms_model->get_pe_weight($case_id);
+
+    $this->load->view('report/reportsum', $data);
+     // echo '<pre>';
+     // print_r($data['pe_weight']);
+     // echo '</pre>';
+  } 
+
+  public function create_soa()
+  {
+    $this->load->model('Prms_model');
+    $case_id = $this->input->post('case_ID');
+    $patient_ID = $this->input->post('patient_ID');
+    $date_today = date('Y-m-d');
+    $data = array(
+      'soa_id' => NULL,
+      'case_id' => $case_id,
+      'patient_id' => $patient_ID,
+      'date_issued' => $date_today
+                );
+    $last_id = $this->Prms_model->add_soa($data);
+
+      $soa_id = $last_id;
+      $this->Prms_model->add_particulars($soa_id);
+      $this->case_list($case_id);
+  }
+
+
+  
   public function testing()
   {
-    $this->load->view('prms/existing');
+
   }
 
   public function testing_one()

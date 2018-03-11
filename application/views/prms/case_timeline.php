@@ -42,406 +42,410 @@
 </head>
 <body style="margin-left: 5px; margin-right: 5px;">
     <?php require 'sidenav.php';  ?>
-    <br><br><br>
+    <br><br><br><br><br><br>
     <div class="container-fluid">
-        <h1 class="page-header">Maternity Case Profile</h1>
-           <div class="pull-right">
-                <ol class="breadcrumb">
-                  <li >
-                    <i class="fa fa-dashboard"></i> Dashboard
-                  </li>
-                  <li>
-                    <i class="fa fa-plus-square">Maternity Case List</i>
-                  </li>
-                  <li class="active">
-                    <i class="fa fa-list">Maternity Case Profile</i>
-                  </li>
-                </ol>
-            </div>
-            <br><br>
-            <div class="row">
-                <div class="col-md-6">
-                    <br>
-                    <div class="panel panel-info">
-                        <?php foreach ($case_details as $cs): ?>
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-md-10">
-                                    <strong>Maternity Case Details</strong>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="pull-right">
-                                        <strong>
-                                            <?php  echo $cs->case_id;?>
-                                        </strong>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h2><strong>Maternity Case Profile </strong></h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <br>
+                        <div class="panel panel-info">
+                            <?php foreach ($case_details as $cs): ?>
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <strong>Maternity Case Details</strong>
                                     </div>
-                                </div>
-                            </div>  
+                                    <div class="col-md-2">
+                                        <div class="pull-right">
+                                            <strong>
+                                                <?php  echo $cs->case_id;?>
+                                            </strong>
+                                        </div>
+                                    </div>
+                                </div>  
+                            </div>
+                            <div class="panel-body">
+                                <table class="table table-striped table-condensed">
+                                    <tr>
+                                        <td>Maternity Case Number</td>
+                                        <td><?php echo $cs->case_id;?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Status</td>
+                                        <td><?php echo $cs->status; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Date Started</td>
+                                        <td><?php echo $cs->date_start; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Patient Name</td>
+                                        <td><?php echo $cs->last_name; ?>, <?php echo $cs->given_name; ?> <?php echo $cs->middle_initial; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Contact Number</td>
+                                        <td><?php echo $cs->contact_num; ?> </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Occupation</td>
+                                        <td><?php echo $cs->occupation; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Address</td>
+                                        <td><?php echo $cs->street_no; ?> <?php echo $cs->brgy; ?> <?php echo $cs->city;?></td>
+                                    </tr>
+                                </table>
+                            </div>
                         </div>
-                        <div class="panel-body">
-                            <table class="table table-striped table-condensed">
-                                <tr>
-                                    <td>Maternity Case Number</td>
-                                    <td><?php echo $cs->case_id;?></td>
-                                </tr>
-                                <tr>
-                                    <td>Status</td>
-                                    <td><?php echo $cs->status; ?></td>
-                                </tr>
-                                <tr>
-                                    <td>Date Started</td>
-                                    <td><?php echo $cs->date_start; ?></td>
-                                </tr>
-                                <tr>
-                                    <td>Patient Name</td>
-                                    <td><?php echo $cs->last_name; ?>, <?php echo $cs->given_name; ?> <?php echo $cs->middle_initial; ?></td>
-                                </tr>
-                                <tr>
-                                    <td>Contact Number</td>
-                                    <td><?php echo $cs->contact_num; ?> </td>
-                                </tr>
-                                <tr>
-                                    <td>Occupation</td>
-                                    <td><?php echo $cs->occupation; ?></td>
-                                </tr>
-                                <tr>
-                                    <td>Address</td>
-                                    <td><?php echo $cs->street_no; ?> <?php echo $cs->brgy; ?> <?php echo $cs->city;?></td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <?php 
-                            $for_postnatal = "For Postnatal";
-                            $complete = "Complete";
-                            $active = "Active";
-                            $archive = "Archived";
-                            if($cs->status === $for_postnatal){ ?>
-                                <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#archive_modal"><i class="fa fa-archive"></i> Archive</button>
-                                                            <!-- Modal for Archive Message -->
-                                                <div id="archive_modal" class="modal fade" role="dialog">
-                                                  <div class="modal-dialog">
-                                                    <div class="modal-content panel-danger">
-                                                      <div class="modal-header panel-heading">
-                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                        <h4 class="modal-title"><strong><i class="fa fa-warning"></i> </strong>Archive maternity case</h4>
-                                                      </div>
-                                                      <div class="modal-body">
-                                                        <?php echo form_open('Prms/archive_maternity_case') ?>
-                                                            <input type="hidden" name="case_id" value="<?php echo $cs->case_id; ?>">
-                                                            <label>Remark</label>
-                                                            <input type="text" name="archive_remarks" class="form-control">
-                                                            <br>
-                                                            <strong>Are you sure you want to archive this maternity case?</strong><br>
-                                                            <strong>Archiving this maternity case will disable additional checkup procedures. Records will be available ONLY for viewing. </strong>
-                                                      </div>
-                                                      <div class="modal-footer">
-                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                        <button type="submit" class="btn btn-danger">Archive</button>
-                                                        </form>
+                        <div class="row">
+                            <?php 
+                                $for_postnatal = "For Postnatal";
+                                $complete = "Complete";
+                                $active = "Active";
+                                $archive = "Archived";
+                                if($cs->status === $for_postnatal){ ?>
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <button type="button" class="btn btn-warning btn-block btn-lg" data-toggle="modal" data-target="#archive_modal"><i class="fa fa-archive"></i> Archive</button>
+                                                                <!-- Modal for Archive Message -->
+                                                    <div id="archive_modal" class="modal fade" role="dialog">
+                                                      <div class="modal-dialog">
+                                                        <div class="modal-content panel-danger">
+                                                          <div class="modal-header panel-heading">
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <h4 class="modal-title"><strong><i class="fa fa-warning"></i> </strong>Archive maternity case</h4>
+                                                          </div>
+                                                          <div class="modal-body">
+                                                            <?php echo form_open('Prms/archive_maternity_case') ?>
+                                                                <input type="hidden" name="case_id" value="<?php echo $cs->case_id; ?>">
+                                                                <label>Remark</label>
+                                                                <input type="text" name="archive_remarks" class="form-control">
+                                                                <br>
+                                                                <strong>Are you sure you want to archive this maternity case?</strong><br>
+                                                                <strong>Archiving this maternity case will disable additional checkup procedures. Records will be available ONLY for viewing. </strong>
+                                                          </div>
+                                                          <div class="modal-footer">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-danger">Archive</button>
+                                                            </form>
+                                                          </div>
+                                                        </div>
                                                       </div>
                                                     </div>
-                                                  </div>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <button class="btn btn-block btn-lg btn-info" data-toggle="modal" data-target="#postnatal_modal">Postnatal</button>
+                                            </div>
+                                        </div>    
+                                    </div>
+                                    <!-- Modal for Postnatal -->
+                                        <div class="modal fade" role="dialog" id="postnatal_modal">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <strong>Postnatal Checkup</strong>
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <?php echo form_open('Prms/postnatal_checkup') ?>
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <label>Maternity Case Number</label>
+                                                                <input type="text" class="form-control" name="case_id" value="<?php echo $cs->case_id;?>" readonly>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <label>Patient ID</label>
+                                                                <input type="text" class="form-control" name="patient_id" value="<?php echo $cs->patient_ID;?>" readonly>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <label>Date</label>
+                                                                <?php $date_today = date('Y-m-d'); ?>
+                                                                <input type="text" class="form-control" name="date_today" value="<?php echo $date_today;?>" readonly>
+                                                            </div>
+                                                        </div><br>
+                                                        <div class="row">
+                                                            <div class="col-md-3">
+                                                                <label>Weight</label>
+                                                                <div class="input-group">
+                                                                    <input type="number" min="0" class="form-control" name="patient_weight">
+                                                                  <div class="input-group-addon">Kg</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <label>Height</label>
+                                                                <div class="input-group">
+                                                                    <input type="number" min="0" class="form-control" name="patient_height">
+                                                                  <div class="input-group-addon">cm</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <label>Pulse Rate</label>
+                                                                <div class="input-group">
+                                                                    <input type="number" min="0" class="form-control" name="pulse_rate">
+                                                                  <div class="input-group-addon">BPM</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <label>Blood Pressure</label>
+                                                                <div class="input-group">
+                                                                    <input type="number" min="0" class="form-control" name="systolic" placeholder="systolic">
+                                                                  <div class="input-group-addon">mmHg</div>
+                                                                </div>
+                                                                <div class="input-group">
+                                                                    <input type="number" min="0" class="form-control" name="diastolic" placeholder="diastolic">
+                                                                  <div class="input-group-addon">mmHg</div>
+                                                                </div>
+                                                            </div>  
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <label>Impression</label>
+                                                                <textarea rows="4" cols="10" name="impression" class="form-control"></textarea>
+                                                            </div>
+                                                        </div><br>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <label>Plans</label>
+                                                                <textarea rows="4" cols="50" name="plans" class="form-control"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <div class="pull-right">
+                                                            <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+                                                            <button type="submit" class="btn btn-success">Submit</button>    
+                                                        </div>
+                                                    </div>
+                                                    </form>
                                                 </div>
+                                            </div>
                                         </div>
-                                        <div class="col-md-9">
-                                            <button class="btn btn-block btn-lg btn-info" data-toggle="modal" data-target="#postnatal_modal">Postnatal</button>
+                                <?php }
+                                elseif($cs->status === $complete)
+                                {?>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <center>
+                                                <h2 class="text-success bg-success">Maternity Case Completed</h2>
+                                                                <?php 
+                        if(isset($prenatal1))
+                        {
+                                echo 
+                                    '
+                    <form method="POST" action="../../Prms/print_sum_report/'.$prenatal1->Num.'">
+                        <input type="hidden" name="case_id" value="'.$prenatal1->case_id.'">
+                        <input type="hidden" name="patient_ID" value="'.$prenatal1->patient_ID.'">
+                        <input type="hidden" name="Num" value="'.$prenatal1->Num.'">
+                        <button class="btn btn-success">Print Summary Report</button></a>
+                    </form>';
+                        }
+                ?>
+                                            </center>
                                         </div>
-                                    </div>    
+                                    </div>
+                                <?php } 
+                                elseif($cs->status === $active)
+                                {?>
+                                <div class="col-md-4">
+                                    <button type="button" class="btn btn-warning btn-block btn-lg" data-toggle="modal" data-target="#myModal"><i class="fa fa-archive"></i> Archive</button>
+                                                                <!-- Modal for Archive Message -->
+                                                    <div id="myModal" class="modal fade" role="dialog">
+                                                      <div class="modal-dialog">
+                                                        <div class="modal-content panel-danger">
+                                                          <div class="modal-header panel-heading">
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <h4 class="modal-title"><strong><i class="fa fa-warning"></i> </strong>Archive maternity case</h4>
+                                                          </div>
+                                                          <div class="modal-body">
+                                                            <?php echo form_open('Prms/archive_maternity_case') ?>
+                                                                <input type="hidden" name="case_id" value="<?php echo $cs->case_id; ?>">
+                                                                <label>Remark</label>
+                                                                <input type="text" name="archive_remarks" class="form-control">
+                                                                <br>
+                                                                <strong>Are you sure you want to archive this maternity case?</strong><br>
+                                                                <strong>Archiving this maternity case will disable additional checkup procedures. Records will be available ONLY for viewing. </strong>
+                                                          </div>
+                                                          <div class="modal-footer">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-danger">Archive</button>
+                                                            </form>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                    </div>
                                 </div>
-                                <!-- Modal for Postnatal -->
-                                    <div class="modal fade" role="dialog" id="postnatal_modal">
+                                <div class="col-md-4">
+                                    <a href="<?php echo base_url();?>Prms/view_prenatal_form/<?php echo $cs->case_id;?>/<?php echo $cs->patient_ID; ?>"><button class="btn btn-info btn-block btn-lg">Prenatal</button></a>
+                                </div>
+                                <div class="col-md-4">
+                                    <?php 
+                                    $date = date('Y-m-d');
+                                    $total = date('Y-m-d', strtotime('+2 week', strtotime($date)));
+                                    if($expected_date_of_confinement === $date)
+                                    {
+                                        echo '<button class="btn btn-warning btn-block btn-lg" data-toggle="modal" data-target="#childbirth_modal">Childbirth</button>';
+                                    }
+                                    elseif($expected_date_of_confinement < $date)
+                                    {
+                                        echo '<button class="btn btn-danger btn-block btn-lg" data-toggle="modal" data-target="#childbirth_modal">Childbirth</button>';
+                                    }
+                                    elseif($expected_date_of_confinement > $date)
+                                    {
+                                        echo '<button class="btn btn-success btn-block btn-lg" disabled>Childbirth</button>';
+                                    }
+                                    ?>
+                                    <div id="childbirth_modal" class="modal fade" role="dialog">
                                         <div class="modal-dialog modal-lg">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <strong>Postnatal Checkup</strong>
+                                                    <strong>Childbirth</strong>
                                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                 </div>
+                                                <?php echo form_open('Prms/childbirth') ?>
                                                 <div class="modal-body">
-                                                    <?php echo form_open('Prms/postnatal_checkup') ?>
+                                                    <strong>Infant Information</strong>
+                                                    <br><br>
                                                     <div class="row">
+                                                        <input type="hidden" name="patient_ID" value="<?php echo $cs->patient_ID; ?>">
+                                                        <input type="hidden" name="case_id" value="<?php echo $cs->case_id; ?>">
                                                         <div class="col-md-4">
-                                                            <label>Maternity Case Number</label>
-                                                            <input type="text" class="form-control" name="case_id" value="<?php echo $cs->case_id;?>" readonly>
+                                                            <label>First Name</label>
+                                                            <input type="text" name="infant_first_name" class="form-control" placeholder="First Name">
                                                         </div>
                                                         <div class="col-md-4">
-                                                            <label>Patient ID</label>
-                                                            <input type="text" class="form-control" name="patient_id" value="<?php echo $cs->patient_ID;?>" readonly>
+                                                            <label>Surname</label>
+                                                            <input type="text" name="infant_last_name" class="form-control"placeholder="Surname">
                                                         </div>
                                                         <div class="col-md-4">
-                                                            <label>Date</label>
-                                                            <?php $date_today = date('Y-m-d'); ?>
-                                                            <input type="text" class="form-control" name="date_today" value="<?php echo $date_today;?>" readonly>
+                                                            <label>M.I</label>
+                                                            <input type="text" name="infant_middle_initial" class="form-control" placeholder="Middle Initial">
                                                         </div>
                                                     </div><br>
                                                     <div class="row">
-                                                        <div class="col-md-3">
+                                                        <div class="col-md-4">
+                                                            <?php $current_date = date('Y-m-d'); ?>
+                                                            <label>Date of Birth</label>
+                                                            <input type="date" name="infant_date_of_birth" class="form-control" placeholder="Date of Birth" value="<?php echo $current_date; ?>">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label>Time of Birth</label>
+                                                            <input type="time" name="time_of_birth" class="form-control" placeholder="Time of Birth">
+                                                        </div>
+                                                        <div class="col-md-4">
                                                             <label>Weight</label>
                                                             <div class="input-group">
-                                                                <input type="number" min="0" class="form-control" name="patient_weight">
-                                                              <div class="input-group-addon">Kg</div>
+                                                                <input type="text" name="weight" class="form-control" placeholder="Weight">
+                                                                <span class="input-group-addon">Kg</span>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <label>Height</label>
-                                                            <div class="input-group">
-                                                                <input type="number" min="0" class="form-control" name="patient_height">
-                                                              <div class="input-group-addon">cm</div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <label>Pulse Rate</label>
-                                                            <div class="input-group">
-                                                                <input type="number" min="0" class="form-control" name="pulse_rate">
-                                                              <div class="input-group-addon">BPM</div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <label>Blood Pressure</label>
-                                                            <div class="input-group">
-                                                                <input type="number" min="0" class="form-control" name="systolic" placeholder="systolic">
-                                                              <div class="input-group-addon">mmHg</div>
-                                                            </div>
-                                                            <div class="input-group">
-                                                                <input type="number" min="0" class="form-control" name="diastolic" placeholder="diastolic">
-                                                              <div class="input-group-addon">mmHg</div>
-                                                            </div>
-                                                        </div>  
-                                                    </div>
+                                                        </div>     
+                                                    </div><br>
                                                     <div class="row">
-                                                        <div class="col-md-12">
-                                                            <label>Impression</label>
-                                                            <textarea rows="4" cols="10" name="impression" class="form-control"></textarea>
+                                                        <div class="col-md-4">
+                                                                <label>Length</label>
+                                                                <div class="input-group">
+                                                                    <input type="text" name="length" class="form-control" placeholder="Length">
+                                                                    <span class="input-group-addon">Cm</span>
+                                                                </div>
+                                                            </div>
+                                                        <div class="col-md-4">
+                                                            <label>Gender</label>
+                                                            <select class="form-control" name="gender">
+                                                                <option>Male</option>
+                                                                <option>Female</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label>Gravida</label>
+                                                            <input type="text" name="gravida" class="form-control" placeholder="Gravida">
+                                                        </div>
+                                                    </div><br>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <label>Para</label>
+                                                            <input type="text" name="para" class="form-control" placeholder="Para">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label>Head Circumference</label>
+                                                            <div class="input-group">
+                                                                <input type="text" name="head_circumference" class="form-control">
+                                                                <span class="input-group-addon">Cm</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label>Chest Circumference</label>
+                                                            <div class="input-group">
+                                                                <input type="text" name="chest_circumference" class="form-control">
+                                                                <span class="input-group-addon">Cm</span>
+                                                            </div>
                                                         </div>
                                                     </div><br>
                                                     <div class="row">
                                                         <div class="col-md-12">
-                                                            <label>Plans</label>
-                                                            <textarea rows="4" cols="50" name="plans" class="form-control"></textarea>
+                                                            <label>Newborn Screening: &nbsp;</label>
+                                                            <label class="radio-inline"><input type="radio" name="newborn_screening">Yes</label>
+                                                            <label class="radio-inline"><input type="radio" name="newborn_screening">No</label>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <div class="pull-right">
-                                                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
-                                                        <button type="submit" class="btn btn-success">Submit</button>    
+                                                        <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-success">Submit</button>
                                                     </div>
                                                 </div>
                                                 </form>
                                             </div>
                                         </div>
                                     </div>
-                            <?php }
-                            elseif($cs->status === $complete)
-                            {?>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <center>
-                                            <h2 class="text-success bg-success">Maternity Case Completed</h2>
-                                        </center>
-                                    </div>
-                                </div>
-                            <?php } 
-                            elseif($cs->status === $active)
-                            {?>
-                            <div class="col-md-2">
-                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal"><i class="fa fa-archive"></i> Archive</button>
-                                                            <!-- Modal for Archive Message -->
-                                                <div id="myModal" class="modal fade" role="dialog">
-                                                  <div class="modal-dialog">
-                                                    <div class="modal-content panel-danger">
-                                                      <div class="modal-header panel-heading">
-                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                        <h4 class="modal-title"><strong><i class="fa fa-warning"></i> </strong>Archive maternity case</h4>
-                                                      </div>
-                                                      <div class="modal-body">
-                                                        <?php echo form_open('Prms/archive_maternity_case') ?>
-                                                            <input type="hidden" name="case_id" value="<?php echo $cs->case_id; ?>">
-                                                            <label>Remark</label>
-                                                            <input type="text" name="archive_remarks" class="form-control">
-                                                            <br>
-                                                            <strong>Are you sure you want to archive this maternity case?</strong><br>
-                                                            <strong>Archiving this maternity case will disable additional checkup procedures. Records will be available ONLY for viewing. </strong>
-                                                      </div>
-                                                      <div class="modal-footer">
-                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                        <button type="submit" class="btn btn-danger">Archive</button>
-                                                        </form>
-                                                      </div>
-                                                    </div>
-                                                  </div>
-                                                </div>
-                            </div>
-                            <div class="col-md-5">
-                                <a href="<?php echo base_url();?>Prms/prenatal/<?php echo $cs->case_id;?>/<?php echo $cs->patient_ID; ?>"><button class="btn btn-info btn-block btn-lg">Prenatal</button></a>
-                            </div>
-                            <div class="col-md-5">
-                                <?php 
-                                $date = date('Y-m-d');
-                                $total = date('Y-m-d', strtotime('+2 week', strtotime($date)));
-                                if($expected_date_of_confinement === $date)
+                                </div> 
+                                <?php } 
+                                elseif($cs->status === $archive)
                                 {
-                                    echo '<button class="btn btn-warning btn-block btn-lg" data-toggle="modal" data-target="#childbirth_modal">Childbirth</button>';
-                                }
-                                elseif($expected_date_of_confinement < $date)
-                                {
-                                    echo '<button class="btn btn-danger btn-block btn-lg" data-toggle="modal" data-target="#childbirth_modal">Childbirth</button>';
-                                }
-                                elseif($expected_date_of_confinement > $date)
-                                {
-                                    echo '<button class="btn btn-success btn-block btn-lg" disabled>Childbirth</button>';
-                                }
-                                ?>
-                                <div id="childbirth_modal" class="modal fade" role="dialog">
-                                    <div class="modal-dialog modal-lg">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <strong>Childbirth</strong>
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            </div>
-                                            <?php echo form_open('Prms/childbirth') ?>
-                                            <div class="modal-body">
-                                                <strong>Infant Information</strong>
-                                                <br><br>
-                                                <div class="row">
-                                                    <input type="hidden" name="patient_ID" value="<?php echo $cs->patient_ID; ?>">
-                                                    <input type="hidden" name="case_id" value="<?php echo $cs->case_id; ?>">
-                                                    <div class="col-md-4">
-                                                        <label>First Name</label>
-                                                        <input type="text" name="infant_first_name" class="form-control" placeholder="First Name">
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <label>Surname</label>
-                                                        <input type="text" name="infant_last_name" class="form-control"placeholder="Surname">
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <label>M.I</label>
-                                                        <input type="text" name="infant_middle_initial" class="form-control" placeholder="Middle Initial">
-                                                    </div>
-                                                </div><br>
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        <?php $current_date = date('Y-m-d'); ?>
-                                                        <label>Date of Birth</label>
-                                                        <input type="date" name="infant_date_of_birth" class="form-control" placeholder="Date of Birth" value="<?php echo $current_date; ?>">
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <label>Time of Birth</label>
-                                                        <input type="time" name="time_of_birth" class="form-control" placeholder="Time of Birth">
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <label>Weight</label>
-                                                        <div class="input-group">
-                                                            <input type="text" name="weight" class="form-control" placeholder="Weight">
-                                                            <span class="input-group-addon">Kg</span>
-                                                        </div>
-                                                    </div>     
-                                                </div><br>
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                            <label>Length</label>
-                                                            <div class="input-group">
-                                                                <input type="text" name="length" class="form-control" placeholder="Length">
-                                                                <span class="input-group-addon">Cm</span>
-                                                            </div>
-                                                        </div>
-                                                    <div class="col-md-4">
-                                                        <label>Gender</label>
-                                                        <select class="form-control" name="gender">
-                                                            <option>Male</option>
-                                                            <option>Female</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <label>Gravida</label>
-                                                        <input type="text" name="gravida" class="form-control" placeholder="Gravida">
-                                                    </div>
-                                                </div><br>
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        <label>Para</label>
-                                                        <input type="text" name="para" class="form-control" placeholder="Para">
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <label>Head Circumference</label>
-                                                        <div class="input-group">
-                                                            <input type="text" name="head_circumference" class="form-control">
-                                                            <span class="input-group-addon">Cm</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <label>Chest Circumference</label>
-                                                        <div class="input-group">
-                                                            <input type="text" name="chest_circumference" class="form-control">
-                                                            <span class="input-group-addon">Cm</span>
-                                                        </div>
-                                                    </div>
-                                                </div><br>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <label>Newborn Screening: &nbsp;</label>
-                                                        <label class="radio-inline"><input type="radio" name="newborn_screening">Yes</label>
-                                                        <label class="radio-inline"><input type="radio" name="newborn_screening">No</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <div class="pull-right">
-                                                    <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-success">Submit</button>
-                                                </div>
-                                            </div>
-                                            </form>
+                                 ?>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <center>
+                                                <h2 class="text-danger bg-danger">Maternity Case Archived</h2>
+                                            </center>
                                         </div>
                                     </div>
-                                </div>
-                            </div> 
-                            <?php } 
-                            elseif($cs->status === $archive)
-                            {
-                             ?>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <center>
-                                            <h2 class="text-danger bg-danger">Maternity Case Archived</h2>
-                                        </center>
-                                    </div>
-                                </div>
-                            <?php  
-                            }?>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="panel panel-info">
-                        <div class="panel-heading">
-                            <h5>Growth Chart</h5>
+                                <?php  
+                                }?>
                         </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <div class="btn-group-vertical">
-                                        <button id="weight_btn" class="btn btn-info">Weight</button>
-                                        <!-- <br>
-                                        <br> -->
-                                        <button id="height_btn" class="btn btn-info">Height&nbsp;</button>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h5>Growth Chart</h5>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="btn-group-vertical">
+                                            <button id="weight_btn" class="btn btn-info">Weight</button>
+                                            <!-- <br>
+                                            <br> -->
+                                            <button id="height_btn" class="btn btn-info">Height&nbsp;</button>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-10">
-                                    <div id="weight_chart"></div>
-                                    <div id="height_chart"></div>
+                                    <div class="col-md-10">
+                                        <div id="weight_chart"></div>
+                                        <div id="height_chart"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-2">
-                    
+                    <div class="col-md-2">
+                        
+                    </div>
                 </div>
             </div>
+        </div>
+    </div>
             <!-- <div class="jumbotron" id="case_details">
                 <?php 
                     echo '
@@ -517,8 +521,12 @@
                         ';
                     endforeach ?>
             </div> -->
-           <h2 class="page-header">Maternity Case Timeline</h2>
-            <ul class="timeline">
+
+    <div class="container-fluid">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h2><strong>Maternity Case Timeline</strong></h2>
+                 <ul class="timeline">
 
                 <?php 
                 if(isset($prenatal))
@@ -799,7 +807,10 @@
             }
             ?>
             </ul>
+            </div>
+        </div>
     </div>
+          
     <script>
         $(document).ready(function(){
             $('#height_chart').hide();

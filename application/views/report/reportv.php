@@ -38,8 +38,8 @@ $pdf->SetSubject('TCPDF Tutorial');
 $pdf->SetKeywords('TCPDF, PDF, example, test, guide');
 
 // set default header data
-$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 006', PDF_HEADER_STRING);
-
+define ('K_PATH_IMAGES', '/images/');
+$pdf->SetHeaderData("1.png", PDF_HEADER_LOGO_WIDTH, "Jewel’s First Maternity Clinic", "Patient List Report\n136, Bloc 8, Zone 2, Barangay Fort Bonifacio, Taguig City\n09******");
 // set header and footer fonts
 $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
 $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));

@@ -25,17 +25,20 @@ class Main_model extends CI_Model {
 
   public function patient_login($username, $password)
   {
+    $this->db->select('patient_ID');
     $this->db->where('username', $username);
     $this->db->where('password', $password);
     $query = $this->db->get('patient_account');
-    if($query->num_rows() > 0)
-    {
-      return TRUE;
-    }
-    else
-    {
-      return FALSE;
-    }
+    return $query->row();
+  }
+
+  public function get_patient_info($patient_ID)
+  {
+    $this->db->select('*');
+    $this->db->where('patient_ID', $patient_ID);
+    $this->db->from('patient_info');
+    $query = $this->db->get();
+    return $query->row();
   }
 
   public function feedback($data)
@@ -69,9 +72,11 @@ class Main_model extends CI_Model {
 
   public function count_todays_appointment()
   {
-
     $start_date = date('Y-m-d');
-    $query = $this->db->query("SELECT * from `calendar_events` WHERE `start` = '$start_date' ");
+    $this->db->select('*');
+    $this->db->from('calendar_events');
+    $this->db->like('start', $start_date);
+    $query = $this->db->get();
     return $query->num_rows();
   }
 

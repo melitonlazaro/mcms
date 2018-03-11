@@ -5,31 +5,11 @@
 </head>
 <body>
   <?php require('sidenav.php'); ?>
-
-
-</head>
-<body>
-  <br><br><br>
-    <div class="container-fluid">
-      <div class="pull-right">
-        <ol class="breadcrumb">
-          <li>
-            <a href="../Main/dashboard"><i class="fa fa-dashboard"></i> Dashboard</a>
-          </li>
-          <li>
-            <i class="fa fa-plus-square"></i> Case List
-          </li>
-            <li>
-              <i class="fa fa-plus-square"></i> Case Profile
-            </li>
-            <li class="active">
-             Medical History Result
-            </li>
-        </ol>
-      </div>
-  </div>
+  <br><br><br><br><br><br>
   <div class="container-fluid">
-          <h1 class="page-header"> Medical History Result</h1>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h2><strong>Medical History Result</strong></h2>
         <?php foreach ($mh_result as $mh) 
         {?>
         <div class="row">
@@ -65,7 +45,7 @@
              <i class="fa fa-dot-circle-o" aria-hidden="true"></i>&nbsp &nbspFamily History of CVA: <br>
           </div>
           <div class="col-md-2">
-              <?php echo'<br>
+              <?php echo'<br><br>
                         '.$mh->ch_severe_chest_pain.' <br>
                         '.$mh->ch_easy_fatigability.' <br>
                         '.$mh->ch_axillary_masses.' <br>
@@ -84,7 +64,7 @@
             <i class="fa fa-dot-circle-o" aria-hidden="true"></i>&nbsp &nbspEnlarged Thyroid: <br>
           </div>
           <div class="col-md-2">
-                      <?php echo'<br>
+                      <?php echo'<br><br>
                         '.$mh->heent_epilepsy_convulsion.' <br>
                         '.$mh->heent_severe_headache_dizzines.' <br>
                         '.$mh->heent_visual_disturbance.' <br>
@@ -101,7 +81,7 @@
             <i class="fa fa-dot-circle-o" aria-hidden="true"></i>&nbsp &nbspSwelling or severe pain in the leg: <br>
           </div>
           <div class="col-md-2"> 
-                    <?php echo'<br>
+                    <?php echo'<br><br>
                         '.$mh->extremities_severe_varicositles.' <br>
                         '.$mh->extremities_deformities.' <br>
                         '.$mh->extremities_severe_pain_in_legs.' <br>
@@ -112,7 +92,7 @@
             <i class="fa fa-dot-circle-o" aria-hidden="true"></i>&nbsp &nbspYellowish discoloration: <br>
           </div>
           <div class="col-md-2"> 
-                      <?php echo'<br>
+                      <?php echo'<br><br>
                         '.$mh->skin_yellowish_discoloration.' <br>
                         '; ?>
           </div>                              
@@ -130,7 +110,7 @@
             <i class="fa fa-dot-circle-o" aria-hidden="true"></i>&nbsp &nbspDate of confinement: <br>
           </div>
           <div class="col-md-2">
-              <?php echo'<br>
+              <?php echo'<br><br>
                         '.$mh->oh_fullterm.' <br>
                         '.$mh->oh_preterm.' <br>
                         '.$mh->oh_abortion.' <br>
@@ -152,7 +132,7 @@
               <i class="fa fa-dot-circle-o" aria-hidden="true"></i>&nbsp &nbspDiabeties/Congenital anomalies: <br>
           </div>
           <div class="col-md-2">
-                    <?php echo'<br>
+                    <?php echo'<br><br>
                         '.$mh->history_smoking.' <br>
                         '.$mh->history_allergies.' <br>
                         '.$mh->history_drug_intake.' <br>
@@ -174,7 +154,7 @@
             <i class="fa fa-dot-circle-o" aria-hidden="true"></i>&nbsp &nbspPregnancy Induced Hypertension: <br>
           </div>
           <div class="col-md-2">
-                      <?php echo'<br>
+                      <?php echo'<br><br>
                         '.$mh->oh_previous_CS.' <br>
                         '.$mh->oh_3_consec_miscarriages.' <br>
                         '.$mh->oh_ectopic_pregnancy.' <br>
@@ -191,7 +171,7 @@
             <i class="fa fa-dot-circle-o" aria-hidden="true"></i>&nbsp &nbspPrevious Surgical Operation: <br>
           </div>
           <div class="col-md-2">
-                      <?php echo'<br>
+                      <?php echo'<br><br>
                         '.$mh->abdomen_mass_in_abdomen.' <br>
                         '.$mh->abdomen_gallbladder_disease.' <br>
                         '.$mh->abdomen_liver_disease.' <br>
@@ -199,7 +179,8 @@
                         '; ?> 
           </div>
         </div>
-
+      </div>
+    </div>
   </div>
         <?php } ?>
 </body>

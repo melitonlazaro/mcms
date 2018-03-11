@@ -140,14 +140,9 @@
             <h6 id="title"><b>Today's Appointments</b></h6>
             <h3><?php echo $todays_appointment; ?><span class="fa fa-tasks" id="glyph" aria-hidden="true"></span></h3>
           </div>
-          <a href="">
-            <div class="panel-footer" id="panel-footer-pending">
-                View Details 
-              <div class="pull-right">
-                <i class="fa fa-arrow-circle-right"></i>
-              </div>
-            </div>    
-          </a>
+          <div class="panel-footer">
+            <br>
+          </div>
         </div>
       </div>
 
@@ -157,7 +152,7 @@
            <h6 id="title"><b>Patient Count</b>&nbsp;<small style="color:white;">(<?php echo date('Y-m-d');?>)</small></h6>
            <h3><?php echo $patient_count; ?>  <span class="fa fa-user-o" id="glyph" aria-hidden="true"></span></h3>
           </div>
-          <a href="">
+          <a href="<?php echo base_url();?>Prms/patient_list">
             <div class="panel-footer" id="panel-footer-solved">
               View Details
               <div class="pull-right">
@@ -175,7 +170,7 @@
            <h6 id="title"><b>Active Maternity Case</b>&nbsp;<small style="color:white;">(<?php echo date('Y-m-d');?>)</small></h6>
            <h3><?php echo $total_case; ?> <span class="fa fa-plus-square" id="glyph" aria-hidden="true"></span></h3>
           </div>
-          <a href="">
+          <a href="<?php echo base_url();?>Prms/case_list">
             <div class="panel-footer" id="panel-footer-solved">
               View Details
               <div class="pull-right">
@@ -187,9 +182,49 @@
       </div>
   </div>      
   </div>
-
-
-<br><br>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h4>Prenatal Count (<?php echo date('M-Y');?>)</h4>
+            </div>
+            <div class="panel-body">
+                <div id="chart">
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                <h4>Case Count(<?php echo date('M-Y');?>)</h4>
+              </div>
+              <div class="panel-body">
+                <div id="charts"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+    </div>
+    <br>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <strong><i class="fa fa-calendar"></i> Calendar</strong>
+            </div>
+            <div class="panel-body">
+              <div id="calendar"></div>              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> 
+    <br>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-4">
@@ -286,48 +321,6 @@
             </div>
           </div>
     </div>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="panel panel-info">
-            <div class="panel-heading">
-              <strong><i class="fa fa-calendar"></i> Calendar</strong>
-            </div>
-            <div class="panel-body">
-              <div id="calendar"></div>              
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="panel panel-info">
-            <div class="panel-heading">
-              <h4>Prenatal Count (<?php echo date('M-Y');?>)</h4>
-            </div>
-            <div class="panel-body">
-                <div id="chart">
-                </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="panel panel-info">
-              <div class="panel-heading">
-                <h4>Case Count(<?php echo date('M-Y');?>)</h4>
-              </div>
-              <div class="panel-body">
-                <div id="charts"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> 
-    </div>
-
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-6">
@@ -408,13 +401,6 @@
                                 <input type="text" class="form-control" name="end_date" id="end_date">
                             </div>
                     </div>
-                    <div class="form-group">
-                                <label for="p-in" class="col-md-4 label-heading">Delete Event</label>
-                                <div class="col-md-8">
-                                    <input type="checkbox" name="delete" value="1">
-                                </div>
-                        </div>
-                        <input type="hidden" name="eventid" id="event_id" value="0" />
                   </div>
                   <div class="modal-footer">
                     <div class="pull-left">
