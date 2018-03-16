@@ -323,7 +323,7 @@ class Prms extends CI_Controller {
         if($physical_examination_result)
         {
           $case_id = $this->input->post('case_id');
-          $this->case_list();
+          $this->case_timeline($case_id);
         }
         else
         {
@@ -772,7 +772,7 @@ class Prms extends CI_Controller {
   
   public function testing()
   {
-
+    $this->load->view('prms/medical_history');
   }
 
   public function testing_one()

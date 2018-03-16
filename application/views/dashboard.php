@@ -123,7 +123,7 @@
     border-bottom: 1px solid #eee;
   }
 </style>
-<body class="container-fluid">
+<body class="container-fluid" >
 
 <?php require('sidenav.php'); ?>
 <br><br><br><br><br>

@@ -256,7 +256,7 @@ Morris.Line({
  data:[<?php echo $chart_data; ?>],
  xkey:'date',
  ykeys:['weight'],
- labels:['weight'],
+ labels:['weight - Kilograms'],
  hideHover:'auto',
  stacked:true
 });
@@ -267,7 +267,7 @@ Morris.Line({
         data: [<?php echo $chart_data1; ?>],
         xkey:'date',
         ykeys:['height'],
-        labels:['height'],
+        labels:['height - centimeters'],
         hideHover:'auto',
         stacked: true,
         smooth: true,

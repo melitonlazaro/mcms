@@ -32,6 +32,16 @@ class Main_model extends CI_Model {
     return $query->row();
   }
 
+  public function check_password($old_password, $patient_ID)
+  {
+    $array = array('patient_ID' => $patient_ID, 'password' => $old_password);
+    $this->db->select('*');
+    $this->db->from('patient_account');
+    $this->db->where($array);
+    $query = $this->db->get();
+    return $query->result();
+  }
+
   public function get_patient_info($patient_ID)
   {
     $this->db->select('*');
@@ -39,6 +49,14 @@ class Main_model extends CI_Model {
     $this->db->from('patient_info');
     $query = $this->db->get();
     return $query->row();
+  }
+
+  public function change_patient_password_mdl($confirm_new, $patient_ID)
+  {
+    $this->db->set('password', $confirm_new);
+    $this->db->where('patient_ID', $patient_ID);
+    $query = $this->db->update('patient_account');
+    return $query;
   }
 
   public function feedback($data)
@@ -165,4 +183,34 @@ class Main_model extends CI_Model {
     $query = $this->db->get();
     return $query->result();
   }
+
+  public function count_patient_checkup($patient_ID)
+  {
+    $this->db->select('*');
+    $this->db->from('physicalexamination');
+    $this->db->where('patient_ID', $patient_ID);
+    $query = $this->db->get();
+    return $query->num_rows();
+  }
+
+  public function count_patient_m_cases($patient_ID)
+  {
+    $this->db->select('*');
+    $this->db->from('case');
+    $this->db->where('patient_ID', $patient_ID);
+    $query = $this->db->get();
+    return $query->num_rows();
+  }
+
+  public function check_active_case($patient_ID)
+  {
+    $status = "Active";
+    $this->db->select('*');
+    $this->db->from('case');
+    $this->db->where('patient_ID', $patient_ID);
+    $this->db->where('status', $status);
+    $query = $this->db->get();
+    return $query->result();
+  }
+
 }

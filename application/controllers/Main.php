@@ -45,14 +45,22 @@ class Main extends CI_Controller {
     $this->load->model('Main_model');
     $login_result = $this->Main_model->patient_login($username, $password);
 
-    $patient_ID = $login_result->patient_ID;
-    $data['patient_information'] = $this->Main_model->get_patient_info($patient_ID);
-    $session_data = array(  
-                          'username' => $username,
-                          'patient_ID' => $patient_ID
-                     );
-    $this->session->set_userdata($session_data);
-    $this->load->view('patient_account', $data);
+    if($login_result)
+    {
+      $patient_ID = $login_result->patient_ID;
+      $data['patient_information'] = $this->Main_model->get_patient_info($patient_ID);
+      $session_data = array(  
+                            'patient_username' => $username,
+                            'patient_ID' => $patient_ID
+                       );
+      $this->session->set_userdata($session_data);
+      redirect('Main/patient_profile');
+    }
+    else
+    {
+      $this->session->set_flashdata('login_failed', 'Error! Please input correct credentials');
+      $this->load->view('form');
+    }
     // if($login_result)
     // {
     //   $session_data = array(  
@@ -67,6 +75,62 @@ class Main extends CI_Controller {
     //   $this->session->set_flashdata('login_failed', 'Please insert correct username and password.');
     //   $this->load->view('Form');
     // }
+  }
+
+  public function patient_profile()
+  {
+    $patient_ID = $this->session->userdata('patient_ID');
+    $data['checkup_count'] = $this->Main_model->count_patient_checkup($patient_ID);
+    $data['m_case_count'] = $this->Main_model->count_patient_m_cases($patient_ID);
+    $data['active_case'] = $this->Main_model->check_active_case($patient_ID);
+    $data['patient_information'] = $this->Main_model->get_patient_info($patient_ID);
+    $this->load->view('patient_profile', $data);
+  }
+
+  public function patient_logout()
+  {
+    $this->session->unset_userdata('patient_username');
+    $this->session->unset_userdata('patient_ID');
+      
+      redirect('Main');
+  }
+
+  public function patient_settings()
+  {
+    $this->load->view('patient_setting');
+  }
+
+  public function change_patient_password()
+  {
+    $this->load->model('Main_model');
+    $old_password = md5($this->input->post('old_password'));
+    $new_password = md5($this->input->post('new_password'));
+    $confirm_new = md5($this->input->post('confirm_new'));
+    $patient_ID = $this->session->userdata('patient_ID');
+
+    if($new_password === $confirm_new)
+    {
+      $result = $this->Main_model->check_password($old_password, $patient_ID);
+      if($result)
+      {
+        $result1 = $this->Main_model->change_patient_password_mdl($confirm_new, $patient_ID);
+        if($result1)
+        {
+          $this->session->set_flashdata('change_pass_success', 'Your password has been changed.');
+          $this->patient_profile();
+        }
+      }
+      else
+      {
+        $this->session->set_flashdata('wrong_password', 'Error! Please input correct password.');
+        $this->load->view('patient_setting');
+      }
+    }
+    else
+    {
+      $this->session->set_flashdata('not_identical', 'Error! New Password does not match the Confirm New Password.');
+      $this->load->view('patient_setting');
+    }
   }
 
   public function feedback()
@@ -129,7 +193,7 @@ class Main extends CI_Controller {
 
     public function book_appointment()
     {
-      $this->load->view('book_appointment');
+      $this->load->view('appt');
     }
 
     public function online_appointment()
@@ -343,5 +407,9 @@ class Main extends CI_Controller {
     $this->load->view('visitor_messages', $data);
   }
 
+  public function test()
+  {
+    $this->load->view('form_wizard');
+  }
 }
 ?>

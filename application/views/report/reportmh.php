@@ -104,7 +104,7 @@ $table .= '
     border-collapse: collapse;
 }
 </style>
-<h3>Medical Result</h3>
+<h3>Medical History Result</h3>
 <tr>
 				<td align="left">Patient ID: '.$dt->Patient_ID.'</td>
 				<td align="right">Checkup Date: '.$dt->Date.' </td>

@@ -140,7 +140,15 @@
     <div class="row text-center">
         <div class="col-md-6" data-aos="zoom-in-up"><img src="<?php echo base_url(); ?>/Public/website_extensions2/img/a-cal.png"></div>
         <div class="col-md-6 slide-tr" data-aos="zoom-in-up"><p class="letit">Schedule an Appointment for Free!</p><br>
-            <a href="<?php echo base_url();?>Main/appointment"><button type="button" class="btn btn-lg btn-outline-info">Book Now</button></a>  
+            <?php if($this->session->userdata('patient_username')) 
+            { ?>
+              <a href="<?php echo base_url();?>Main/patient_profile"><button type="button" class="btn btn-lg btn-outline-info">Return to Profile</button></a> 
+            <?php 
+            }else
+            {?>
+              <a href="<?php echo base_url();?>Main/appointment"><button type="button" class="btn btn-lg btn-outline-info">Book Now</button></a> 
+            <?php }
+            ?> 
         </div>
     </div>
 <br><br>

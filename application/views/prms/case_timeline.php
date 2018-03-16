@@ -527,7 +527,81 @@
             <div class="panel-body">
                 <h2><strong>Maternity Case Timeline</strong></h2>
                  <ul class="timeline">
-
+                <?php 
+                if(isset($postnatal))
+                {
+                    echo '
+                            <li class="time-label">
+                            <span class="bg-blue">
+                                '.$postnatal->date.'
+                            </span>
+                            </li>
+                             <li>
+                                <!-- timeline icon -->
+                                <i class=" fa fa-medkit bg-green"></i>
+                                <div class="timeline-item">
+                                    <h3 class="timeline-header"><strong>Postnatal Checkup</strong></h3>
+                                    <div class="timeline-body">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <h5>Weight</h5>
+                                                <div>
+                                                    <strong>
+                                                    '.$postnatal->patient_weight.' Kg
+                                                    </strong>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <h5>Height</h5>
+                                                <div>
+                                                    <strong>
+                                                    '.$postnatal->patient_height.' cm
+                                                    </strong>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <h5>Pulse Rate</h5>
+                                                <div>
+                                                    <strong>
+                                                    '.$postnatal->pulse_rate.'
+                                                    </strong>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <h5>Blood Pressure</h5>
+                                                <div>
+                                                    <strong>
+                                                    '.$postnatal->systolic.'/'.$postnatal->diastolic.'
+                                                    </strong>
+                                                </div>
+                                            </div>                                                                                
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                            <h5>Impression </h5>
+                                                <div>
+                                                <strong>
+                                                '.$postnatal->impression.'
+                                                </strong>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                            <h5>Plans</h5>
+                                                <div>
+                                                <strong>
+                                                '.$postnatal->plans.'
+                                                </strong>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-footer">
+                                    </div>
+                                </div>
+                            </li>
+                         ';
+                }
+                ?>
                 <?php 
                 if(isset($prenatal))
                 {
@@ -544,7 +618,7 @@
                             <li>
                                 <i class="fa fa-plus-square bg-blue"></i>
                                 <div class="timeline-item">
-                                    <h3 class="timeline-header"> Prenatal Checkup</h3>
+                                    <h3 class="timeline-header"><strong>Prenatal Checkup</strong></h3>
                                     <div class="timeline-body">
                                         <button data-toggle="collapse" data-target="#result-'.$pr->Num.'" class="btn btn-success btn-sm">View Result</button>
                                         <a href="../../Prms/print_pe_report/'.$pr->Num.'"><button class="btn btn-info btn-sm">Report</button></a>
@@ -735,25 +809,31 @@
                             <!-- timeline icon -->
                             <i class=" fa fa-medkit bg-green"></i>
                             <div class="timeline-item">
-                                <h3 class="timeline-header"><a href="#">Medical History</a></h3>
+                                <h3 class="timeline-header"><strong>Medical History</strong></h3>
                                 <div class="timeline-body">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <p>Expected Date of Confinemment</p>
-                                            <div class="well well-sm">
+                                            <h5>Expected Date of Confinemment</h5>
+                                            <div>
+                                                <strong>
                                                 '.$mh->oh_expected_date_of_confinement.'
+                                                </strong>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <p>Age of Gestation</p>
-                                            <div class="well well-sm">
+                                            <h5>Age of Gestation</h5>
+                                            <div>
+                                                <strong>
                                                 '.$mh->oh_age_of_gestation_weeks.'
+                                                </strong>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <p>Date of Last Delivery</p>
-                                            <div class="well well-sm">
+                                            <h5>Date of Last Delivery</h5>
+                                            <div>
+                                                <strong>
                                                 '.$mh->oh_last_delivery_date.'
+                                                </strong>
                                             </div>
                                         </div>                                                                                
                                     </div>
