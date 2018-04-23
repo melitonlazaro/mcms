@@ -145,6 +145,11 @@ class Main_model extends CI_Model {
     return $this->db->where("start >=", $start)->where("end <=", $end)->get("calendar_events");
   }
 
+  public function get_appointments($start, $end)
+  {
+    return $this->db->where("start >=", $start)->where("end <=", $end)->get("pending_appointment");
+  }  
+
   public function add_event($data)
   {
     $result = $this->db->insert("calendar_events", $data);
@@ -164,6 +169,12 @@ class Main_model extends CI_Model {
   public function delete_event($id)
   {
     $this->db->where("ID", $id)->delete("calendar_events");
+  }
+
+  public function add_appointment($data)
+  {
+    $result = $this->db->insert('pending_appointment', $data);
+    return $result;
   }
 
   public function get_visitor_messages()

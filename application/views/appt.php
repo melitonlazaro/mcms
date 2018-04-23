@@ -39,26 +39,50 @@
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-md-5">
-                                    <form>
-                                        <label>Procedure</label>
-                                        <select class="form-control" id="reason">
-                                          <option>Prenatal Checkup</option>
-                                          <option>Postnatal Checkup</option>
-                                          <option>Laboratory</option>
-                                          <option>Infant Consultation</option>
-                                          <option>Paps Smear</option>
-                                          <option>Immunization</option>
-                                          <option>Ultrasound</option>
-                                        </select>
-                                        <label>Name</label>
-                                        <input class="form-control" type="text" name="">
-                                        <label>Email</label>
-                                        <input class="form-control" type="text" name="">  
-                                        <label>Contact Number</label>
-                                        <input class="form-control" type="text"onkeypress='return event.charCode >= 48 && event.charCode <= 57' name=""><br>
-                                    </form>
-                                </div>
+                                  <div class="col-md-5">
+                                    <div class="panel panel-default">
+                                      <?php 
+                                        if($this->session->flashdata('appointment_success'))
+                                        {
+                                          echo '<div class="alert alert-success>"';
+                                          echo $this->session->flashdata('appointment_success');
+                                          echo '</div>';
+                                        }
+                                        elseif($this->session->flashdata('appointment_failed'))
+                                        {
+                                          echo '<div class="alert alert-warning>';
+                                          echo $this->session->flashdata('appointment_failed');
+                                          echo '</div>';
+                                        }
+                                      ?>
+                                      <div class="panel-body">
+                                          <?php echo form_open('Main/online_appointment') ?>
+                                              <input type="hidden" name="patient_ID" value="<?php echo $this->session->userdata('patient_ID'); ?>">
+                                              <label>Procedure</label>
+                                              <select class="form-control" id="reason" name="procedure">
+                                                <option>Prenatal Checkup</option>
+                                                <option>Postnatal Checkup</option>
+                                                <option>Laboratory</option>
+                                                <option>Infant Consultation</option>
+                                                <option>Paps Smear</option>
+                                                <option>Immunization</option>
+                                                <option>Ultrasound</option>
+                                              </select>
+                                              <label>Date</label>
+                                              <?php $max_date = date('Y-m-d'); ?>
+                                              <input class="form-control" type="date" name="date" min="<?php echo $max_date; ?>">
+                                              <label>Time</label>
+                                              <input class="form-control" type="time" name="time">  
+                                              <label>Contact Number</label>
+                                              <input class="form-control" type="text" name="contact_number" onkeypress='return event.charCode >= 48 && event.charCode <= 57'  name=""><br>
+                                              <br>
+                                              <div class="pull-right">
+                                                <button class="btn btn-success" type="submit">Schedule an Appointment</button>
+                                              </div>
+                                          </form>
+                                      </div>
+                                    </div>    
+                                  </div>
                                 <div class="col-md-7">
                                     <div id="calendar"></div>
                                 </div>    

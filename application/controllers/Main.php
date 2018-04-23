@@ -199,27 +199,25 @@ class Main extends CI_Controller {
     public function online_appointment()
     {
         $data = array(
-                    'ol_appointment_id' => NULL,
-                    'patient_name'      => $this->input->post('name'),
-                    'patient_surname'   => $this->input->post('surname') ,
-                    'address'           => $this->input->post('address') ,
+                    'appointment_id'    => NULL,
+                    'patient_ID'        => $this->input->post('patient_ID'),
+                    'contact_number'    => $this->input->post('contact_number'),
                     'date'              => $this->input->post('date') ,
                     'time'              => $this->input->post('time') ,
-                    'procedure'         => $this->input->post('procedure') ,
-                    'contact_number'    => $this->input->post('contact_number') 
+                    'clinic_procedure'  => $this->input->post('procedure')
                     );
-          include "smsGateway.php";
-          $smsGateway = new SmsGateway('melitonlazaro1@gmail.com', '09153864099');
-
-          $number = $this->input->post('contact_number');
-          
-          $number_code = mt_rand(10000, 99999);
-          $deviceID = 70979;
-          $number = $number;
-          $message = $number_code;
-
-          $result = $smsGateway->sendMessageToNumber($number, $message, $deviceID); 
-
+        $this->load->model('Main_model');
+        $result = $this->Main_model->add_appointment($data);
+        if($result)
+        {
+          $this->session->set_flashdata('appointment_success', 'You have successfully scheduled an appointment!');
+          redirect('Main/book_appointment');
+        }
+        else
+        {
+          $this->session->set_flashdata('appointment_failed', 'Error');
+          redirect('Main/book_appointment');
+        }
     }
 
     public function send_confirmation_code($num)
@@ -273,6 +271,36 @@ class Main extends CI_Controller {
       $end_format = $enddt->format('Y-m-d H:i:s');
 
       $events = $this->Main_model->get_events($start_format, $end_format);
+
+      $data_events = array();
+
+      foreach($events->result() as $r){
+        $data_events[] = array(
+          "id" => $r->ID,
+          "title" => $r->title,
+          "description" => $r->description,
+          "end" => $r->end,
+          "start" => $r->start 
+        );
+      }
+      echo json_encode(array("events" => $data_events));
+      exit();
+    }
+
+    public function get_appointments()
+    {
+      $start = $this->input->get("start");
+      $end = $this->input->get("end");
+
+      $startdt = new DateTime('now'); //local time
+      $startdt->setTimestamp($start); //setting the date based on timestamp
+      $start_format = $startdt->format('Y-m-d H:i:s');
+
+      $enddt = new DateTime('now');
+      $enddt->setTimestamp($end);
+      $end_format = $enddt->format('Y-m-d H:i:s');
+
+      $events = $this->Main_model->get_appointments($start_format, $end_format);
 
       $data_events = array();
 
@@ -409,7 +437,7 @@ class Main extends CI_Controller {
 
   public function test()
   {
-    $this->load->view('form_wizard');
+    $this->load->view('testing');
   }
 }
 ?>
